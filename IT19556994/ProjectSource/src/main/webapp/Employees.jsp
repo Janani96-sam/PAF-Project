@@ -24,7 +24,7 @@ if (request.getParameter("eid") != null)
 	<form>
 		Employee ID: <input name="eid" type="text"><br>
 		Employee Name: <input name="ename" type="text"><br>
-		Mobile: <input name="mobile" type="number"><br>
+		Mobile: <input name="mobile" type="text"><br>
 		Email: <input name="email" type="text"><br>
 		Status:<input name="status" type="text"><br>
 		<input name="btnSubmit" type="submit" value="Save">
