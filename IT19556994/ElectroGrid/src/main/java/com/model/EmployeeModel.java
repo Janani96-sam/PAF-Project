@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.pojo.Employee;
 
 public class EmployeeModel {
 	private Connection connect() {
@@ -22,7 +25,7 @@ public class EmployeeModel {
 		return con;
 	}
 
-	public String insertEmployee(String ename, String mobile, String email, String emp_username, String emp_password) {
+	public String insertEmployee(Employee employee) {
 		String output = "";
 
 		try {
@@ -34,18 +37,21 @@ public class EmployeeModel {
 			}
 
 			// create a prepared statement
-			String query = "insert into employees('ename', 'mobile', 'email', 'status', 'emp_username', 'emp_password') "
-					+ "values( ?, ?, ?, ?, ?, ?)";
+			String query = "insert into employees(ename,date_of_birth,emp_nic,gender, mobile, email, status, emp_username, emp_password) "
+					+ "values( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
 
-			preparedStmt.setString(1, ename);
-			preparedStmt.setString(2, mobile);
-			preparedStmt.setString(3, email);
-			preparedStmt.setInt(4, 1);
-			preparedStmt.setString(5, emp_username);
-			preparedStmt.setString(6, emp_password);
+			preparedStmt.setString(1, employee.getEname());
+			preparedStmt.setString(2, employee.getDate_of_birth());
+			preparedStmt.setString(3, employee.getEmp_nic());
+			preparedStmt.setString(4, employee.getGender());
+			preparedStmt.setString(5, employee.getMobile());
+			preparedStmt.setString(6, employee.getEmail());
+			preparedStmt.setInt(7, 1);
+			preparedStmt.setString(8, employee.getEmp_username());
+			preparedStmt.setString(9, employee.getEmp_password());
 
 			preparedStmt.execute();
 			con.close();
@@ -70,17 +76,13 @@ public class EmployeeModel {
 			}
 
 			// prepare the html table to be displayed
-			output = "<!DOCTYPE html>\r\n"
-					+ "<html>\r\n"
-					+ "<head>\r\n"
-					+ "<meta charset=\"ISO-8859-1\">\r\n"
-					+ "<title>Insert title here</title>\r\n"
-					+ "</head>\r\n"
-					+ "<body>\r\n"
-					+ "<h1>Hello World</h1><table border='1'><tr><th>Employee ID</th><th>Employee Name</th>" + "<th>Mobile</th>"
-					+ "<th>Email</th>" + "<th>Status</th><th>User Name</th>" + "<th>Update</th><th>Remove</th></tr>";
+			output = "<!DOCTYPE html>\r\n" + "<html>\r\n" + "<head>\r\n" + "<meta charset=\"ISO-8859-1\">\r\n"
+					+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n"
+					+ "<h1>Hello World</h1><table border='1'><tr><th>Employee ID</th><th>Employee Name</th>"
+					+ "<th>Mobile</th>" + "<th>Email</th>" + "<th>Status</th><th>User Name</th>"
+					+ "<th>Update</th><th>Remove</th></tr>";
 
-			String query = "select * from employee";
+			String query = "select * from employees";
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
 
@@ -110,8 +112,7 @@ public class EmployeeModel {
 			con.close();
 
 			// complete the html table
-			output += "</table></body>"
-					+ "</html>";
+			output += "</table></body>" + "</html>";
 
 		} catch (Exception e) {
 			output = "Error while reading the employees";
@@ -120,6 +121,7 @@ public class EmployeeModel {
 		return output;
 
 	}
+
 	public String searchEmployees(String name) {
 		String output = "";
 
@@ -131,17 +133,13 @@ public class EmployeeModel {
 			}
 
 			// prepare the html table to be displayed
-			output = "<!DOCTYPE html>\r\n"
-					+ "<html>\r\n"
-					+ "<head>\r\n"
-					+ "<meta charset=\"ISO-8859-1\">\r\n"
-					+ "<title>Insert title here</title>\r\n"
-					+ "</head>\r\n"
-					+ "<body>\r\n"
-					+ "<h1>Hello World</h1><table border='1'><tr><th>Employee ID</th><th>Employee Name</th>" + "<th>Mobile</th>"
-					+ "<th>Email</th>" + "<th>Status</th><th>User Name</th>" + "<th>Update</th><th>Remove</th></tr>";
+			output = "<!DOCTYPE html>\r\n" + "<html>\r\n" + "<head>\r\n" + "<meta charset=\"ISO-8859-1\">\r\n"
+					+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n"
+					+ "<h1>Hello World</h1><table border='1'><tr><th>Employee ID</th><th>Employee Name</th>"
+					+ "<th>Mobile</th>" + "<th>Email</th>" + "<th>Status</th><th>User Name</th>"
+					+ "<th>Update</th><th>Remove</th></tr>";
 
-			String query = "select * from employee WHERE ename LIKE '%"+name+"%'";
+			String query = "select * from employee WHERE ename LIKE '%" + name + "%'";
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
 
@@ -171,8 +169,7 @@ public class EmployeeModel {
 			con.close();
 
 			// complete the html table
-			output += "</table></body>"
-					+ "</html>";
+			output += "</table></body>" + "</html>";
 
 		} catch (Exception e) {
 			output = "Error while reading the employees";
@@ -182,48 +179,81 @@ public class EmployeeModel {
 
 	}
 
-	public String updateEmployees(int eid,String ename, String mobile, String email,int status)
-		{
-			String output = "";
-			
-			try
-			{
-				Connection con = connect();
-				
-				if (con == null)
-				{
-					return "Error while connecting to the database for updating";
-				
-				}
-				
-				//create a prepared statement
-				String query = "UPDATE employees SET ename=?,mobile=?,email=?,status=?"						
-						+ "WHERE eid=?";
-				PreparedStatement preparedStmt = con.prepareStatement(query);
-				
-				//binding values
-				//need to modify he data types
-				
-				preparedStmt.setString(1, ename);
-				preparedStmt.setString(2, mobile);
-				preparedStmt.setString(3, email);
-				preparedStmt.setInt(4,status);
-				preparedStmt.setInt(5, eid);
-				
-				
-				
-				preparedStmt.execute();
-				con.close();
-				
-				output = "Values Updated Successfully";
+	public ArrayList<Employee> searchEmployeesJson(String name) {
+		ArrayList<Employee> output = new ArrayList<Employee>();
+
+		try {
+			Connection con = connect();
+
+			if (con == null) {
+				return output;
 			}
-			catch (Exception e) {
-				output = "Error while updating the employee";
-				System.err.println(e.getMessage());
+
+			String query = "select * from employees WHERE ename LIKE '%" + name + "%'";
+			Statement stat = con.createStatement();
+			ResultSet rs = stat.executeQuery(query);
+
+			// iterate through the rows in the result set
+			while (rs.next()) {
+				Employee e = new Employee();
+				e.setEid(rs.getInt("eid"));
+				e.setEname(rs.getString("ename"));
+				e.setMobile(rs.getString("mobile"));
+				e.setDate_of_birth(rs.getString("date_of_birth"));
+				e.setEmp_nic(rs.getString("emp_nic"));
+				e.setEmail(rs.getString("email"));
+				e.setGender(rs.getString("gender"));
+				e.setEmp_username(rs.getString("emp_username"));
+				e.setStatus(rs.getInt("status"));
+				output.add(e);
+	
 			}
-			return output;
-			
+			con.close();
+
+		} catch (Exception e) {
+
+			System.err.println(e.getMessage());
 		}
+		return output;
+
+	}
+
+	// need to modify the method parameters to employee
+	public String updateEmployees(int eid, String ename, String mobile, String email, int status) {
+		String output = "";
+
+		try {
+			Connection con = connect();
+
+			if (con == null) {
+				return "Error while connecting to the database for updating";
+
+			}
+
+			// create a prepared statement
+			String query = "UPDATE employees SET ename=?,mobile=?,email=?,status=?" + "WHERE eid=?";
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			// binding values
+			// need to modify he data types
+
+			preparedStmt.setString(1, ename);
+			preparedStmt.setString(2, mobile);
+			preparedStmt.setString(3, email);
+			preparedStmt.setInt(4, status);
+			preparedStmt.setInt(5, eid);
+
+			preparedStmt.execute();
+			con.close();
+
+			output = "Values Updated Successfully";
+		} catch (Exception e) {
+			output = "Error while updating the employee";
+			System.err.println(e.getMessage());
+		}
+		return output;
+
+	}
 
 	public String deleteEmployees(String eid) {
 		String output = "";
