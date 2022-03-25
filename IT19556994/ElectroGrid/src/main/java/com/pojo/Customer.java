@@ -9,7 +9,7 @@ private String cus_nic;
 private String contact_number;
 private String address;
 private String cus_email;
-private String cus_status;
+private int cus_status;
 
 public Customer() {
 	super();
@@ -19,7 +19,7 @@ public Customer() {
 
 
 public Customer(int cid, String title, String fname, String lname, String cus_nic, String contact_number,
-		String address, String cus_email, String cus_status) {
+		String address, String cus_email, int cus_status) {
 	super();
 	this.cid = cid;
 	this.title = title;
@@ -96,11 +96,11 @@ public void setCus_email(String cus_email) {
 	this.cus_email = cus_email;
 }
 
-public String getCus_status() {
+public int getCus_status() {
 	return cus_status;
 }
 
-public void setCus_status(String cus_status) {
+public void setCus_status(int cus_status) {
 	this.cus_status = cus_status;
 }
 

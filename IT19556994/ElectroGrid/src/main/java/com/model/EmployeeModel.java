@@ -129,7 +129,7 @@ public class EmployeeModel {
 			Connection con = connect();
 
 			if (con == null) {
-				return "Error while connecting to the database for reading";
+				return "Error while connecting to the database for searching";
 			}
 
 			// prepare the html table to be displayed
@@ -172,7 +172,7 @@ public class EmployeeModel {
 			output += "</table></body>" + "</html>";
 
 		} catch (Exception e) {
-			output = "Error while reading the employees";
+			output = "Error while searching the employees";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -219,7 +219,7 @@ public class EmployeeModel {
 	}
 
 	// need to modify the method parameters to employee
-	public String updateEmployees(int eid, String ename, String mobile, String email, int status) {
+	public String updateEmployee(Employee employee) {
 		String output = "";
 
 		try {
@@ -231,17 +231,18 @@ public class EmployeeModel {
 			}
 
 			// create a prepared statement
-			String query = "UPDATE employees SET ename=?,mobile=?,email=?,status=?" + "WHERE eid=?";
+			String query = "UPDATE employees SET ename=?, emp_nic=?,mobile=?,email=?,status=? WHERE eid=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
 			// need to modify he data types
 
-			preparedStmt.setString(1, ename);
-			preparedStmt.setString(2, mobile);
-			preparedStmt.setString(3, email);
-			preparedStmt.setInt(4, status);
-			preparedStmt.setInt(5, eid);
+			preparedStmt.setString(1, employee.getEname());
+			preparedStmt.setString(2, employee.getEmp_nic());
+			preparedStmt.setString(3, employee.getMobile());
+			preparedStmt.setString(4, employee.getEmail());
+			preparedStmt.setInt(5, employee.getStatus());
+			preparedStmt.setInt(6, employee.getEid());
 
 			preparedStmt.execute();
 			con.close();
@@ -255,7 +256,7 @@ public class EmployeeModel {
 
 	}
 
-	public String deleteEmployees(String eid) {
+	public String deleteEmployee(Employee employee) {
 		String output = "";
 
 		try {
@@ -270,7 +271,7 @@ public class EmployeeModel {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
-			preparedStmt.setInt(1, Integer.parseInt(eid));
+			preparedStmt.setInt(1, employee.getEid());
 
 			// execute the statement
 			preparedStmt.execute();
