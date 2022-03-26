@@ -3,8 +3,10 @@ package com;
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -18,10 +20,10 @@ import com.pojo.Employee;
 public class EmployeeService {
 
 	@GET
-	@Path("/")
+	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String hello() {
-		return "Hello world.";
+		return "Hello Java !";
 	}
 
 	@GET
@@ -39,7 +41,7 @@ public class EmployeeService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String searchEmployees(@PathParam("name") String name) {
 		EmployeeModel em = new EmployeeModel();
-		//String output = em.searchEmployees(name);
+		// String output = em.searchEmployees(name);
 		ArrayList<Employee> al = em.searchEmployeesJson(name);
 		Gson gson = new Gson();
 		String output = gson.toJson(al);
@@ -48,7 +50,7 @@ public class EmployeeService {
 
 	@POST
 	@Path("/insertemployees") // employee end point
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String insertEmployees(String json) {
 		EmployeeModel em = new EmployeeModel();
@@ -56,7 +58,39 @@ public class EmployeeService {
 		Employee e = gson.fromJson(json, Employee.class);
 		String output = em.insertEmployee(e);
 
-		return output;
+		String response = gson.toJson(output);
+		return response;
+	}
+
+	@PUT
+	@Path("/updateemployee")
+	@Produces(MediaType.APPLICATION_JSON) // type that we send (responce type)
+	@Consumes(MediaType.APPLICATION_JSON) // type that we receive (request type)
+	public String updateEmployee(String json) {
+		EmployeeModel em = new EmployeeModel();
+		Gson gson = new Gson();
+		Employee e = gson.fromJson(json, Employee.class);
+		String output = em.updateEmployee(e);
+
+		String response = gson.toJson(output);
+		return response;
+	}
+
+	@DELETE
+	@Path("/deleteemployee")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String deleteItem(String json) {
+		System.out.print(json);
+		EmployeeModel em = new EmployeeModel();
+		Gson gson = new Gson();
+		Employee e = gson.fromJson(json, Employee.class);
+		String output = em.deleteEmployee(e);
+		
+		String response = gson.toJson(output);
+		System.out.print(response);
+		return response;
+
 	}
 
 }

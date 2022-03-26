@@ -32,7 +32,7 @@ public class EmployeeModel {
 			Connection con = connect();
 
 			if (con == null) {
-				return "Error while connecting to the database for inserting";
+				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 
 			}
 
@@ -56,9 +56,10 @@ public class EmployeeModel {
 			preparedStmt.execute();
 			con.close();
 
-			output = "Values Inserted Successfully";
+			output = "{\"status\":\"200\",\"message\":\"Values Inserted Successfully\"}";
 		} catch (Exception e) {
-			output = "Error while inserting the employee";
+
+			output = "{\"status\":\"400\",\"message\":\"Error while inserting the employee\"}";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -129,7 +130,7 @@ public class EmployeeModel {
 			Connection con = connect();
 
 			if (con == null) {
-				return "Error while connecting to the database for reading";
+				return "Error while connecting to the database for searching";
 			}
 
 			// prepare the html table to be displayed
@@ -172,7 +173,7 @@ public class EmployeeModel {
 			output += "</table></body>" + "</html>";
 
 		} catch (Exception e) {
-			output = "Error while reading the employees";
+			output = "Error while searching the employees";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -206,7 +207,7 @@ public class EmployeeModel {
 				e.setEmp_username(rs.getString("emp_username"));
 				e.setStatus(rs.getInt("status"));
 				output.add(e);
-	
+
 			}
 			con.close();
 
@@ -219,50 +220,51 @@ public class EmployeeModel {
 	}
 
 	// need to modify the method parameters to employee
-	public String updateEmployees(int eid, String ename, String mobile, String email, int status) {
+	public String updateEmployee(Employee employee) {
 		String output = "";
 
 		try {
 			Connection con = connect();
 
 			if (con == null) {
-				return "Error while connecting to the database for updating";
+				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 
 			}
 
 			// create a prepared statement
-			String query = "UPDATE employees SET ename=?,mobile=?,email=?,status=?" + "WHERE eid=?";
+			String query = "UPDATE employees SET ename=?, emp_nic=?,mobile=?,email=?,status=? WHERE eid=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
 			// need to modify he data types
 
-			preparedStmt.setString(1, ename);
-			preparedStmt.setString(2, mobile);
-			preparedStmt.setString(3, email);
-			preparedStmt.setInt(4, status);
-			preparedStmt.setInt(5, eid);
+			preparedStmt.setString(1, employee.getEname());
+			preparedStmt.setString(2, employee.getEmp_nic());
+			preparedStmt.setString(3, employee.getMobile());
+			preparedStmt.setString(4, employee.getEmail());
+			preparedStmt.setInt(5, employee.getStatus());
+			preparedStmt.setInt(6, employee.getEid());
 
 			preparedStmt.execute();
 			con.close();
 
-			output = "Values Updated Successfully";
+			output = "{\"status\":\"200\",\"message\":\"Employee Update Success ! !\"}";;
 		} catch (Exception e) {
-			output = "Error while updating the employee";
+			output = "{\"status\":\"400\",\"message\":\"Error while updating Employee !\"}";;
 			System.err.println(e.getMessage());
 		}
 		return output;
 
 	}
 
-	public String deleteEmployees(String eid) {
+	public String deleteEmployee(Employee employee) {
 		String output = "";
 
 		try {
 			Connection con = connect();
 
 			if (con == null) {
-				return "Error while connecting to the database for deleting";
+				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 			}
 
 			String query = "delete from employees where eid=?";
@@ -270,14 +272,14 @@ public class EmployeeModel {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
-			preparedStmt.setInt(1, Integer.parseInt(eid));
+			preparedStmt.setInt(1, employee.getEid());
 
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Deleted successfully";
+			output = "{\"status\":\"200\",\"message\":\"Employee Delete Success !\"}";;
 		} catch (Exception e) {
-			output = "Error while deleting the employee.";
+			output = "{\"status\":\"400\",\"message\":\"Error while Deleting Employee !\"}";;
 			System.err.println(e.getMessage());
 		}
 

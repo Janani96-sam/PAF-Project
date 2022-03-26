@@ -7,14 +7,14 @@ private String install_date;
 private String register_date;
 private String connection_type;
 private String address;
-private String status;
+private int status;
 
 public Account() {
 	super();
 }
 
 public Account(int accid, String serial, String install_date, String register_date, String connection_type,
-		String address, String status) {
+		String address, int status) {
 	super();
 	this.accid = accid;
 	this.serial = serial;
@@ -63,10 +63,10 @@ public String getAddress() {
 public void setAddress(String address) {
 	this.address = address;
 }
-public String getStatus() {
+public int getStatus() {
 	return status;
 }
-public void setStatus(String status) {
+public void setStatus(int status) {
 	this.status = status;
 }
 
