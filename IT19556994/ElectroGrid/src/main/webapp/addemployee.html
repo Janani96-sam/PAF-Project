@@ -74,6 +74,37 @@
 							Employee</a>
 					</div>
 				</div></li>
+				
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseTwo"
+				aria-expanded="true" aria-controls="collapseTwo"> <i
+					class="fas fa-fw fa-user"></i> <span>Customer</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addcustomer.html">Add Customer</a>
+						<a class="collapse-item" href="customerhome.html">Search
+							Customer</a>
+					</div>
+				</div></li>
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseTwo"
+				aria-expanded="true" aria-controls="collapseTwo"> <i
+					class="fas fa-fw fa-user"></i> <span>Account</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addaccount.html">Add Account</a>
+						<a class="collapse-item" href="accounthome.html">Search
+							Account</a>
+					</div>
+				</div></li>
 
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -329,7 +360,7 @@
 			
 			console.log(json);
 			
-			postData('http://localhost:8080/ElectroGrid/customer/employee/insertemployees', JSON.parse(json)) //send api request
+			postData('http://localhost:8080/ElectroGrid/accounts/employee/insertemployees', JSON.parse(json)) //send api request
 			  .then(data => {
 			    console.log(data);
 			    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call

@@ -73,7 +73,36 @@
 							Employee</a>
 					</div>
 				</div></li>
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseTwo"
+				aria-expanded="true" aria-controls="collapseTwo"> <i
+					class="fas fa-fw fa-user"></i> <span>Customer</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
 
+						<a class="collapse-item" href="addcustomer.html">Add Customer</a>
+						<a class="collapse-item" href="customerhome.html">Search
+							Customer</a>
+					</div>
+				</div></li>
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseTwo"
+				aria-expanded="true" aria-controls="collapseTwo"> <i
+					class="fas fa-fw fa-user"></i> <span>Account</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addaccount.html">Add Account</a>
+						<a class="collapse-item" href="accounthome.html">Search
+							Account</a>
+					</div>
+				</div></li>
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseUtilities"
@@ -348,7 +377,7 @@
     		alert('Invalid Seach Keyword !');
     	}else{
     		empmap.clear();
-    		fetch("http://localhost:8080/ElectroGrid/customer/employee/"+searchtext.value+"/searchemployees")
+    		fetch("http://localhost:8080/ElectroGrid/accounts/employee/"+searchtext.value+"/searchemployees")
             .then((response) => {
               return response.json();
             })
@@ -391,7 +420,7 @@
     
     function deleteEmployee(id){
 	var json = '{"eid":"'+id+'"}';			 
-				postData('http://localhost:8080/ElectroGrid/customer/employee/deleteemployee', JSON.parse(json),'DELETE')
+				postData('http://localhost:8080/ElectroGrid/accounts/employee/deleteemployee', JSON.parse(json),'DELETE')
 		  .then(data => {
 		    console.log(data);
 		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
@@ -429,7 +458,7 @@
 		 
 		
 		
-		postData('http://localhost:8080/ElectroGrid/customer/employee/updateemployee', JSON.parse(json),'PUT')
+		postData('http://localhost:8080/ElectroGrid/accounts/employee/updateemployee', JSON.parse(json),'PUT')
 		  .then(data => {
 		    console.log(data);
 		    if(JSON.parse(data).status=='200'){

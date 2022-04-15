@@ -18,14 +18,6 @@ import com.pojo.Employee;
 
 @Path("/employee")
 public class EmployeeService {
-
-	@GET
-	@Path("/hello")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String hello() {
-		return "Hello Java !";
-	}
-
 	@GET
 	@Path("/viewemployees") // employee end point
 	@Produces(MediaType.TEXT_HTML)
@@ -80,7 +72,7 @@ public class EmployeeService {
 	@Path("/deleteemployee")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String deleteItem(String json) {
+	public String deleteEmployee(String json) {
 		System.out.print(json);
 		EmployeeModel em = new EmployeeModel();
 		Gson gson = new Gson();
@@ -93,32 +85,6 @@ public class EmployeeService {
 
 	}
 	
-	@PUT
-	@Path("/updateemployee")
-	@Produces(MediaType.APPLICATION_JSON) //type that we send (responce type)
-	@Consumes(MediaType.APPLICATION_JSON) // type that we receive (request type)
-	public String updateEmployee(String json) {
-		EmployeeModel em = new EmployeeModel();
-		Gson gson = new Gson();
-		Employee e = gson.fromJson(json, Employee.class);
-		String output = em.updateEmployee(e);
-		
-		return output;
-	}
-	
-	@DELETE
-	@Path("/deleteemployee")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public String deleteItem(String json) {
-		EmployeeModel em = new EmployeeModel();
-		Gson gson = new Gson();
-		Employee e = gson.fromJson(json, Employee.class);
-		String output = em.deleteEmployee(e);
-		return output;
-		
-		
-	}
 	
 	
 	

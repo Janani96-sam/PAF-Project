@@ -303,6 +303,47 @@ public class CustomerModel {
 		return output;
 	}
 
+//other apis
+	public Customer getCustomersJson(String id) {
+		Customer output = new Customer();
+
+		try {
+			Connection con = connect();
+
+			if (con == null) {
+				return output;
+			}
+
+			String query = "select * from customers WHERE cid= '" + id + "'limit 1";
+			Statement stat = con.createStatement();
+			ResultSet rs = stat.executeQuery(query);
+			
+			// iterate through the rows in the result set
+			while (rs.next()) {
+				Customer cus = new Customer();
+				cus.setCid(rs.getInt("cid"));
+				cus.setFname(rs.getString("fname"));
+				cus.setLname(rs.getString("lname"));
+				cus.setCus_nic(rs.getString("cus_nic"));
+				cus.setContact_number(rs.getString("contact_number"));
+				cus.setAddress(rs.getString("address"));
+				cus.setCus_email(rs.getString("cus_email"));
+				cus.setCus_status(rs.getInt("cus_status"));
+			
+				output=cus;
 	
+			}
+			con.close();
+
+		} catch (Exception e) {
+			
+			System.err.println(e.getMessage());
+			
+			
+		}
+		return output;
+
+	}
 
 }
+

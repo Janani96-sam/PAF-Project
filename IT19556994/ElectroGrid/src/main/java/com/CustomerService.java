@@ -21,11 +21,7 @@ import com.pojo.Customer;
 @Path("/customer")
 public class CustomerService {
 	@GET
-<<<<<<< HEAD
-	@Path("/hello")
-=======
 	@Path("/")
->>>>>>> ca5ac06cac80bfbdb74083747711577907a33740
 	@Produces(MediaType.TEXT_PLAIN)
 	public String hello() {
 		return "Hello world.";
@@ -91,6 +87,19 @@ public class CustomerService {
 		return output;
 		
 		
+	}
+	
+	// Other APIs 
+	@GET
+	@Path("/{id}/getcustomer") // employee end point
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getCustomerInfo(@PathParam("id") String id) {
+		CustomerModel cus = new CustomerModel();
+		//String output = cus.searchCustomers(name);
+		Customer al = cus.getCustomersJson(id);
+		Gson gson = new Gson();
+		String output = gson.toJson(al);
+		return output;
 	}
 	
 	
