@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Add New Employee</title>
+<title>Add New Account</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -57,7 +57,7 @@
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
-			<div class="sidebar-heading">Management</div>
+			<div class="sidebar-heading">User Management</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -74,39 +74,38 @@
 							Employees</a>
 					</div>
 				</div></li>
-				
-			<!-- Nav Item - Pages Collapse Menu -->
+
+			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-user"></i> <span>Customer</span>
+				aria-expanded="true" aria-controls="#collapseTwo"> <i
+					class="fas fa-fw fa-wrench"></i> <span>Customer</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="addcustomer.html">Add Customer</a>
-						<a class="collapse-item" href="customerhome.html">Manage
+						<a class="collapse-item" href="addemployee.html">Add Customer</a>
+						<a class="collapse-item" href="employeehome.html">Manage
 							Customers</a>
 					</div>
 				</div></li>
-			<!-- Nav Item - Pages Collapse Menu -->
+				
+			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-user"></i> <span>Account</span>
+				aria-expanded="true" aria-controls="#collapseTwo"> <i
+					class="fas fa-fw fa-wrench"></i> <span>Account</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="addaccount.html">Add Account</a>
-						<a class="collapse-item" href="accounthome.html">Manage
+						<a class="collapse-item" href="addemployee.html">Add Account</a>
+						<a class="collapse-item" href="employeehome.html">Manage
 							Accounts</a>
 					</div>
 				</div></li>
-
-
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -163,6 +162,7 @@
 					</ul>
 
 				</nav>
+		
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -177,7 +177,7 @@
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 									<h6 class="m-0 font-weight-bold text-primary">Add New
-										Employee</h6>
+										Account</h6>
 									<div class="m-auto"></div>
 								</div>
 								<!-- Card Body -->
@@ -186,54 +186,37 @@
 										<div class="col-10">
 											<div class="form-group">
 												<input type="text" class="form-control form-control-user"
-													id="ename" placeholder="Employee Name">
+													id="serial" placeholder="Serial Number">
 											</div>
+										<div class="col-10">
+											<div class="form-group">
+												<input type="date" class="form-control form-control-user"
+													id="install_date" placeholder="Install Date">
+											</div>
+										</div>
 										</div>
 										<div class="col-10">
 											<div class="form-group">
 												<input type="date" class="form-control form-control-user"
-													id="date_of_birth" placeholder="Date Of Birth">
+													id="register_date" placeholder="Register Date">
 											</div>
-										</div>
-										<div class="col-10">
-											<div class="form-group">
-												<input type="text" class="form-control form-control-user"
-													id="nic" placeholder="NIC">
-											</div>
-										</div>
+
 										<div class="col-10">
 
 											<select class="form-group form-control"
-												aria-label=".form-select-sm example" id="gender">
-												<option selected>Select Gender</option>
-												<option value="m">Male</option>
-												<option value="f">Female</option>
+												aria-label=".form-select-sm example" id="connection_type">
+												<option selected>Select Connection Type</option>
+												<option value="sp">Single Phase 30A</option>
+												<option value="tp">Three Phase 30A</option>
+												<option value="tp_1">Three Phase 60A</option>
 
 											</select>
 										</div>
-										<div class="col-10">
-											<div class="form-group">
-												<input type="tel" class="form-control form-control-user"
-													id="mobile" placeholder="Mobile">
-											</div>
-										</div>
-										<div class="col-10">
-											<div class="form-group">
-												<input type="email" class="form-control form-control-user"
-													id="email" placeholder="E-Mail">
-											</div>
-										</div>
+
 										<div class="col-10">
 											<div class="form-group">
 												<input type="text" class="form-control form-control-user"
-													id="username" placeholder="username">
-											</div>
-										</div>
-										<div class="col-10">
-											<div class="form-group">
-												<input type="password"
-													class="form-control form-control-user" id="password"
-													placeholder="Password">
+													id="address" placeholder="address">
 											</div>
 										</div>
 										<div class="col-10">
@@ -242,10 +225,10 @@
 												id="status" placeholder="status">
 											</div>
 										</div>
-										
+
 										<div class="col-12">
 											<button class="btn btn-primary" onclick="addEmployee();">Add
-												Employee</button>
+												Account</button>
 										</div>
 
 									</div>
@@ -336,21 +319,20 @@
 
 		
 		
-		function addEmployee(){
-			var ename = document.getElementById('ename').value;
-			var dob = document.getElementById('date_of_birth').value;
-			var nic = document.getElementById('nic').value;
-			var gender = document.getElementById('gender').value;
-			var mobile = document.getElementById('mobile').value;
-			var email = document.getElementById('email').value;
-			var username = document.getElementById('username').value;
-			var password = document.getElementById('password').value;
+		function addAccount(){
+			var serial = document.getElementById('serial').value;
+			var install = document.getElementById('install_date').value;
+			var register = document.getElementById('register_date').value;
+			var connection = document.getElementById('connection_type').value;
+			var address = document.getElementById('address').value;
+			var status = document.getElementById('status').value;
 			
-			var json = '{"ename":"'+ename+'","date_of_birth":"'+dob+'","emp_nic":"'+nic+'","gender":"'+gender+'","mobile":"'+mobile+'","email":"'+email+'","emp_username":"'+username+'","emp_password":"'+password+'"}';			 
+			
+			var json = '{"serial":"'+serial+'","install_date":"'+install+'","register_date":"'+register+'","connection_type":"'+connection+'","address":"'+address+'","status":"'+status+'"}';			 
 			
 			console.log(json);
 			
-			postData('http://localhost:8080/ElectroGrid/accounts/employee/insertemployees', JSON.parse(json)) //send api request
+			postData('http://localhost:8080/ElectroGrid/accounts/account/insertaccount', JSON.parse(json)) //send api request
 			  .then(data => {
 			    console.log(data);
 			    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
