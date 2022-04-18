@@ -1,0 +1,26 @@
+package com.model;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class CustomerModel {
+	private Connection connect() {
+		Connection con = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// Provide the correct details: DBServer/DBName, user name, password
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/egriddb", "root", "1234");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return con;
+	}
+	
+
+}
