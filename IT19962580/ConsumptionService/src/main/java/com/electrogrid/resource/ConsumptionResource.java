@@ -20,12 +20,6 @@ import com.electrogrid.service.ConsumptionService;
 @Path("myresource")
 public class ConsumptionResource {
 	
-//	@GET
-//    @Produces(MediaType.TEXT_PLAIN)
-//    public String getIt() {
-//        return "Got it!";
-//    }
-	
 	@Path("/create")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -56,14 +50,14 @@ public class ConsumptionResource {
 	@Path("/update/{id}")
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateConsumption(Consumption consumption,@PathParam("id") int id) throws ClassNotFoundException, SQLException {
+	public Response updateConsumption(Consumption consumption,@PathParam("id") int conId) throws ClassNotFoundException, SQLException {
 		
 		if(consumption != null) {
-			if(ConsumptionService.updateConsumption(consumption,id) != null) {
-				return Response.status(Status.OK).entity(ConsumptionService.updateConsumption(consumption,id)).build();
+			if(ConsumptionService.updateConsumption(consumption,conId) != null) {
+				return Response.status(Status.OK).entity(ConsumptionService.updateConsumption(consumption,conId)).build();
 			}
 			else {
-				return Response.status(Status.NOT_FOUND).entity("No Consumptions Found").build();
+				return Response.status(Status.NOT_FOUND).entity("No Related Consumptions Found").build();
 			}
 		}
 		else {
@@ -75,15 +69,29 @@ public class ConsumptionResource {
 	@DELETE
 	@Path("/delete/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteConsumption(@PathParam("id") int id) throws ClassNotFoundException, SQLException{
+	public Response deleteConsumption(@PathParam("id") int conId) throws ClassNotFoundException, SQLException{
 		 
-		if(!ConsumptionService.deleteConsumption(id)) {
-			return Response.status(Status.OK).entity(id).build();
+		if(!ConsumptionService.deleteConsumption(conId)) {
+			return Response.status(Status.OK).entity(conId).build();
 		}
 		else {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(null).build();
 		}
 	    	
+	}
+	
+	@GET
+	@Path("/getbyacc/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+	public Response getConsumptionByAccId(@PathParam("id") int accId) throws ClassNotFoundException, SQLException{
+    	
+    	if(ConsumptionService.searchConsumptionByAccId(accId) != null) {
+    		return Response.status(Status.OK).entity(ConsumptionService.searchConsumptionByAccId(accId)).build();
+    	}
+    	else {
+    		return Response.status(Status.NOT_FOUND).entity("No Related Consumptions Found").build();
+    	}
+    	
 	}
 	
 }
