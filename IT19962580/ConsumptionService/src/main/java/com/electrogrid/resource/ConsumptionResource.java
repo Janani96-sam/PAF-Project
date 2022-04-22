@@ -39,5 +39,18 @@ public class ConsumptionResource {
 	    	return Response.status(Status.INTERNAL_SERVER_ERROR).entity(null).build();
 	    }	 
 	}
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	public Response getConsumptions() throws ClassNotFoundException, SQLException{
+    	
+    	if(ConsumptionService.getConsumptions().isEmpty()) {
+    		return Response.status(Status.NOT_FOUND).entity("No Consumptions Found").build();
+    	}
+    	else {
+    		return Response.status(Status.OK).entity(ConsumptionService.getConsumptions()).build();
+    	}
+    	
+	}
 
 }
