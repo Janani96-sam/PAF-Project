@@ -52,5 +52,25 @@ public class ConsumptionResource {
     	}
     	
 	}
+	
+	@Path("/update/{id}")
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateConsumption(Consumption consumption,@PathParam("id") int id) throws ClassNotFoundException, SQLException {
+		
+		if(consumption != null) {
+			if(ConsumptionService.updateConsumption(consumption,id) != null) {
+				return Response.status(Status.OK).entity(ConsumptionService.updateConsumption(consumption,id)).build();
+			}
+			else {
+				return Response.status(Status.NOT_FOUND).entity("No Consumptions Found").build();
+			}
+		}
+		else {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(null).build();
+		}
+		
+	}
+	
 
 }
