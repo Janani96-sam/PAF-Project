@@ -72,5 +72,18 @@ public class ConsumptionResource {
 		
 	}
 	
-
+	@DELETE
+	@Path("/delete/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteConsumption(@PathParam("id") int id) throws ClassNotFoundException, SQLException{
+		 
+		if(!ConsumptionService.deleteConsumption(id)) {
+			return Response.status(Status.OK).entity(id).build();
+		}
+		else {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(null).build();
+		}
+	    	
+	}
+	
 }
