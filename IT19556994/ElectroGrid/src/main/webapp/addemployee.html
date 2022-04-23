@@ -25,7 +25,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="onLoad();">
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -74,14 +74,13 @@
 							Employees</a>
 					</div>
 				</div></li>
-				
+
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-user"></i> <span>Customer</span>
+				data-toggle="collapse" data-target="#collapse3" aria-expanded="true"
+				aria-controls="collapse3"> <i class="fas fa-fw fa-user"></i> <span>Customer</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapse3" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
@@ -92,17 +91,15 @@
 				</div></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-user"></i> <span>Account</span>
+				data-toggle="collapse" data-target="#collapse4" aria-expanded="true"
+				aria-controls="collapse4"> <i class="fas fa-fw fa-user"></i> <span>Account</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapse4" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="addaccount.html">Add Account</a>
-						<a class="collapse-item" href="accounthome.html">Manage
-							Accounts</a>
+						<a class="collapse-item" href="addaccount.html">Add Account</a> <a
+							class="collapse-item" href="accounthome.html">Manage Accounts</a>
 					</div>
 				</div></li>
 
@@ -137,27 +134,19 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Janani Denipitiya</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small" id="uname">User</span>
+								<img class="img-profile rounded-circle"
 								src="img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									Activity Log
-								</a>
+
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+								<p class="dropdown-item" onclick="logOut();">
+									<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
-								</a>
+								</p>
 							</div></li>
 
 					</ul>
@@ -183,66 +172,72 @@
 								<!-- Card Body -->
 								<div class="card-body">
 									<div class="row">
-										<div class="col-10">
+										<div class="col-md-6 col-sm-12">
 											<div class="form-group">
+												<label for="ename" class="form-label">Employee Name</label>
 												<input type="text" class="form-control form-control-user"
 													id="ename" placeholder="Employee Name">
 											</div>
 										</div>
-										<div class="col-10">
+										<div class="col-md-6 col-sm-12">
 											<div class="form-group">
-												<input type="date" class="form-control form-control-user"
+												<label for="date_of_birth">Birthday</label> <input
+													type="date" class="form-control form-control-user"
 													id="date_of_birth" placeholder="Date Of Birth">
 											</div>
 										</div>
-										<div class="col-10">
+										<div class="col-md-6 col-sm-12">
 											<div class="form-group">
-												<input type="text" class="form-control form-control-user"
-													id="nic" placeholder="NIC">
+												<label for="nic">NIC</label> <input type="text"
+													class="form-control form-control-user" id="nic"
+													placeholder="NIC">
 											</div>
 										</div>
-										<div class="col-10">
-
-											<select class="form-group form-control"
+										<div class="col-md-6 col-sm-12">
+											<label for="gender">Gender</label> <select
+												class="form-group form-control"
 												aria-label=".form-select-sm example" id="gender">
 												<option selected>Select Gender</option>
 												<option value="m">Male</option>
 												<option value="f">Female</option>
-
 											</select>
 										</div>
-										<div class="col-10">
+										<div class="col-md-6 col-sm-12">
 											<div class="form-group">
-												<input type="tel" class="form-control form-control-user"
-													id="mobile" placeholder="Mobile">
+												<label for="date_of_birth">Mobile</label> <input type="tel"
+													class="form-control form-control-user" id="mobile"
+													placeholder="Mobile">
 											</div>
 										</div>
-										<div class="col-10">
+										<div class="col-md-6 col-sm-12">
 											<div class="form-group">
-												<input type="email" class="form-control form-control-user"
-													id="email" placeholder="E-Mail">
+												<label for="date_of_birth">Email</label> <input type="email"
+													class="form-control form-control-user" id="email"
+													placeholder="E-Mail">
 											</div>
 										</div>
-										<div class="col-10">
+										<div class="col-md-6 col-sm-12">
 											<div class="form-group">
-												<input type="text" class="form-control form-control-user"
-													id="username" placeholder="username">
+												<label for="date_of_birth">User</label> <input type="text"
+													class="form-control form-control-user" id="username"
+													placeholder="username">
 											</div>
 										</div>
-										<div class="col-10">
+										<div class="col-md-6 col-sm-12">
 											<div class="form-group">
-												<input type="password"
-													class="form-control form-control-user" id="password"
-													placeholder="Password">
+												<label for="date_of_birth">Password</label> <input
+													type="password" class="form-control form-control-user"
+													id="password" placeholder="Password">
 											</div>
 										</div>
-										<div class="col-10">
+										<div class="col-md-6 col-sm-12">
 											<div class="form-group">
-												<input type="text" class="form-control form-control-user"
-												id="status" placeholder="status">
+												<label for="date_of_birth">Status</label> <input type="text"
+													class="form-control form-control-user" id="status"
+													placeholder="status">
 											</div>
 										</div>
-										
+
 										<div class="col-12">
 											<button class="btn btn-primary" onclick="addEmployee();">Add
 												Employee</button>
@@ -300,7 +295,7 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
+					<button class="btn btn-primary">Logout</button>
 				</div>
 			</div>
 		</div>
@@ -315,7 +310,12 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
+	<script src="js/cookie.js"></script>
+	<script src="js/validation.js"></script>
 	<script type="text/javascript">
+	
+	var baseUrl = "http://localhost:8081/ElectroGrid/accounts";
+	
 	async function postData(url = '', data = {}) {
 		  // Default options are marked with *
 		  const response = await fetch(url, {
@@ -337,6 +337,10 @@
 		
 		
 		function addEmployee(){
+			
+			var status = false;
+			var error = "";
+			
 			var ename = document.getElementById('ename').value;
 			var dob = document.getElementById('date_of_birth').value;
 			var nic = document.getElementById('nic').value;
@@ -346,15 +350,46 @@
 			var username = document.getElementById('username').value;
 			var password = document.getElementById('password').value;
 			
-			var json = '{"ename":"'+ename+'","date_of_birth":"'+dob+'","emp_nic":"'+nic+'","gender":"'+gender+'","mobile":"'+mobile+'","email":"'+email+'","emp_username":"'+username+'","emp_password":"'+password+'"}';			 
+			if(ValidateEmail(email)){
+				status = true;
+				if(phonenumber(mobile)){
+					status = true;
+				}else{
+					status = false;
+					error = "Incorrect Mobile No !";	
+				}
+			}else{
+				status = false;
+				error = "Incorrect Email !";
+				
+			}
 			
-			console.log(json);
+			if(status){
+				var json = '{"ename":"'+ename+'","date_of_birth":"'+dob+'","emp_nic":"'+nic+'","gender":"'+gender+'","mobile":"'+mobile+'","email":"'+email+'","emp_username":"'+username+'","emp_password":"'+password+'"}';			 
+				
+				console.log(json);
+				
+				postData(baseUrl+'/employee/insertemployees', JSON.parse(json)) //send api request
+				  .then(data => {
+				    console.log(data);
+				    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
+				  });
+			}else{
+				alert(error);
+			}
 			
-			postData('http://localhost:8080/ElectroGrid/accounts/employee/insertemployees', JSON.parse(json)) //send api request
-			  .then(data => {
-			    console.log(data);
-			    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
-			  });
+		}
+		function onLoad() {
+			// setCookie('username','Janani',1);
+
+			if (getCookie('eid') === "") {
+				window.location
+						.replace("http://localhost:8081/ElectroGrid/login.html");
+
+			} else {
+				document.getElementById("uname").innerHTML = getCookie('name');
+
+			}
 		}
   </script>
 </body>

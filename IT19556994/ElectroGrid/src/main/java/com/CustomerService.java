@@ -28,7 +28,7 @@ public class CustomerService {
 	}
 
 	@GET
-	@Path("/viewcustomers") // employee end point
+	@Path("/viewcustomers") // Customer end point
 	@Produces(MediaType.TEXT_HTML)
 	public String viewCustomers() {
 		CustomerModel cus = new CustomerModel();
@@ -51,13 +51,14 @@ public class CustomerService {
 
 	@POST
 	@Path("/insertcustomers") // customer end point
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String insertCustomers(String json) {
 		CustomerModel cus = new CustomerModel();
 		Gson gson = new Gson();
 		Customer cust = gson.fromJson(json, Customer.class);
 		String output = cus.insertCustomer(cust);
+		System.out.println(output+"+++++++++++");
 
 		return output;
 	}
@@ -91,7 +92,7 @@ public class CustomerService {
 	
 	// Other APIs 
 	@GET
-	@Path("/{id}/getcustomer") // employee end point
+	@Path("/{id}/getcustomer") 
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getCustomerInfo(@PathParam("id") String id) {
 		CustomerModel cus = new CustomerModel();
@@ -102,7 +103,17 @@ public class CustomerService {
 		return output;
 	}
 	
-	
+	@GET
+	@Path("/{id}/getcustomeraccount") 
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getCustomerInfoAccount(@PathParam("id") String id) {
+		CustomerModel cus = new CustomerModel();
+		//String output = cus.searchCustomers(name);
+		Customer al = cus.getCustomersJsonAccount(id);
+		Gson gson = new Gson();
+		String output = gson.toJson(al);
+		return output;
+	}
 	
 	
 	

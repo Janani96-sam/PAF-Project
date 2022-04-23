@@ -86,6 +86,23 @@ public class EmployeeService {
 	}
 	
 	
+	@POST
+	@Path("/signin") // employee end point
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String signin(String json) {
+		EmployeeModel em = new EmployeeModel();
+		Gson gson = new Gson();
+		Employee e = gson.fromJson(json, Employee.class);
+		System.out.println(e.getEmp_username());
+		System.out.println(e.getEmp_password());
+		String output = em.signIn(e);
+		System.out.println(output);
+//		String response = gson.toJson(output);
+		return output;
+	}
+	
+	
 	
 	
 	

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
 import com.pojo.Employee;
 
 public class EmployeeModel {
@@ -14,7 +15,7 @@ public class EmployeeModel {
 		Connection con = null;
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Provide the correct details: DBServer/DBName, user name, password
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/egriddb", "root", "1234");
@@ -36,9 +37,17 @@ public class EmployeeModel {
 
 			}
 
+			if(employee.getEmp_password().length()<4) {
+				return "{\"status\":\"400\",\"message\":\"Password must be atleast 4 charactors long !\"}";
+			}
+			
+			if(employee.getEmp_nic().length()<10 && employee.getEmp_nic().length()>12 ) {
+				return "{\"status\":\"400\",\"message\":\" Incorrect NIC NO !\"}";
+			}
+			
 			// create a prepared statement
-			String query = "insert into employees(ename,date_of_birth,emp_nic,gender, mobile, email, status, emp_username, emp_password) "
-					+ "values( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "insert into employees(ename,date_of_birth,emp_nic,gender, mobile, email, status, emp_username, emp_password,type) "
+					+ "values( ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
@@ -52,6 +61,7 @@ public class EmployeeModel {
 			preparedStmt.setInt(7, 1);
 			preparedStmt.setString(8, employee.getEmp_username());
 			preparedStmt.setString(9, employee.getEmp_password());
+			preparedStmt.setInt(10, 0);
 
 			preparedStmt.execute();
 			con.close();
@@ -190,7 +200,7 @@ public class EmployeeModel {
 				return output;
 			}
 
-			String query = "select * from employees WHERE ename LIKE '%" + name + "%'";
+			String query = "select * from employees WHERE ename LIKE '%" + name + "%' AND status=0";
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
 
@@ -248,9 +258,11 @@ public class EmployeeModel {
 			preparedStmt.execute();
 			con.close();
 
-			output = "{\"status\":\"200\",\"message\":\"Employee Update Success ! !\"}";;
+			output = "{\"status\":\"200\",\"message\":\"Employee Update Success ! !\"}";
+			;
 		} catch (Exception e) {
-			output = "{\"status\":\"400\",\"message\":\"Error while updating Employee !\"}";;
+			output = "{\"status\":\"400\",\"message\":\"Error while updating Employee !\"}";
+			;
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -267,7 +279,7 @@ public class EmployeeModel {
 				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 			}
 
-			String query = "delete from employees where eid=?";
+			String query = "Update employees SET status = 1  where eid=?";
 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
@@ -277,13 +289,62 @@ public class EmployeeModel {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "{\"status\":\"200\",\"message\":\"Employee Delete Success !\"}";;
+			output = "{\"status\":\"200\",\"message\":\"Employee Delete Success !\"}";
+			;
 		} catch (Exception e) {
-			output = "{\"status\":\"400\",\"message\":\"Error while Deleting Employee !\"}";;
+			output = "{\"status\":\"400\",\"message\":\"Error while Deleting Employee !\"}";
+			;
 			System.err.println(e.getMessage());
 		}
 
 		return output;
 	}
+
+	public String signIn(Employee em) {
+		String output = "";
+
+		try {
+			Connection con = connect();
+
+			if (con == null) {
+				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
+			}
+
+			String query = "select * from employees WHERE emp_username = '"+em.getEmp_username()+"' AND emp_password = '"+em.getEmp_password()+"' AND status=0 LIMIT 1";
+			Statement stat = con.createStatement();
+			ResultSet rs = stat.executeQuery(query);
+
+			// iterate through the rows in the result set
+			Employee e = new Employee();
+			while (rs.next()) {				
+				e.setEid(rs.getInt("eid"));
+				e.setEname(rs.getString("ename"));
+				e.setMobile(rs.getString("mobile"));
+				e.setDate_of_birth(rs.getString("date_of_birth"));
+				e.setEmp_nic(rs.getString("emp_nic"));
+				e.setEmail(rs.getString("email"));
+				e.setGender(rs.getString("gender"));
+				e.setEmp_username(rs.getString("emp_username"));
+				e.setStatus(rs.getInt("status"));
+			}
+			con.close();
+			Gson gson = new Gson();
+			String response = gson.toJson(e);
+			 System.out.println(response);
+			if(e.getEid()==0) {
+				output =  "{\"status\":\"400\",\"message\":\"Cannot find user ! \"}";
+			}else {
+				output = "{\"status\":\"200\",\"message\":"+response+"}";
+			}
+			
+		} catch (Exception e) {
+			output =  "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
+			System.err.println(e.getMessage());
+		}
+		
+		return output;
+	}
+	
+	
 
 }

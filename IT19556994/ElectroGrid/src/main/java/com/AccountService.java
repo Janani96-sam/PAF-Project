@@ -16,10 +16,10 @@ import com.google.gson.Gson;
 import com.model.AccountModel;
 import com.pojo.Account;
 
-@Path("/account_profile")
+@Path("/account_profiles")
 public class AccountService {
 	@GET
-	@Path("/viewaccounts") // employee end point
+	@Path("/viewaccounts") // account end point
 	@Produces(MediaType.TEXT_HTML)
 	public String viewAccount() {
 		AccountModel cus = new AccountModel();
@@ -29,23 +29,24 @@ public class AccountService {
 	}
 
 	@GET
-	@Path("/{id}/searchAccounts") // employee end point
+	@Path("/{search}/searchAccounts") 
 	@Produces(MediaType.APPLICATION_JSON)
-	public String searchAccounts(@PathParam("id") int id) {
+	public String searchAccounts(@PathParam("search") String search) {
 		AccountModel acc = new AccountModel();
 		//String output = acc.searchAccounts(id);
-		ArrayList<Account> al = acc.searchAccountsJson(id);
+		ArrayList<Account> al = acc.searchAccountsJson(search);
 		Gson gson = new Gson();
 		String output = gson.toJson(al);
 		return output;
 	}
 
 	@POST
-	@Path("/insertaccounts") // account end point
-	@Produces(MediaType.TEXT_HTML)
+	@Path("/insertaccounts") 
+	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String insertAccounts(String json) {
 		AccountModel acc = new AccountModel();
+		System.out.print(json);
 		Gson gson = new Gson();
 		Account acct = gson.fromJson(json, Account.class);
 		String output = acc.insertAccount(acct);

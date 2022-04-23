@@ -9,14 +9,12 @@ import java.util.ArrayList;
 
 import com.pojo.Account;
 
-
-
 public class AccountModel {
 	private Connection connect() {
 		Connection con = null;
 
 		try {
-			Class.forName("com.my.sql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/egriddb", "root", "1234");
 
@@ -34,14 +32,13 @@ public class AccountModel {
 			Connection con = connect();
 
 			if (con == null) {
-				return "Error while connecting to the database for inserting";
+				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 			}
 
 			// create a prepared statement
-			String query = "insert into account_profiles('serial', 'install_date', 'register_date', 'connection_type','address','status')"
-					+ "values(?,?,?,?,?,?)";
-			PreparedStatement preparedStmt = con.prepareStatement(query);
 
+			String query = "insert into account_profiles (serial, install_date, register_date, connection_type,address,status,customer_cid,employee_eid) values (?,?,?,?,?,?,?,?)";
+			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding the values
 			preparedStmt.setString(1, acc.getSerial());
 			preparedStmt.setString(2, acc.getInstall_date());
@@ -49,11 +46,14 @@ public class AccountModel {
 			preparedStmt.setString(4, acc.getConnection_type());
 			preparedStmt.setString(5, acc.getAddress());
 			preparedStmt.setInt(6, 1);
+			preparedStmt.setInt(7, acc.getCustomer_cid());
+			preparedStmt.setInt(8, acc.getEmployee_eid());
 
 			preparedStmt.execute();
+
 			con.close();
 
-			output = "Values Inserted Successfully";
+			output = "{\"status\":\"200\",\"message\":\"Values Inserted Successfully\"}";
 		} catch (Exception e) {
 			output = "Error while inserting the account details";
 			System.err.println(e.getMessage());
@@ -63,28 +63,27 @@ public class AccountModel {
 
 	public String readAccounts() {
 		String output = "";
-		
+
 		try {
 			Connection con = connect();
-			
-			if(con==null) {
+
+			if (con == null) {
 				return "Error while connecting to the database for reading";
 			}
-			
+
 			// prepare the html table to be displayed
 			output = "<!DOCTYPE html>\r\n" + "<html>\r\n" + "<head>\r\n" + "<meta charset=\"ISO-8859-1\">\r\n"
-				   + "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n"
-				   + "<h1>Hello World</h1><table border='1'><tr><th>Account ID</th><th>Serial</th><th>Install Date</th><th>Register Date</th>"
-				   + "<th>Connection Type</th><th>Address</th><th>Address</th>" + "<th>Status</th>"
-				   + "<th>Update</th><th>Remove</th></tr>";
-			
+					+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n"
+					+ "<h1>Hello World</h1><table border='1'><tr><th>Account ID</th><th>Serial</th><th>Install Date</th><th>Register Date</th>"
+					+ "<th>Connection Type</th><th>Address</th><th>Address</th>" + "<th>Status</th>"
+					+ "<th>Update</th><th>Remove</th></tr>";
 
 			String query = "select * from account_profiles";
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
-			
+
 			// iterate through the rows in the result set
-			while(rs.next()) {
+			while (rs.next()) {
 				String accid = Integer.toString(rs.getInt("accid"));
 				String serial = rs.getString("serial");
 				String install_date = rs.getString("install_date");
@@ -92,62 +91,59 @@ public class AccountModel {
 				String connection_type = rs.getString("connection_type");
 				String address = rs.getString("address");
 				String status = rs.getString("status");
-				
+
 				// Add into the html table
 				output += "<tr><td>" + accid + "</td>";
 				output += "<td>" + serial + "</td>";
-				output += "<td>" + install_date+ "</td>";
+				output += "<td>" + install_date + "</td>";
 				output += "<td>" + register_date + "</td>";
 				output += "<td>" + connection_type + "</td>";
 				output += "<td>" + address + "</td>";
 				output += "<td>" + status + "</td>";
-				
 
 				// buttons
 				output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"
 						+ "<td><form method='post' action='items.jsp'>"
 						+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
-						+ "<input name='accid' type='hidden' value='" + accid + "'>" + "</form></td></tr>";	
-				
+						+ "<input name='accid' type='hidden' value='" + accid + "'>" + "</form></td></tr>";
+
 			}
 			con.close();
-			
+
 			// complete the html table
-			output += "</table></body>"
-					+ "</html>";
-			
-		}catch(Exception e) {
+			output += "</table></body>" + "</html>";
+
+		} catch (Exception e) {
 			output = "Error while reading the account";
-			System.err.println(e.getMessage());	
+			System.err.println(e.getMessage());
 		}
 		return output;
-		
+
 	}
-	
+
 	public String searchAccounts(int id) {
 		String output = "";
-		
+
 		try {
 			Connection con = connect();
-			
-			if(con==null) {
+
+			if (con == null) {
 				return "Error while connecting to the database for searching";
 			}
-			
+
 			// prepare the html table to be displayed
 			output = "<!DOCTYPE html>\r\n" + "<html>\r\n" + "<head>\r\n" + "<meta charset=\"ISO-8859-1\">\r\n"
-				   + "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n"
-				   + "<h1>Hello World</h1><table border='1'><tr><th>Account ID</th><th>Serial</th><th>Install Date</th><th>Register Date</th>"
-				   + "<th>Connection Type</th><th>Address</th><th>Address</th>" + "<th>Status</th>"
-				   + "<th>Update</th><th>Remove</th></tr>";
-			
+					+ "<title>Insert title here</title>\r\n" + "</head>\r\n" + "<body>\r\n"
+					+ "<h1>Hello World</h1><table border='1'><tr><th>Account ID</th><th>Serial</th><th>Install Date</th><th>Register Date</th>"
+					+ "<th>Connection Type</th><th>Address</th><th>Address</th>" + "<th>Status</th>"
+					+ "<th>Update</th><th>Remove</th></tr>";
 
 			String query = "select * from account_profiles WHERE accid LIKE '%" + id + "%'";
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
-			
+
 			// iterate through the rows in the result set
-			while(rs.next()) {
+			while (rs.next()) {
 				String accid = Integer.toString(rs.getInt("accid"));
 				String serial = rs.getString("serial");
 				String install_date = rs.getString("install_date");
@@ -155,40 +151,37 @@ public class AccountModel {
 				String connection_type = rs.getString("connection_type");
 				String address = rs.getString("address");
 				String status = rs.getString("status");
-				
+
 				// Add into the html table
 				output += "<tr><td>" + accid + "</td>";
 				output += "<td>" + serial + "</td>";
-				output += "<td>" + install_date+ "</td>";
+				output += "<td>" + install_date + "</td>";
 				output += "<td>" + register_date + "</td>";
 				output += "<td>" + connection_type + "</td>";
 				output += "<td>" + address + "</td>";
 				output += "<td>" + status + "</td>";
-				
 
 				// buttons
 				output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"
 						+ "<td><form method='post' action='items.jsp'>"
 						+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
-						+ "<input name='accid' type='hidden' value='" + accid + "'>" + "</form></td></tr>";	
-				
+						+ "<input name='accid' type='hidden' value='" + accid + "'>" + "</form></td></tr>";
+
 			}
 			con.close();
-			
+
 			// complete the html table
-			output += "</table></body>"
-					+ "</html>";
-			
-		}catch(Exception e) {
+			output += "</table></body>" + "</html>";
+
+		} catch (Exception e) {
 			output = "Error while reading the account";
-			System.err.println(e.getMessage());	
+			System.err.println(e.getMessage());
 		}
 		return output;
-		
-	
+
 	}
-	
-	public ArrayList<Account> searchAccountsJson(int id) {
+
+	public ArrayList<Account> searchAccountsJson(String search) {
 		ArrayList<Account> output = new ArrayList<Account>();
 
 		try {
@@ -198,7 +191,8 @@ public class AccountModel {
 				return output;
 			}
 
-			String query = "select * from account_profiles WHERE accid LIKE '%" + id + "%'";
+			String query = "select * from account_profiles WHERE accid = '" + search + "' OR serial LIKE '%" + search
+					+ "%' OR address LIKE '%" + search + "%'";
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
 
@@ -212,9 +206,9 @@ public class AccountModel {
 				acc.setConnection_type(rs.getString("connection_type"));
 				acc.setAddress(rs.getString("address"));
 				acc.setStatus(rs.getInt("status"));
-			
+
 				output.add(acc);
-	
+
 			}
 			con.close();
 
@@ -225,7 +219,6 @@ public class AccountModel {
 		return output;
 
 	}
-	
 
 	public String updateAccount(Account acc) {
 		String output = "";
@@ -243,10 +236,10 @@ public class AccountModel {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
-			
+
 			preparedStmt.setString(1, acc.getAddress());
 			preparedStmt.setInt(2, 1);
-			preparedStmt.setInt(3,acc.getAccid());
+			preparedStmt.setInt(3, acc.getAccid());
 
 			preparedStmt.execute();
 			con.close();
@@ -259,7 +252,7 @@ public class AccountModel {
 		return output;
 
 	}
-	
+
 	public String updateAccountbyAPI(Account acc) {
 		String output = "";
 
@@ -276,10 +269,10 @@ public class AccountModel {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
-			
+
 			preparedStmt.setString(1, acc.getSerial());
-			preparedStmt.setString(2,acc.getInstall_date());
-			preparedStmt.setInt(9,acc.getAccid());
+			preparedStmt.setString(2, acc.getInstall_date());
+			preparedStmt.setInt(9, acc.getAccid());
 
 			preparedStmt.execute();
 			con.close();
@@ -321,14 +314,45 @@ public class AccountModel {
 
 		return output;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+//other Api 
+	public Account getAccountsJson(String id) {
+		Account output = new Account();
+
+		try {
+			Connection con = connect();
+
+			if (con == null) {
+				return output;
+			}
+
+			String query = "select * from account_profile WHERE accid= '" + id + "'limit 1";
+			Statement stat = con.createStatement();
+			ResultSet rs = stat.executeQuery(query);
+
+			// iterate through the rows in the result set
+			while (rs.next()) {
+				Account acc = new Account();
+				acc.setAccid(rs.getInt("accid"));
+				acc.setSerial(rs.getString("serial"));
+				acc.setInstall_date(rs.getString("install_date"));
+				acc.setRegister_date(rs.getString("register_date"));
+				acc.setConnection_type(rs.getString("connection_type"));
+				acc.setAddress(rs.getString("address"));
+				acc.setStatus(rs.getInt("status"));
+
+				output = acc;
+
+			}
+			con.close();
+
+		} catch (Exception e) {
+
+			System.err.println(e.getMessage());
+
+		}
+		return output;
+
+	}
+
 }

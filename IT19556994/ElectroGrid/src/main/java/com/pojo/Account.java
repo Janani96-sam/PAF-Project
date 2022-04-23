@@ -8,6 +8,8 @@ private String register_date;
 private String connection_type;
 private String address;
 private int status;
+private int customer_cid;
+private int employee_eid;
 
 public Account() {
 	super();
@@ -68,6 +70,36 @@ public int getStatus() {
 }
 public void setStatus(int status) {
 	this.status = status;
+}
+
+public Account(int accid, String serial, String install_date, String register_date, String connection_type,
+		String address, int status, int customer_cid, int employee_eid) {
+	super();
+	this.accid = accid;
+	this.serial = serial;
+	this.install_date = install_date;
+	this.register_date = register_date;
+	this.connection_type = connection_type;
+	this.address = address;
+	this.status = status;
+	this.customer_cid = customer_cid;
+	this.employee_eid = employee_eid;
+}
+
+public int getCustomer_cid() {
+	return customer_cid;
+}
+
+public void setCustomer_cid(int customer_cid) {
+	this.customer_cid = customer_cid;
+}
+
+public int getEmployee_eid() {
+	return employee_eid;
+}
+
+public void setEmployee_eid(int employee_eid) {
+	this.employee_eid = employee_eid;
 }
 
 

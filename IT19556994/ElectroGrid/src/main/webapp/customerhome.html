@@ -24,7 +24,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="onLoad();">
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -75,11 +75,10 @@
 				</div></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-user"></i> <span>Customer</span>
+				data-toggle="collapse" data-target="#collapse3" aria-expanded="true"
+				aria-controls="collapse3"> <i class="fas fa-fw fa-user"></i> <span>Customer</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapse3" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
@@ -90,17 +89,15 @@
 				</div></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-user"></i> <span>Account</span>
+				data-toggle="collapse" data-target="#collapse4" aria-expanded="true"
+				aria-controls="collapse4"> <i class="fas fa-fw fa-user"></i> <span>Account</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapse4" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="addaccount.html">Add Account</a>
-						<a class="collapse-item" href="accounthome.html">Manage
-							Accounts</a>
+						<a class="collapse-item" href="addaccount.html">Add Account</a> <a
+							class="collapse-item" href="accounthome.html">Manage Accounts</a>
 					</div>
 				</div></li>
 		</ul>
@@ -123,8 +120,7 @@
 					</button>
 
 
-
-					<ul class="navbar-nav ml-auto">
+	<ul class="navbar-nav ml-auto">
 
 						<div class="topbar-divider d-none d-sm-block"></div>
 
@@ -133,27 +129,20 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Janani</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small" id="uname">User</span>
+								<img class="img-profile rounded-circle"
 								src="img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									Activity Log
-								</a>
+
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
+								<p class="dropdown-item" onclick="logOut();"
+									 > <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
-								</a>
+								</p>
 							</div></li>
 
 					</ul>
@@ -172,7 +161,8 @@
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Manage Customers</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Manage
+										Customers</h6>
 									<div class="m-auto"></div>
 									<form
 										class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
@@ -185,7 +175,7 @@
 												id="searchText">
 											<div class="input-group-append">
 												<button class="btn btn-primary" type="button"
-													onclick="loadEmployees();">
+													onclick="loadCustomers();">
 													<i class="fas fa-search fa-sm"></i>
 												</button>
 											</div>
@@ -199,7 +189,7 @@
 										<table class="table table-striped  table-bordered">
 											<thead>
 												<tr>
-													<th>#ID</th>
+													<th>Customer ID</th>
 													<th>First Name</th>
 													<th>Last Name</th>
 													<th>NIC</th>
@@ -211,7 +201,7 @@
 													<th>Delete</th>
 												</tr>
 											</thead>
-											<tbody id="tbody_emp">
+											<tbody id="tbody_cus">
 
 											</tbody>
 
@@ -257,68 +247,74 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Update User</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Update Customer</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<input id="eid" hidden>
+					<input id="cid" hidden>
 					<div class="row">
 						<div class="col-10 m-auto">
 							<div class="form-group">
-								<input type="text" class="form-control form-control-user"
-									id="fname" placeholder="First Name">
+								<label>First Name</label> <input type="text"
+									class="form-control form-control-user" id="fname"
+									placeholder="First Name">
 							</div>
 						</div>
 						<div class="col-10 m-auto">
 							<div class="form-group">
-								<input type="text" class="form-control form-control-user"
-									id="lname" placeholder="Last Name">
+								<label>Last Name</label> <input type="text"
+									class="form-control form-control-user" id="lname"
+									placeholder="Last Name">
 							</div>
 						</div>
 						<div class="col-10 m-auto">
 							<div class="form-group">
-								<input type="text" class="form-control form-control-user"
-									id="nic" placeholder="NIC">
+								<label>NIC</label> <input type="text"
+									class="form-control form-control-user" id="nic"
+									placeholder="NIC">
 							</div>
 						</div>
 
 						<div class="col-10 m-auto">
 							<div class="form-group">
-								<input type="tel" class="form-control form-control-user"
-									id="mobile" placeholder="Mobile">
-							</div>
-						</div>
-						
-						<div class="col-10 m-auto">
-							<div class="form-auto">
-								<input type="text" class="form-control form-control-user"
-									id="address" placeholder="Address">
-							</div>
-						</div>
-						
-						<div class="col-10 m-auto">
-							<div class="form-group">
-								<input type="email" class="form-control form-control-user"
-									id="email" placeholder="E-Mail">
-							</div>
-						</div>
-						
-						<div class="col-10 m-auto">
-							<div class="form-group">
-								<input type="text" class="form-control form-control-user"
-									id="status" placeholer="Status">
+								<label>Mobile</label> <input type="tel"
+									class="form-control form-control-user" id="mobile"
+									placeholder="Mobile">
 							</div>
 						</div>
 
+						<div class="col-10 m-auto">
+							<div class="form-group">
+								<label>Address</label> <input type="text"
+									class="form-control form-control-user" id="address"
+									placeholder="Address">
+							</div>
+						</div>
+
+						<div class="col-10 m-auto">
+							<div class="form-group">
+								<label>E-mail</label> <input type="email"
+									class="form-control form-control-user" id="email"
+									placeholder="E-Mail">
+							</div>
+						</div>
+
+						<div class="col-10 m-auto">
+							<div class="form-group">
+								<label>Status</label> <input type="text"
+									class="form-control form-control-user" id="status"
+									placeholer="Status">
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<button class="btn btn-primary" onclick="updateEmployee();">Update</button>
+					<button class="btn btn-primary" onclick="updateCustomer();">Update</button>
 
 				</div>
 			</div>
@@ -334,8 +330,9 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
+		<script src="js/cookie.js"></script>
 	<script type="text/javascript">
-	
+	var baseUrl = "http://localhost:8081/ElectroGrid/accounts";
     async function postData(url = '', data = {},method) {
 		  // Default options are marked with *
 		  const response = await fetch(url, {
@@ -364,8 +361,8 @@
     	if(searchtext.value ===''){
     		alert('Invalid Seach Keyword !');
     	}else{
-    		empmap.clear();
-    		fetch("http://localhost:8080/ElectroGrid/accounts/customer/"+searchtext.value+"/searchCustomers")
+    		cusmap.clear();
+    		fetch(baseUrl+"/customer/"+searchtext.value+"/searchCustomers")
             .then((response) => {
               return response.json();
             })
@@ -381,13 +378,13 @@
                 body+='<td>'+obj.fname+'</td>';
                 body+='<td>'+obj.lname+'</td>';
                 body+='<td>'+obj.cus_nic+'</td>';
-                body+='<td>'+obj.mobile+'</td>';
+                body+='<td>'+obj.contact_number+'</td>';
                 body+='<td>'+obj.address+'</td>';
                 body+='<td>'+obj.cus_email+'</td>';  
                 body+='<td>'+obj.cus_status+'</td>'
                 body+='<td> <a class="btn btn-info" href="#" data-toggle="modal" data-target="#logoutModal" onClick="openEmployeeModel('+obj.cid+')">';
                 body+=' <i class="fas fa-pencil-alt fa-sm fa-fw mr-2 "></i></a></td>';
-                body+='<td><button class="btn btn-danger" onClick="deleteEmployee('+obj.cid+')"><i class="fas fa-trash"></i></button></td>';
+                body+='<td><button class="btn btn-danger" onClick="deleteCustomer('+obj.cid+')"><i class="fas fa-trash"></i></button></td>';
                              
                 body+='</tr>';
              
@@ -404,7 +401,7 @@
     
     function deleteCustomer(id){
 	var json = '{"cid":"'+id+'"}';			 
-				postData('http://localhost:8080/ElectroGrid/accounts/customer/deletecustomer', JSON.parse(json),'DELETE')
+				postData(baseUrl+'/customer/deletecustomer', JSON.parse(json),'DELETE')
 		  .then(data => {
 		    console.log(data);
 		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
@@ -422,7 +419,7 @@
 		 document.getElementById('mobile').value= cusmap.get(id).mobile;
 		 document.getElementById('address').value= cusmap.get(id).address;
 		 document.getElementById('email').value= cusmap.get(id).cus_email;
-		 document.getElementbyId('status').value= cusmap.get(id).cus_status
+		 document.getElementbyId('status').value= cusmap.get(id).cus_status;
  
     	
     }
@@ -436,15 +433,15 @@
 		var mobile = document.getElementById('mobile').value;
 		var address = document.getElementById('address').value;
 		var email = document.getElementById('email').value;
-		var status = document.getElementById('status')
+		
  
 		
-		var json = '{"cid":"'+cid+'","fname":"'+fname+'","lname":"'+lname+'","cus_nic":"'+nic+'","mobile":"'+mobile+'","address":"'+address+'","cus_email":"'+email+'", "cus_status":"'+status+'"}';			 
+		var json = '{"cid":"'+cid+'","fname":"'+fname+'","lname":"'+lname+'","cus_nic":"'+nic+'","mobile":"'+mobile+'","address":"'+address+'","cus_email":"'+email+'"}';			 
 		
 		 
 		
 		
-		postData('http://localhost:8080/ElectroGrid/accounts/customer/updatecustomer', JSON.parse(json),'PUT')
+		postData(baseUrl+'/customer/updatecustomer', JSON.parse(json),'PUT')
 		  .then(data => {
 		    console.log(data);
 		    if(JSON.parse(data).status=='200'){
@@ -452,6 +449,19 @@
 		    }
 		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
 		  });
+	}
+    
+    function onLoad() {
+		// setCookie('username','Janani',1);
+
+		if (getCookie('eid') === "") {
+			window.location
+					.replace("http://localhost:8081/ElectroGrid/login.html");
+
+		} else {
+			document.getElementById("uname").innerHTML = getCookie('name');
+
+		}
 	}
     
 
