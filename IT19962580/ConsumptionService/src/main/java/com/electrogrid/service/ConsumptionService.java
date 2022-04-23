@@ -91,6 +91,30 @@ public class ConsumptionService {
 		return consumption;
 				
 	}
+	
+	//update a consumption
+	public static Consumption updateConsumption(Consumption consumption,int conId) throws SQLException, ClassNotFoundException {
+			
+		String update_query = ConsumptionConstant.UPDATECONSUMPTION;
+		Connection con = DatabaseConnection.getConnection();
+		PreparedStatement preparedStatement = con.prepareStatement(update_query);
+				
+		preparedStatement.setInt(Constant.INDEX_ONE, consumption.getUnits());
+		preparedStatement.setString(Constant.INDEX_TWO, consumption.getMonth());
+		preparedStatement.setString(Constant.INDEX_THREE, consumption.getPremisesId());
+		preparedStatement.setString(Constant.INDEX_FOUR, consumption.getReadDate());
+		preparedStatement.setInt(Constant.INDEX_FIVE, consumption.getAccId());
+		
+		preparedStatement.setInt(Constant.INDEX_SIX, conId);
+				
+		if(preparedStatement.executeUpdate() > 0) {
+			return getConsumption(conId);
+		}
+		else {
+			return null;
+		}
+				
+	}
 					
 		
 }
