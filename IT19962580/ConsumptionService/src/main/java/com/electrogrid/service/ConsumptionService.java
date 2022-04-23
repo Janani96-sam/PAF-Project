@@ -130,7 +130,32 @@ public class ConsumptionService {
 				
 	}
 		
-		
+	//get a consumption by account id
+	public static Consumption getConsumptionByAccId(int accId) throws SQLException, ClassNotFoundException {
+						
+		String getdata_query = ConsumptionConstant.GETCONSUMPTIONBYACC;
+		Connection con = DatabaseConnection.getConnection();
+		PreparedStatement preparedStatement = con.prepareStatement(getdata_query);
+						
+		Consumption consumption = null;
+						
+		preparedStatement.setInt(Constant.INDEX_ONE, accId);
+					
+		ResultSet rs = preparedStatement.executeQuery();
+						
+		while(rs.next()) {
+			int consumptionId = rs.getInt(Constant.INDEX_ONE);
+			int units = rs.getInt(Constant.INDEX_TWO);
+			String month = rs.getString(Constant.INDEX_THREE);
+			String premisesId = rs.getString(Constant.INDEX_FOUR);
+			String readDate = rs.getString(Constant.INDEX_FIVE);
+			int accountId = rs.getInt(Constant.INDEX_SIX);
+					
+			consumption = new Consumption(consumptionId, units, month, premisesId, readDate, accountId);
+		}
+		return consumption;
+						
+	}		
 					
 		
 }
