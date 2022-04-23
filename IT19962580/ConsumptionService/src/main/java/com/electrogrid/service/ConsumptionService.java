@@ -38,5 +38,32 @@ public class ConsumptionService {
 		}
 			
 	}
+	
+	//get all consumptions
+	public static ArrayList<Consumption> getConsumptions() throws ClassNotFoundException, SQLException {
+			
+		ArrayList<Consumption> clist = new ArrayList<>();
+		String get_query = ConsumptionConstant.GETALLCONSUMPTIONS;
+		Connection con = DatabaseConnection.getConnection();
+			
+		PreparedStatement preparedStatement = con.prepareStatement(get_query);
+		ResultSet rs = preparedStatement.executeQuery();
+			
+		while(rs.next()) {
+			Consumption consumption = new Consumption();
+				
+			consumption.setConsumptionId(rs.getInt(Constant.INDEX_ONE));
+			consumption.setUnits(rs.getInt(Constant.INDEX_TWO));
+			consumption.setMonth(rs.getString(Constant.INDEX_THREE));
+			consumption.setPremisesId(rs.getString(Constant.INDEX_FOUR));
+			consumption.setReadDate(rs.getString(Constant.INDEX_FIVE));
+			consumption.setAccId(rs.getInt(Constant.INDEX_SIX));
+				
+			clist.add(consumption);
+		}
+		return  clist;
+			
+	}
+		
 		
 }
