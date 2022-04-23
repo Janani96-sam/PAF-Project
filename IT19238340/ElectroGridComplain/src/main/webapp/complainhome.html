@@ -68,30 +68,13 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="addemployee.html">Add Complain</a>
-						<a class="collapse-item" href="employeehome.html">Search
+						<a class="collapse-item" href="addcomplain.html">Add Complain</a>
+						<a class="collapse-item" href="complainhome.html">Search
 							Complain</a>
 					</div>
 				</div></li>
 
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
-			</a>
-				<div id="collapseUtilities" class="collapse"
-					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="utilities-color.html">Colors</a> <a
-							class="collapse-item" href="utilities-border.html">Borders</a> <a
-							class="collapse-item" href="utilities-animation.html">Animations</a>
-						<a class="collapse-item" href="utilities-other.html">Other</a>
-					</div>
-				</div></li>
 		</ul>
-		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
@@ -120,8 +103,8 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
-									McGee</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
+								<img class="img-profile rounded-circle"
 								src="img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
@@ -174,7 +157,7 @@
 												id="searchText">
 											<div class="input-group-append">
 												<button class="btn btn-primary" type="button"
-													onclick="loadEmployees();">
+													onclick="loadComplains();">
 													<i class="fas fa-search fa-sm"></i>
 												</button>
 											</div>
@@ -189,15 +172,13 @@
 											<thead>
 												<tr>
 													<th>#ID</th>
-													<th>Account Number</th>
 													<th>Category</th>
 													<th>Complain</th>
-													<th>Name</th>
-													<th>Address</th>
-													<th>Mobile</th>
-													<th>Email</th>
-													<th>Description</th>
-													<th>Edit</th>
+													<th>Contact No</th>
+													<th>Comment</th>
+													<th>Customer ID</th>
+													<th>View</th>
+													<th>update</th>
 													<th>Delete</th>
 												</tr>
 											</thead>
@@ -257,94 +238,64 @@
 					<input id="eid" hidden>
 					<div class="row">
 						<div class="col-10 m-auto">
-							<div class="form-group">
-								<input type="text" class="form-control form-control-user"
-									id="accno" placeholder="Account Name">
-							</div>
-						</div>
-						
-						<div class="col-10 m-auto">
 
 							<select class="form-group form-control"
-								aria-label=".form-select-sm example" id="category">
-								<option selected>Category</option>
-								<option value="b">Breakdown</option>
-								<option value="s">Service Request</option>
+								aria-label=".form-select-sm example" id="status">
 
-							</select>
-						</div>													
-						
-						
-						<div class="col-10 m-auto">
-
-							<select class="form-group form-control"
-								aria-label=".form-select-sm example" id="complain">
-								<option selected>Complain</option>
-								<option value="sfp">Supply failed at premises</option>
-								<option value="sfa">Supply failed at area</option>
-								<option value="opo">One phase out</option>
-								<option value="bsw">Broken service wire</option>
-								<option value="bc">Broken conductor</option>
-								<option value="alv">Abnormal/ Low Voltage</option>
-								<option value="cpd">Conductor / Piller burning</option>
-								<option value="vf">Voltage flickering</option>
-								<option value="hv">High voltage</option>
-								<option value="mh">Meter burning</option>
-								<option value="fi">Flashing Insulators</option>
-								<option value="nl">Neural Leak</option>
-								<option value="pdo">Piller door opened</option>
-								<option value="bt">Breaker tripped</option>
-								<option value="rccpd">Road accident cause pole damage</option>
-								<option value="raaccd">Road accident cause cable / Conductor damage</option>
-								<option value="tfl">Tree fallen on to the line</option>
-								<option value="f">Flood</option>
-								<option value="o">Other</option>
 
 							</select>
 						</div>
-						
-						
-						<div class="col-10 m-auto">
-							<div class="form-group">
-								<input type="date" class="form-control form-control-user"
-									id="name" placeholder="Name">
-							</div>
-						</div>
+
+
 						<div class="col-10 m-auto">
 							<div class="form-group">
 								<input type="text" class="form-control form-control-user"
-									id="address" placeholder="Address">
+									id="comment" placeholder="Comment">
 							</div>
 						</div>
-						
+
+
 						<div class="col-10 m-auto">
 							<div class="form-group">
-								<input type="tel" class="form-control form-control-user"
-									id="mobile" placeholder="Mobile">
+								<input type="text" id="comid" hidden="">
 							</div>
 						</div>
-						<div class="col-10 m-auto">
-							<div class="form-group">
-								<input type="email" class="form-control form-control-user"
-									id="email" placeholder="E-Mail">
-							</div>
-						</div>
-						<div class="col-10 m-auto">
-							<div class="form-group">
-								<input type="text" class="form-control form-control-user"
-									id="description" placeholder="Description">
-							</div>
-						</div>
-						
-						
-						
+
+
+
 
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<button class="btn btn-primary" onclick="updateEmployee();">Update</button>
+					<button class="btn btn-primary" onclick="updateComplain();">Update</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="viewmodel" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Complain
+						Details</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body" id="model-body">
+					
+
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+
 
 				</div>
 			</div>
@@ -391,7 +342,7 @@
     		alert('Invalid Seach Keyword !');
     	}else{
     		compmap.clear();
-    		fetch("http://localhost:8080/Janani/customer/employee/"+searchtext.value+"/searchcomplains")
+    		fetch("http://localhost:8080/ElectroGridComplain/complainservice/complain/"+searchtext.value+"/searchcomplains")
             .then((response) => {
               return response.json();
             })
@@ -404,69 +355,16 @@
                 
                 body+='<tr>';
                 body+='<td>'+obj.comid+'</td>';
-                body+='<td>'+obj.accno+'</td>';
-                
-                
-                if(obj.category==='b'){
-              	  body+='<td>Breakdown</td>';
-              }else{
-              	  body+='<td>Service Request</td>';
-              }
-            
-                
-                
-                if(obj.compalin==='sfp'){
-                	  body+='<td>Supply failed at premises</td>';
-                }else if(obj.compalin==='sfa'){
-              	 	  body+='<td>Supply failed at area</td>';
-                }else if(obj.compalin==='opo'){
-            	 	  body+='<td>One phase out</td>';
-                }else if(obj.compalin==='bsw'){
-            	 	  body+='<td>Broken service wire</td>';
-                }else if(obj.compalin==='bc'){
-            	 	  body+='<td>Broken conductor</td>';
-                }else if(obj.compalin==='alv'){
-            	 	  body+='<td>Abnormal/ Low Voltage</td>';
-                }else if(obj.compalin==='cpb'){
-            	 	  body+='<td>Conductor / Piller burning</td>';
-                }else if(obj.compalin==='vf'){
-            	 	  body+='<td>Voltage flickering</td>';
-                }else if(obj.compalin==='hv'){
-            	 	  body+='<td>High voltage</td>';
-                }else if(obj.compalin==='mb'){
-            	 	  body+='<td>Meter burning</td>';
-                }else if(obj.compalin==='fi'){
-          	 	  body+='<td>Flashing Insulators</td>';
-                }else if(obj.compalin==='nl'){
-            	 	  body+='<td>Neural Leak</td>';
-                }else if(obj.compalin==='pdo'){
-            	 	  body+='<td>Piller door opened</td>';
-                }else if(obj.compalin==='bt'){
-            	 	  body+='<td>Breaker tripped</td>';
-                }else if(obj.compalin==='rccpd'){
-            	 	  body+='<td>Road accident cause pole damage</td>';
-                }else if(obj.compalin==='raaccd'){
-            	 	  body+='<td>Road accident cause cable / Conductor damage</td>';
-                }else if(obj.compalin==='tfl'){
-          	 	  body+='<td>Tree fallen on to the line</td>';
-                }else if(obj.compalin==='tfl'){
-            	 	  body+='<td>Tree fallen on to the line</td>';
-                }else if(obj.compalin==='f'){
-            	 	  body+='<td>Flood</td>';
-                }else if(obj.compalin===''){
-          	 	  body+='<td>Other</td>';
-                }
-          	 	   	  
-            	 	  
-            	 	  
-                body+='<td>'+obj.name+'</td>';
-                body+='<td>'+obj.address+'</td>';
-                body+='<td>'+obj.mobile+'</td>';
-                body+='<td>'+obj.email+'</td>';
-                body+='<td>'+obj.description+'</td>';
-                body+='<td> <a class="btn btn-info" href="#" data-toggle="modal" data-target="#logoutModal" onClick="openEmployeeModel('+obj.comid+')">';
+                body+='<td>'+obj.category+'</td>';  
+                body+='<td>'+obj.complain+'</td>';
+                body+='<td>'+obj.contact_no+'</td>';
+                body+='<td>'+obj.comment+'</td>';
+                body+='<td>'+obj.account_profiles_accid+'</td>';
+                body+='<td> <a class="btn btn-success" href="#" data-toggle="modal" data-target="#viewmodel" onClick="openViewModel('+obj.comid+','+obj.account_profiles_accid+')">';
+                body+=' <i class="fas fa-eye fa-sm fa-fw mr-2 "></i></a></td>';
+                body+='<td> <a class="btn btn-info" href="#" data-toggle="modal" data-target="#logoutModal" onClick="openComplainModel('+obj.comid+')">';
                 body+=' <i class="fas fa-pencil-alt fa-sm fa-fw mr-2 "></i></a></td>';
-                body+='<td><button class="btn btn-danger" onClick="deleteEmployee('+obj.comid+')"><i class="fas fa-trash"></i></button></td>';
+                body+='<td><button class="btn btn-danger" onClick="deleteComplain('+obj.comid+')"><i class="fas fa-trash"></i></button></td>';
                              
                 body+='</tr>';
              
@@ -482,8 +380,8 @@
     }
     
     function deleteComplain(id){
-	var json = '{"cid":"'+id+'"}';			 
-				postData('http://localhost:8080/Janani/customer/employee/deleteemployee', JSON.parse(json),'DELETE')
+	var json = '{"comid":"'+id+'"}';			 
+				postData('http://localhost:8080/ElectroGridComplain/complainservice/complain/deletecomplain', JSON.parse(json),'DELETE')
 		  .then(data => {
 		    console.log(data);
 		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
@@ -494,38 +392,64 @@
     ///open employee edit model with values
     function openComplainModel(id){
     	
-    	 document.getElementById('comid').value = compmap.get(id).cid;
-    	 document.getElementById('accno').value = compmap.get(id).accno;
-    	 document.getElementById('category').value = compmap.get(id).category;
-		 document.getElementById('complain').value= compmap.get(id).complain;
-		 document.getElementById('name').value= compmap.get(id).name;
-		 document.getElementById('address').value= compmap.get(id).address;
-		 document.getElementById('mobile').value= compmap.get(id).mobile;
-		 document.getElementById('email').value= compmap.get(id).email;
-		 document.getElementById('description').value= compmap.get(id).description;
-		 
- 
-    	
+    	 document.getElementById('comid').value = compmap.get(id).comid;
+    	 document.getElementById('comment').value = compmap.get(id).comment;
+    	var status = compmap.get(id).status;
+    	if(status===0){
+    		document.getElementById('status').innerHTML = "<option selected>Status</option><option value='0' selected>On going</option><option value='1'>Close</option>";
+    	}else{
+    		document.getElementById('status').innerHTML = "<option selected>Status</option><option value='0' >On going</option><option value='1' selected>Close</option>";
+    	}
+	
     }
+  
     
+    function   openViewModel(id,accid){
+    	
+   	
+    	fetch("http://localhost:8080/ElectroGrid/accounts/customer/"+accid+"/getcustomeraccount")
+        .then((response) => {
+          return response.json();
+        })
+        .then((complain) => {
+        	console.log(complain);
+        	var body ="";
+        	body +="<h6><b>Complain ID</b></h6>";
+        	body +="<p>"+ compmap.get(id).comid+"</p>";
+        	body +="<h6><b>Contact No</b></h6>";
+        	body +="<p>"+ compmap.get(id).contact_no+"</p>";
+        	body +="<h6><b>Category</b></h6>";
+        	body +="<p>"+ compmap.get(id).category+"</p>";
+        	body +="<h6><b>Complain</b></h6";
+        	body +="<p>"+ compmap.get(id).complain+"</p>";
+        	body +="<h6><b>Status</b></h6>";
+        	body +="<p>"+ compmap.get(id).status==0?'Ongoing':'Closed'+"</p>";
+        	body +="<h6><b>Comment</b></h6>";
+        	body +="<p>"+ compmap.get(id).comment+"</p>";
+        	body +="<hr>";
+        	if(complain.cid!==0){
+        		body +="<h6><b>Customer Name</b></h6>";
+            	body +="<p> "+complain.fname+" "+complain.lname+"</p>";
+            	body +="<h6><b>Address</b></h6>";
+            	body +="<p>"+complain.address+"</p>";
+        	}
+        
+        	 document.getElementById('model-body').innerHTML = body;
+        });
+   	 	
+   }
     
-    function updateEmployee(){
+    function updateComplain(){
     	var cid = document.getElementById('comid').value;
-    	var accno = document.getElementById('accno').value;
-		var catogery = document.getElementById('category').value;
-		var complain = document.getElementById('complain').value;
-		var name = document.getElementById('name').value;
-		var address = document.getElementById('address').value;
-		var mobile = document.getElementById('mobile').value;
-		var email = document.getElementById('email').value;
-		var description = document.getElementById('description').value;
+    	var comment = document.getElementById('comment').value;
+		var status = document.getElementById('status').value;
 		
-		var json = '{"comid":"'+comid+'","accno":"'+accno+'","category":"'+category+'","complain":"'+complain+'","name":"'+name+'","address":"'+address+'","mobile":"'+mobile+'","email":"'+email+'","description":"'+description+'"}';			 
+		var json = '{"comid":"'+cid+'","comment":"'+comment+'","status":"'+status+'"}';			 
 		
-		 
+		 //alert(json);
 		
 		
-		postData('http://localhost:8080/Janani/customer/employee/updateemployee', JSON.parse(json),'PUT')
+		postData('http://localhost:8080/ElectroGridComplain/complainservice/complain/updatecomplain', JSON.parse(json),'PUT')
 		  .then(data => {
 		    console.log(data);
 		    if(JSON.parse(data).status=='200'){

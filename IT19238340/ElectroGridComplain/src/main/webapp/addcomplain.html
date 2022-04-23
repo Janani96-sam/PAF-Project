@@ -74,25 +74,7 @@
 							Complain</a>
 					</div>
 				</div></li>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
-			</a>
-				<div id="collapseUtilities" class="collapse"
-					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="utilities-color.html">Colors</a> <a
-							class="collapse-item" href="utilities-border.html">Borders</a> <a
-							class="collapse-item" href="utilities-animation.html">Animations</a>
-						<a class="collapse-item" href="utilities-other.html">Other</a>
-					</div>
-				</div></li>
 		</ul>
-		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
@@ -174,60 +156,66 @@
 													id="accno" placeholder="account Number">
 											</div>
 										</div>
-										
+
 										<div class="col-10">
 
 											<select class="form-group form-control"
 												aria-label=".form-select-sm example" id="category">
-												<option selected>Category</option>
-												<option value="b">Breakdown</option>
-												<option value="s">Service Request</option>
+												<option selected value="0">Category</option>
+												<option value="Breakdown">Breakdown</option>
+												<option value="Service Request">Service Request</option>
 
 											</select>
 										</div>
-										
-										
+
+
 										<div class="col-10">
 
 											<select class="form-group form-control"
 												aria-label=".form-select-sm example" id="complain">
 												<option selected>Complain</option>
-												<option value="sfp">Supply failed at premises</option>
-												<option value="sfa">Supply failed at area</option>
-												<option value="opo">One phase out</option>
-												<option value="bsw">Broken service wire</option>
-												<option value="bc">Broken conductor</option>
-												<option value="alv">Abnormal/ Low Voltage</option>
-												<option value="cpd">Conductor / Piller burning</option>
-												<option value="vf">Voltage flickering</option>
-												<option value="hb">High voltage</option>
-												<option value="mh">Meter burning</option>
-												<option value="fi">Flashing Insulators</option>
-												<option value="nl">Neural Leak</option>
-												<option value="pdo">Piller door opened</option>
-												<option value="bt">Breaker tripped</option>
-												<option value="rccpd">Road accident cause pole damage</option>
-												<option value="raaccd">Road accident cause cable / Conductor damage</option>
-												<option value="tfl">Tree fallen on to the line</option>
-												<option value="f">Flood</option>
+												<option value="Supply failed at premises">Supply
+													failed at premises</option>
+												<option value="Supply failed at area">Supply failed
+													at area</option>
+												<option value="One phase out">One phase out</option>
+												<option value="Broken service wire">Broken service
+													wire</option>
+												<option value="Broken conductor">Broken conductor</option>
+												<option value="Abnormal/ Low Voltage">Abnormal/ Low
+													Voltage</option>
+												<option value="Conductor / Piller burning">Conductor
+													/ Piller burning</option>
+												<option value="Voltage flickering">Voltage
+													flickering</option>
+												<option value="High voltage">High voltage</option>
+												<option value="Meter burning">Meter burning</option>
+												<option value="Flashing Insulators">Flashing
+													Insulators</option>
+												<option value="Neural Leak">Neural Leak</option>
+												<option value="Piller door opened">Piller door
+													opened</option>
+												<option value="Breaker tripped">Breaker tripped</option>
+												<option value="Road accident cause pole damage">Road
+													accident cause pole damage</option>
+												<option value="Road accident cause cable / Conductor damage">Road
+													accident cause cable / Conductor damage</option>
+												<option value="Tree fallen on to the line">Tree
+													fallen on to the line</option>
+												<option value="Flood">Flood</option>
 												<option value="o">Other</option>
 
 											</select>
 										</div>
-										
+
 										<div class="col-10">
 											<div class="form-group">
 												<input type="text" class="form-control form-control-user"
-													id="name" placeholder="Name">
+													id="other_complain" placeholder="Complain">
 											</div>
 										</div>
-										<div class="col-10">
-											<div class="form-group">
-												<input type="text" class="form-control form-control-user"
-													id="address" placeholder="Address">
-											</div>
-										</div>
-						
+
+
 										<div class="col-10">
 											<div class="form-group">
 												<input type="tel" class="form-control form-control-user"
@@ -235,91 +223,78 @@
 											</div>
 										</div>
 										<div class="col-10">
-											<div class="form-group">
-												<input type="email" class="form-control form-control-user"
-													id="email" placeholder="E-Mail">
-											</div>
-										</div>
-										<div class="col-10">
-											<div class="form-group">
-												<input type="text" class="form-control form-control-user"
-													id="description" placeholder="Description">
-											</div>
-										
-
-										<div class="col-12">
 											<button class="btn btn-primary" onclick="addComplain();">Add
 												Complain</button>
 										</div>
 
-									</div>
 
+									</div>
 								</div>
 							</div>
+
 						</div>
 
 					</div>
+					<!-- /.container-fluid -->
 
 				</div>
-				<!-- /.container-fluid -->
+				<!-- End of Main Content -->
+
+				<!-- Footer -->
+				<footer class="sticky-footer bg-white">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span> &copy; Electro Grid</span>
+						</div>
+					</div>
+				</footer>
+				<!-- End of Footer -->
 
 			</div>
-			<!-- End of Main Content -->
+			<!-- End of Content Wrapper -->
 
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span> &copy; Electro Grid</span>
+		</div>
+		<!-- End of Page Wrapper -->
+
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
+
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ready to
+							Leave?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">Select "Logout" below if you are
+						ready to end your current session.</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">Cancel</button>
+						<a class="btn btn-primary" href="login.html">Logout</a>
 					</div>
 				</div>
-			</footer>
-			<!-- End of Footer -->
-
-		</div>
-		<!-- End of Content Wrapper -->
-
-	</div>
-	<!-- End of Page Wrapper -->
-
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- Bootstrap core JavaScript-->
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+		<!-- Core plugin JavaScript-->
+		<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="js/sb-admin-2.min.js"></script>
-	<script type="text/javascript">
+		<!-- Custom scripts for all pages-->
+		<script src="js/sb-admin-2.min.js"></script>
+		<script type="text/javascript">
 	async function postData(url = '', data = {}) {
 		  // Default options are marked with *
 		  const response = await fetch(url, {
@@ -340,22 +315,23 @@
 
 		
 		
-		function addCompalin(){
+		function addComplain(){
 			var accno = document.getElementById('accno').value;
 			var category = document.getElementById('category').value;
 			var complain = document.getElementById('complain').value;
-			var name = document.getElementById('name').value;
-			var address = document.getElementById('address').value;
+			var other_complain = document.getElementById('other_complain').value;
 			var mobile = document.getElementById('mobile').value;
-			var email = document.getElementById('email').value;
-			var description = document.getElementById('description').value;
+
 			
 			
-			var json = '{"accno":"'+accno+'","category":"'+category+'","complain":"'+complain+'","name":"'+name+'","address":"'+address+'","mobile":"'+mobile+'","email":"'+email+'","description":"'+description+'"}';			 
+			var json = '{"account_profiles_accid":"'+accno+'","category":"'+category+'","complain":"'+complain+'" ,"contact_no":"'+mobile+'","status":"0","comment":""}';	
+			if(complain=="o"){
+				var json = '{"account_profiles_accid":"'+accno+'","category":"'+category+'","complain":"'+other_complain+'" ,"contact_no":"'+mobile+'","status":"0","comment":""}';
+			}
 			
 			console.log(json);
 			
-			postData('http://localhost:8000/ElectroGridComplain/', JSON.parse(json))
+			postData('http://localhost:8080/ElectroGridComplain/complainservice/complain/insertcomplains', JSON.parse(json))
 			  .then(data => {
 			    console.log(data);
 			    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
