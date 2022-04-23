@@ -115,6 +115,22 @@ public class ConsumptionService {
 		}
 				
 	}
+	
+	//delete a consumption
+	public static boolean deleteConsumption(int conId) throws SQLException, ClassNotFoundException {
+				
+		String delete_query = ConsumptionConstant.DELETECONSUMPTION;
+		Connection con = DatabaseConnection.getConnection();
+		PreparedStatement preparedStatement = con.prepareStatement(delete_query);
+				
+		preparedStatement.setInt(Constant.INDEX_ONE, conId);
+		boolean isDeleted = preparedStatement.execute();
+				
+		return isDeleted;
+				
+	}
+		
+		
 					
 		
 }
