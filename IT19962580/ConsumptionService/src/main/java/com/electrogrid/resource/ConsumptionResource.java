@@ -85,8 +85,8 @@ public class ConsumptionResource {
     @Produces(MediaType.APPLICATION_JSON)
 	public Response getConsumptionByAccId(@PathParam("id") int accId) throws ClassNotFoundException, SQLException{
     	
-    	if(ConsumptionService.searchConsumptionByAccId(accId) != null) {
-    		return Response.status(Status.OK).entity(ConsumptionService.searchConsumptionByAccId(accId)).build();
+    	if(ConsumptionService.getConsumptionByAccId(accId) != null) {
+    		return Response.status(Status.OK).entity(ConsumptionService.getConsumptionByAccId(accId)).build();
     	}
     	else {
     		return Response.status(Status.NOT_FOUND).entity("No Related Consumptions Found").build();
