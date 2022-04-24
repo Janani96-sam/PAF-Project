@@ -239,15 +239,15 @@ public class AccountModel {
 
 
 			// create a prepared statement
-			String query = "UPDATE account_profiles SET address=?,status=? WHERE accid=?";
+			String query = "UPDATE account_profiles SET `address`=?,`status`=? WHERE accid=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
-
+System.out.println(acc.getAccid());
 			preparedStmt.setString(1, acc.getAddress());
-			preparedStmt.setInt(2, 1);
+			preparedStmt.setInt(2, acc.getStatus());
 			preparedStmt.setInt(3, acc.getAccid());
-
+			System.out.println(query);
 			preparedStmt.execute();
 			con.close();
 
@@ -255,6 +255,7 @@ public class AccountModel {
 		} catch (Exception e) {
 			output = "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 			System.err.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return output;
 

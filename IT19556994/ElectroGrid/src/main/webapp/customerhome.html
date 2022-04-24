@@ -68,7 +68,7 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="addemployee.html">Add Employee</a>
+						
 						<a class="collapse-item" href="employeehome.html">Manage
 							Employees</a>
 					</div>
@@ -302,13 +302,7 @@
 							</div>
 						</div>
 
-						<div class="col-10 m-auto">
-							<div class="form-group">
-								<label>Status</label> <input type="text"
-									class="form-control form-control-user" id="status"
-									placeholer="Status">
-							</div>
-						</div>
+					<div class="w-100"></div>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -416,10 +410,10 @@
 		 document.getElementById('fname').value= cusmap.get(id).fname;
 		 document.getElementById('lname').value= cusmap.get(id).lname;
 		 document.getElementById('nic').value= cusmap.get(id).cus_nic;
-		 document.getElementById('mobile').value= cusmap.get(id).mobile;
+		 document.getElementById('mobile').value= cusmap.get(id).contact_number;
 		 document.getElementById('address').value= cusmap.get(id).address;
 		 document.getElementById('email').value= cusmap.get(id).cus_email;
-		 document.getElementbyId('status').value= cusmap.get(id).cus_status;
+		// document.getElementbyId('status').value= cusmap.get(id).cus_status;
  
     	
     }

@@ -38,17 +38,30 @@ public class CustomerModel {
 
 			}
 
-			if(cus.getCus_nic().length()<10 && cus.getCus_nic().length()>12 ) {
+			if (cus.getCus_nic().length() < 10 && cus.getCus_nic().length() > 12) {
 				return "{\"status\":\"400\",\"message\":\" Incorrect NIC NO !\"}";
 			}
-			
-			if(!Validation.isEmail(cus.getCus_email())) {
+
+			if (!Validation.isEmail(cus.getCus_email())) {
 				return "{\"status\":\"400\",\"message\":\" Email Address \"}";
 			}
-			if(!Validation.isPhoneNo(cus.getContact_number())) {
+			if (!Validation.isPhoneNo(cus.getContact_number())) {
 				return "{\"status\":\"400\",\"message\":\" Incorrect Phone Number\"}";
 			}
-			
+
+			String validatequery = "SELECT count(cid) as customercount FROM customers WHERE cus_nic = '"
+					+ cus.getCus_nic() + "' ";
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(validatequery);
+			int x = 0;
+			while (rs.next()) {
+				x = rs.getInt("customercount");
+			}
+			System.out.print(x);
+
+			if (x != 0) {
+				return "{\"status\":\"400\",\"message\":\" User already exist \"}";
+			}
 
 			// create a prepared statement
 			String query = "insert into customers(title,fname,lname,cus_nic, contact_number,address, cus_email, cus_status,employee_eid) "
@@ -214,8 +227,9 @@ public class CustomerModel {
 				return output;
 			}
 
-			String query = "select * from customers WHERE   cus_status = 0 AND fname LIKE '%" + name + "%'  OR  lname LIKE '%" + name
-					+ "%' OR cid LIKE '" + name + "%' OR   cus_nic LIKE '%" + name + "%'";
+			String query = "select * from customers WHERE   cus_status = 0 AND fname LIKE '%" + name
+					+ "%'  OR  lname LIKE '%" + name + "%' OR cid LIKE '" + name + "%' OR   cus_nic LIKE '%" + name
+					+ "%'";
 			System.out.print(query);
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
@@ -255,19 +269,20 @@ public class CustomerModel {
 				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 
 			}
-		
-			
-			if(cus.getCus_nic().length()<10 && cus.getCus_nic().length()>12 ) {
+
+			if (cus.getCus_nic().length() < 10 && cus.getCus_nic().length() > 12) {
 				return "{\"status\":\"400\",\"message\":\" Incorrect NIC NO !\"}";
 			}
-			
-			if(!Validation.isEmail(cus.getCus_email())) {
-				return "{\"status\":\"400\",\"message\":\" Email Address \"}";
+			if (cus.getCus_email() != null) {
+				if (!Validation.isEmail(cus.getCus_email())) {
+					return "{\"status\":\"400\",\"message\":\" Email Address \"}";
+				}
 			}
-			if(!Validation.isPhoneNo(cus.getContact_number())) {
-				return "{\"status\":\"400\",\"message\":\" Incorrect Phone Number\"}";
+			if (cus.getContact_number() != null) {
+				if (!Validation.isPhoneNo(cus.getContact_number())) {
+					return "{\"status\":\"400\",\"message\":\" Incorrect Phone Number\"}";
+				}
 			}
-			
 
 			// create a prepared statement
 			String query = "UPDATE customers SET title=?,fname=?,lname=?,cus_nic=?, contact_number=?,address=?, cus_email=?, cus_status=? WHERE cid=?";
@@ -293,6 +308,7 @@ public class CustomerModel {
 		} catch (Exception e) {
 			output = "{\"status\":\"200\",\"message\":\"Values Update failed !\"}";
 			System.err.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return output;
 
@@ -309,7 +325,7 @@ public class CustomerModel {
 			}
 
 			// String query = "delete from customers where cid=?";
-			String query = "UPDATE customers SET status = ? where cid=?";
+			String query = "UPDATE customers SET cus_status = ? where cid=?";
 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 

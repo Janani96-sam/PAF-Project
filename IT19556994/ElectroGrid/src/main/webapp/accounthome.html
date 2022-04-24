@@ -68,7 +68,7 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="addemployee.html">Add Employee</a>
+						
 						<a class="collapse-item" href="employeehome.html">Manage
 							Employees</a>
 					</div>
@@ -436,7 +436,7 @@
 		var status = document.getElementById('status').value;
  
 		
-		var json = '{"serial":"'+serial+'","install_date":"'+install+'","connection_type":"'+connection+'","address":"'+address+'","status":"'+status+'"}';				 
+		var json = '{"accid":"'+accid+'","serial":"'+serial+'","install_date":"'+install+'","connection_type":"'+connection+'","address":"'+address+'","status":"'+status+'"}';				 
 		
 		 
 		
@@ -444,10 +444,10 @@
 		postData(baseUrl+'/account_profiles/updateaccount', JSON.parse(json),'PUT')
 		  .then(data => {
 		    console.log(data);
-		    if(JSON.parse(data).status=='200'){
+		    if(data.status=='200'){
 		    	$('#logoutModal').modal('hide');
 		    }
-		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
+		    alert(data.message);// JSON data parsed by `data.json()` call
 		  });
 	}
     function onLoad() {
