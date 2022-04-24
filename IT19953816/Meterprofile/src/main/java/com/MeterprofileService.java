@@ -13,19 +13,17 @@ import javax.ws.rs.core.MediaType;
 
 //For JSON
 import com.google.gson.*;
-//For XML
-import org.jsoup.*;
-import org.jsoup.parser.*;
-import org.jsoup.nodes.Document; 
 
 import com.pojo.Meterprofile;
 import com.dao.MeterprofileDao;
 
+//meter profile service
 @Path("meterprofile")
 public class MeterprofileService {
 	
-	MeterprofileDao mDao = new MeterprofileDao();
+	MeterprofileDao mDao = new MeterprofileDao(); //creating obj of dao class to create all methods of the class
 	
+	//read all meter profile 
 	@GET
 	@Path("/readAll")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -35,8 +33,9 @@ public class MeterprofileService {
 		Gson gson = new Gson();
 		String out = gson.toJson(list);
 		return out;
-	 } 
+	 } //output as a json
 	
+	//read meterprofile by user
 	@GET
 	@Path("/readByUser")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -51,7 +50,7 @@ public class MeterprofileService {
 		String out = gson.toJson(list);
 		return out;
 	 } 
-	
+	//read meterprofile by id 
 	@GET
 	@Path("/readById")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -66,8 +65,9 @@ public class MeterprofileService {
 		Gson gson = new Gson();
 		String out = gson.toJson(meter);
 		return out;
-	 } 
+	 } //return a one meter profile as json 
 	
+	//read all meter profiles that has been requested to delete by users 
 	@GET
 	@Path("/readByRequset")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -80,6 +80,7 @@ public class MeterprofileService {
 		return out;
 	 } 
 	
+	//input meter profile
 	@POST
 	@Path("/insert")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -92,14 +93,14 @@ public class MeterprofileService {
 			 @FormParam("initialized_date") String initialized_date,
 			 @FormParam("initialized_emp") String initialized_emp,
 			 @FormParam("location") String location)
-	 {
+	 {//use post method 
 		
 		Meterprofile m = new Meterprofile(id,name,connection_type,estimated_power_consumption,owner,initialized_date,initialized_emp,location);
 		mDao.registerMeterprofile(m);
 		return "inserted";
 	 }
 	
-	
+	//admin and user can update
 	@POST
 	@Path("/update")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -125,7 +126,7 @@ public class MeterprofileService {
 	}
 	
 	
-	
+	//Admin can use this to delete 
 	@DELETE
 	@Path("/delete")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -144,4 +145,4 @@ public class MeterprofileService {
 	
 	
 	
-	}
+}

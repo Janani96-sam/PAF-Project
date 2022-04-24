@@ -1,7 +1,7 @@
 package com.pojo;
 
 
-
+//model class 
 public class Meterprofile {
 	private String id;
 	private String name;
@@ -13,7 +13,7 @@ public class Meterprofile {
 	private String location;
 	private String delete_request;
 	
-	
+	//custructors
 	public Meterprofile() {
 		super();
 		this.id = "";
@@ -26,6 +26,7 @@ public class Meterprofile {
 		this.location = "";
 		this.delete_request="";
 	}
+	
 	public Meterprofile(String id, String name, String connection_type,String estimated_power_consumption, String owner, String initialized_date,
 			String initialized_emp, String location) {
 		super();
@@ -39,7 +40,7 @@ public class Meterprofile {
 		this.location = location;
 		this.delete_request = "0";
 	}
-	
+	//over riding cunstructor
 	public Meterprofile(String id, String name, String connection_type,String estimated_power_consumption, String owner, String initialized_date,
 			String initialized_emp, String location, String delete_request) {
 		super();
@@ -55,7 +56,7 @@ public class Meterprofile {
 	}
 	
 	
-	
+	//setters and getters
 	public String getId() {
 		return id;
 	}
