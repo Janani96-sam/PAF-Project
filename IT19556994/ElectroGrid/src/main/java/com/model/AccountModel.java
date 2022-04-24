@@ -34,6 +34,9 @@ public class AccountModel {
 			if (con == null) {
 				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 			}
+			if(acc.getSerial().length()<4) {
+				return "{\"status\":\"400\",\"message\":\"Serial number  must be atleast 4 characters long !\"}";
+			}
 
 			// create a prepared statement
 
@@ -55,7 +58,7 @@ public class AccountModel {
 
 			output = "{\"status\":\"200\",\"message\":\"Values Inserted Successfully\"}";
 		} catch (Exception e) {
-			output = "Error while inserting the account details";
+			output =  "{\"status\":\"400\",\"message\":\"Error while inserting the account\"}";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -191,7 +194,7 @@ public class AccountModel {
 				return output;
 			}
 
-			String query = "select * from account_profiles WHERE accid = '" + search + "' OR serial LIKE '%" + search
+			String query = "select * from account_profiles WHERE  status= 0 AND  accid = '" + search + "' OR serial LIKE '%" + search
 					+ "%' OR address LIKE '%" + search + "%'";
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
@@ -227,9 +230,13 @@ public class AccountModel {
 			Connection con = connect();
 
 			if (con == null) {
-				return "Error while connecting to the database for updating";
+				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 
 			}
+			if(acc.getSerial().length()<4) {
+				return "{\"status\":\"400\",\"message\":\"Serial number  must be atleast 4 characters long !\"}";
+			}
+
 
 			// create a prepared statement
 			String query = "UPDATE account_profiles SET address=?,status=? WHERE accid=?";
@@ -244,9 +251,9 @@ public class AccountModel {
 			preparedStmt.execute();
 			con.close();
 
-			output = "Values Updated Successfully";
+			output =  "{\"status\":\"200\",\"message\":\"Updated Successfully !\"}";
 		} catch (Exception e) {
-			output = "Error while updating the account profile";
+			output = "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -293,22 +300,24 @@ public class AccountModel {
 			Connection con = connect();
 
 			if (con == null) {
-				return "Error while connecting to the database for deleting";
+				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 			}
 
-			String query = "delete from account_profile where accid=?";
+			// String query = "delete from customers where accid=?";
+			String query = "UPDATE account_profiles SET status = ? where accid=?";
 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
-			preparedStmt.setInt(1, acc.getAccid());
+			preparedStmt.setInt(1, 1);
+			preparedStmt.setInt(2, acc.getAccid());
 
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Deleted successfully";
+			output = "{\"status\":\"200\",\"message\":\" Account Deleted Successfully !\"}";
 		} catch (Exception e) {
-			output = "Error while deleting the account profile";
+			output = "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 			System.err.println(e.getMessage());
 		}
 

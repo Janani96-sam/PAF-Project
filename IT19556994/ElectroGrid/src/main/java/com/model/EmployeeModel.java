@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.pojo.Employee;
+import com.validation.Validation;
 
 public class EmployeeModel {
 	private Connection connect() {
@@ -38,12 +39,20 @@ public class EmployeeModel {
 			}
 
 			if(employee.getEmp_password().length()<4) {
-				return "{\"status\":\"400\",\"message\":\"Password must be atleast 4 charactors long !\"}";
+				return "{\"status\":\"400\",\"message\":\"Password must be atleast 4 characters long !\"}";
 			}
 			
 			if(employee.getEmp_nic().length()<10 && employee.getEmp_nic().length()>12 ) {
 				return "{\"status\":\"400\",\"message\":\" Incorrect NIC NO !\"}";
 			}
+			
+			if(!Validation.isEmail(employee.getEmail())) {
+				return "{\"status\":\"400\",\"message\":\" Email Address \"}";
+			}
+			if(!Validation.isPhoneNo(employee.getMobile())) {
+				return "{\"status\":\"400\",\"message\":\" Incorrect Phone Number\"}";
+			}
+			
 			
 			// create a prepared statement
 			String query = "insert into employees(ename,date_of_birth,emp_nic,gender, mobile, email, status, emp_username, emp_password,type) "
@@ -58,7 +67,7 @@ public class EmployeeModel {
 			preparedStmt.setString(4, employee.getGender());
 			preparedStmt.setString(5, employee.getMobile());
 			preparedStmt.setString(6, employee.getEmail());
-			preparedStmt.setInt(7, 1);
+			preparedStmt.setInt(7,0 );
 			preparedStmt.setString(8, employee.getEmp_username());
 			preparedStmt.setString(9, employee.getEmp_password());
 			preparedStmt.setInt(10, 0);
@@ -150,7 +159,7 @@ public class EmployeeModel {
 					+ "<th>Mobile</th>" + "<th>Email</th>" + "<th>Status</th><th>User Name</th>"
 					+ "<th>Update</th><th>Remove</th></tr>";
 
-			String query = "select * from employee WHERE ename LIKE '%" + name + "%'";
+			String query = "select * from employee WHERE ename LIKE '%" + name + "%' OR eid LIKE '%" + name + "%' OR emp_nic LIKE '%" + name + "%'";
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
 
@@ -200,7 +209,7 @@ public class EmployeeModel {
 				return output;
 			}
 
-			String query = "select * from employees WHERE ename LIKE '%" + name + "%' AND status=0";
+			String query = "select * from employees WHERE ename LIKE '%" + name + "%' OR eid LIKE '%" + name + "%' OR emp_nic LIKE '%" + name + "%' AND status = 0";
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
 
@@ -240,6 +249,24 @@ public class EmployeeModel {
 				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 
 			}
+			if(employee.getEmp_password()!=null) {
+				if(employee.getEmp_password().length()<4) {
+					return "{\"status\":\"400\",\"message\":\"Password must be atleast 4 characters long !\"}";
+				}
+			}
+			
+			
+			if(employee.getEmp_nic().length()<10 && employee.getEmp_nic().length()>12 ) {
+				return "{\"status\":\"400\",\"message\":\" Incorrect NIC NO !\"}";
+			}
+			
+			if(!Validation.isEmail(employee.getEmail())) {
+				return "{\"status\":\"400\",\"message\":\" Email Address \"}";
+			}
+			if(!Validation.isPhoneNo(employee.getMobile())) {
+				return "{\"status\":\"400\",\"message\":\" Incorrect Phone Number\"}";
+			}
+			
 
 			// create a prepared statement
 			String query = "UPDATE employees SET ename=?, emp_nic=?,mobile=?,email=?,status=? WHERE eid=?";
@@ -258,12 +285,12 @@ public class EmployeeModel {
 			preparedStmt.execute();
 			con.close();
 
-			output = "{\"status\":\"200\",\"message\":\"Employee Update Success ! !\"}";
+			output = "{\"status\":\"200\",\"message\":\"Employee Updated Successfully ! !\"}";
 			;
 		} catch (Exception e) {
 			output = "{\"status\":\"400\",\"message\":\"Error while updating Employee !\"}";
-			;
-			System.err.println(e.getMessage());
+			
+			 e.printStackTrace();
 		}
 		return output;
 

@@ -57,7 +57,7 @@
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
-			<div class="sidebar-heading">User Management</div>
+			<div class="sidebar-heading">Management</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -75,37 +75,35 @@
 					</div>
 				</div></li>
 
-			<!-- Nav Item - Utilities Collapse Menu -->
+			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapse3" aria-expanded="true"
-				aria-controls="#collapse3"> <i class="fas fa-fw fa-wrench"></i>
-					<span>Customer</span>
+				aria-controls="collapse3"> <i class="fas fa-fw fa-user"></i> <span>Customer</span>
 			</a>
 				<div id="collapse3" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="addemployee.html">Add Customer</a>
-						<a class="collapse-item" href="employeehome.html">Manage
+						<a class="collapse-item" href="addcustomer.html">Add Customer</a>
+						<a class="collapse-item" href="customerhome.html">Manage
 							Customers</a>
 					</div>
 				</div></li>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
+			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapse4" aria-expanded="true"
-				aria-controls="#collapse4"> <i class="fas fa-fw fa-wrench"></i>
-					<span>Account</span>
+				aria-controls="collapse4"> <i class="fas fa-fw fa-user"></i> <span>Account</span>
 			</a>
 				<div id="collapse4" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="addemployee.html">Add Account</a> <a
-							class="collapse-item" href="employeehome.html">Manage
-							Accounts</a>
+						<a class="collapse-item" href="addaccount.html">Add Account</a> <a
+							class="collapse-item" href="accounthome.html">Manage Accounts</a>
 					</div>
 				</div></li>
+
+
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -127,7 +125,7 @@
 
 
 
-						<ul class="navbar-nav ml-auto">
+					<ul class="navbar-nav ml-auto">
 
 						<div class="topbar-divider d-none d-sm-block"></div>
 
@@ -145,9 +143,8 @@
 								aria-labelledby="userDropdown">
 
 								<div class="dropdown-divider"></div>
-								<p class="dropdown-item" onclick="logOut();"
-									 > <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+								<p class="dropdown-item" onclick="logOut();">
+									<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
 								</p>
 							</div></li>
@@ -199,8 +196,8 @@
 											</div>
 										</div>
 										<div class="col-md-6 col-sm-12">
-											<label for="serial" class="form-label">Connection Type</label>
-											<select class="form-group form-control"
+											<label for="serial" class="form-label">Connection
+												Type</label> <select class="form-group form-control"
 												aria-label=".form-select-sm example" id="connection_type">
 												<option selected>Select Connection Type</option>
 												<option value="sp">Single Phase 30A</option>
@@ -212,14 +209,14 @@
 
 										<div class="col-md-6 col-sm-12 ">
 											<div class="form-group">
-												<label for="serial" class="form-label">Address</label>
-												<input type="text" class="form-control form-control-user"
+												<label for="serial" class="form-label">Address</label> <input
+													type="text" class="form-control form-control-user"
 													id="address" placeholder="address">
 											</div>
 										</div>
 										<div class="col-md-6 col-sm-12 ">
-											<label for="serial" class="form-label">Status</label>
-											<select class="form-group form-control"
+											<label for="serial" class="form-label">Status</label> <select
+												class="form-group form-control"
 												aria-label=".form-select-sm example" id="status">
 												<option selected>Select Status</option>
 												<option value="1">Inactive</option>
@@ -230,13 +227,13 @@
 										</div>
 										<div class="col-md-6 col-sm-12">
 											<div class="form-group">
-												<label for="serial" class="form-label">Customer ID</label>
-												<input type="number" class="form-control form-control-user"
+												<label for="serial" class="form-label">Customer ID</label> <input
+													type="number" class="form-control form-control-user"
 													id="cus_id" placeholder="Customer ID">
 											</div>
 										</div>
-										<div class="w-100"></div>
-									
+									<div class="w-100"></div>
+
 										<div class="col-md-6 col-sm-12">
 											<button class="btn btn-primary" onclick="addAccount()">Add
 												Account</button>
@@ -309,7 +306,7 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
-		<script src="js/cookie.js"></script>
+	<script src="js/cookie.js"></script>
 	<script type="text/javascript">
 	var baseUrl = "http://localhost:8081/ElectroGrid/accounts";
 	async function postData(url = '', data = {}) {
