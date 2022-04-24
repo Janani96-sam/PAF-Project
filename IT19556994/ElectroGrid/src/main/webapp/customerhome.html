@@ -404,7 +404,7 @@
 				postData(baseUrl+'/customer/deletecustomer', JSON.parse(json),'DELETE')
 		  .then(data => {
 		    console.log(data);
-		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
+		    alert(data.message);// JSON data parsed by `data.json()` call
 		  });
     	
     }
@@ -444,10 +444,10 @@
 		postData(baseUrl+'/customer/updatecustomer', JSON.parse(json),'PUT')
 		  .then(data => {
 		    console.log(data);
-		    if(JSON.parse(data).status=='200'){
+		    if(data.status=='200'){
 		    	$('#logoutModal').modal('hide');
 		    }
-		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
+		    alert(data.message);// JSON data parsed by `data.json()` call
 		  });
 	}
     

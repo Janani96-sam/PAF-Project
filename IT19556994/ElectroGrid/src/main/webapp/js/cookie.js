@@ -36,5 +36,5 @@ function logOut() {
 	document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 	document.cookie = "eid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 	window.location
-		.replace("http://localhost:8080/Janani/login.html");
+		.replace("http://localhost:8081/ElectroGrid/login.html");
 }

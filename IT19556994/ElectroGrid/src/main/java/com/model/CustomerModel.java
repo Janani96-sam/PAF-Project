@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.pojo.Customer;
+import com.validation.Validation;
 
 public class CustomerModel {
 	private Connection connect() {
@@ -37,6 +38,18 @@ public class CustomerModel {
 
 			}
 
+			if(cus.getCus_nic().length()<10 && cus.getCus_nic().length()>12 ) {
+				return "{\"status\":\"400\",\"message\":\" Incorrect NIC NO !\"}";
+			}
+			
+			if(!Validation.isEmail(cus.getCus_email())) {
+				return "{\"status\":\"400\",\"message\":\" Email Address \"}";
+			}
+			if(!Validation.isPhoneNo(cus.getContact_number())) {
+				return "{\"status\":\"400\",\"message\":\" Incorrect Phone Number\"}";
+			}
+			
+
 			// create a prepared statement
 			String query = "insert into customers(title,fname,lname,cus_nic, contact_number,address, cus_email, cus_status,employee_eid) "
 					+ "values( ?, ?, ?, ?, ?, ?, ?,?,?)";
@@ -52,7 +65,6 @@ public class CustomerModel {
 			preparedStmt.setString(7, cus.getCus_email());
 			preparedStmt.setInt(8, 0);
 			preparedStmt.setInt(9, cus.getEmployee_eid());
-
 			preparedStmt.execute();
 			con.close();
 
@@ -202,8 +214,9 @@ public class CustomerModel {
 				return output;
 			}
 
-			String query = "select * from customers WHERE fname LIKE '%" + name + "%'  OR  lname LIKE '%" + name
-					+ "%'OR    cid LIKE '" + name + "%' OR   cus_nic LIKE '%" + name + "%' AND cus_status = 0";
+			String query = "select * from customers WHERE   cus_status = 0 AND fname LIKE '%" + name + "%'  OR  lname LIKE '%" + name
+					+ "%' OR cid LIKE '" + name + "%' OR   cus_nic LIKE '%" + name + "%'";
+			System.out.print(query);
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
 
@@ -242,9 +255,22 @@ public class CustomerModel {
 				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 
 			}
+		
+			
+			if(cus.getCus_nic().length()<10 && cus.getCus_nic().length()>12 ) {
+				return "{\"status\":\"400\",\"message\":\" Incorrect NIC NO !\"}";
+			}
+			
+			if(!Validation.isEmail(cus.getCus_email())) {
+				return "{\"status\":\"400\",\"message\":\" Email Address \"}";
+			}
+			if(!Validation.isPhoneNo(cus.getContact_number())) {
+				return "{\"status\":\"400\",\"message\":\" Incorrect Phone Number\"}";
+			}
+			
 
 			// create a prepared statement
-			String query = "UPDATE employees SET title=?,fname=?,lname=?,cus_nic=?, contact_number=?,address=?, cus_email=?, cus_status=? WHERE cid=?";
+			String query = "UPDATE customers SET title=?,fname=?,lname=?,cus_nic=?, contact_number=?,address=?, cus_email=?, cus_status=? WHERE cid=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
@@ -282,19 +308,21 @@ public class CustomerModel {
 				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 			}
 
-			String query = "delete from customers where cid=?";
+			// String query = "delete from customers where cid=?";
+			String query = "UPDATE customers SET status = ? where cid=?";
 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
-			preparedStmt.setInt(1, cus.getCid());
+			preparedStmt.setInt(1, 1);
+			preparedStmt.setInt(2, cus.getCid());
 
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Deleted successfully";
+			output = "{\"status\":\"200\",\"message\":\"Customer Deleted Successfully !\"}";
 		} catch (Exception e) {
-			output = "Error while deleting the customer.";
+			output = "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 			System.err.println(e.getMessage());
 		}
 

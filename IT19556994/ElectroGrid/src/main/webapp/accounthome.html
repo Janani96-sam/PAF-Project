@@ -172,7 +172,7 @@
 									<form
 										class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
 										style="margin: 0px !important;">
-										<label>Account ID / Serial No/ Address</label>
+									
 										<div class="input-group">
 											<input type="text"
 												class="form-control bg-secondary border-0 small"
@@ -260,27 +260,24 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<input id="eid" hidden>
+					<input id="accid" hidden>
 					<div class="row">
 						<div class="col-10 m-auto">
 							<div class="form-group">
+							<label>Serial Number</label>
 								<input type="text" class="form-control form-control-user"
 									id="serial" placeholder="Serial Number">
 							</div>
 						</div>
 						<div class="col-10 m-auto">
 							<div class="form-group">
+							<label>Install Date</label>
 								<input type="date" class="form-control form-control-user"
 									id="install_date" placeholder="Install Date">
 							</div>
 						</div>
 						<div class="col-10 m-auto">
-							<div class="form-group">
-								<input type="date" class="form-control form-control-user"
-									id="register_date" placeholder="Register Date">
-							</div>
-						</div>
-						<div class="col-10 m-auto">
+						<label>Connection Type</label>
 							<select class="form-group form-control"
 								aria-label=".form-select-sm example" id="connection_type">
 								<option selected>Select Connection Type</option>
@@ -291,12 +288,14 @@
 							</div>
 						<div class="col-10 m-auto">
 							<div class="form-group">
+							<label>Address</label>
 								<input type="text" class="form-control form-control-user"
 									id="address" placeholder="Address">
 							</div>
 						</div>
 						<div class="col-10 m-auto">
 							<div class="form-group">
+							<label>Status</label>
 								<input type="text" class="form-control form-control-user"
 									id="status" placeholder="Status">
 							</div>
@@ -405,10 +404,10 @@
     
     function deleteAccount(id){
 	var json = '{"accid":"'+id+'"}';			 
-				postData(baseUrl+'/account_profiles/deleteAccount', JSON.parse(json),'DELETE')
+				postData(baseUrl+'/account_profiles/deleteaccount', JSON.parse(json),'DELETE')
 		  .then(data => {
 		    console.log(data);
-		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
+		    alert(data.message);// JSON data parsed by `data.json()` call
 		  });
     	
     }
@@ -416,14 +415,14 @@
     ///open account edit model with values
     function openAccountModel(id){
     	
-    	 document.getElementById('accid').value = accmap.get(id).eid;
-		 document.getElementById('serial').value= accmap.get(id).ename;
-		 document.getElementById('install_date').valueAsDate=new Date( empmap.get(id).date_of_birth);
-		 document.getElementById('register_date').value= empmap.get(id).emp_nic;
-		 document.getElementById('connection_type').value= empmap.get(id).gender;
-		 document.getElementById('address').value= empmap.get(id).mobile;
-		 document.getElementById('status').value= empmap.get(id).email;
- 
+    	 document.getElementById('accid').value = accmap.get(id).accid;
+		 document.getElementById('serial').value= accmap.get(id).serial;
+		 document.getElementById('install_date').valueAsDate=new Date( accmap.get(id).install_date);
+		 document.getElementById('connection_type').value= accmap.get(id).connection_type;
+		 document.getElementById('address').value= accmap.get(id).address;
+		 document.getElementById('status').value= accmap.get(id).status;
+ 		
+		
     	
     }
     
@@ -431,14 +430,13 @@
     function updateAccount(){
     	var accid = document.getElementById('accid').value;
 		var serial = document.getElementById('serial').value;
-		var install = document.getElementById('install_date').value;
-		var register = document.getElementById(' register_date').value;
+		var install = document.getElementById('install_date').value;	
 		var connection = document.getElementById('connection_type').value;
 		var address = document.getElementById('address').value;
 		var status = document.getElementById('status').value;
  
 		
-		var json = '{"serial":"'+serial+'","install_date":"'+install+'","register_date":"'+register+'","connection_type":"'+connection+'","address":"'+address+'","status":"'+status+'"}';				 
+		var json = '{"serial":"'+serial+'","install_date":"'+install+'","connection_type":"'+connection+'","address":"'+address+'","status":"'+status+'"}';				 
 		
 		 
 		
