@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
 
-<meta charset="utf-8">
+<meta charset="ISO-8859-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,10 +20,10 @@
 
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+<title>Insert title here</title>
 </head>
-
 <body id="page-top">
+
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -243,62 +242,8 @@
 					<div class="row">
 						<div class="panel">
 						<div class="md-md offset-md">
-							<div class="">
-								<form class="form" action="http://localhost:8088/Meterprofile/myService/meterprofile/insert_postman" method=post>
-									<div>
-										<lablel for="" class="form-label">ID</lablel>
-										<input type="text" class="form-control" name="id" aria-describedby="">
-										<div id="" class="form-text"></div>
-										
-									</div>
-									<div class="mb-3">
-										
-										<label for="meterprofile_name" class="form-label">Name</label>
-										<input type="text" class="form-control" name="name"
-											aria-describedby="emailHelp">
-										<div id="emailHelp" class="form-text">We'll never share
-											your email with anyone else.</div>
-									</div>
-									<div>
-										<lablel for="" class="form-label">Connection Type</lablel>
-										<input type="text" class="form-control" name="connection_type" aria-describedby="">
-										<div id="" class="form-text"></div>
-										
-									</div>
-									<div>
-										<lablel for="" class="form-label">Estimated Power Consuption</lablel>
-										<input type="text" class="form-control" name="estimated_power_consumption" aria-describedby="">
-										<div id="" class="form-text"></div>
-										
-									</div>
-									<div>
-										<lablel for="" class="form-label">Owner</lablel>
-										<input type="text" class="form-control" name="owner" aria-describedby="">
-										<div id="" class="form-text"></div>
-										
-									</div><div>
-										<lablel for="" class="form-label">Initialized date</lablel>
-										<input type="date" class="form-control" name="initialized_date" aria-describedby="">
-										<div id="" class="form-text"></div>
-									
-									</div><div>
-										<lablel for="" class="form-label">Initialized Employee</lablel>
-										<input type="text" class="form-control form-control-user" name="initialized_emp" aria-describedby="">
-										<div id="" class="form-text"></div>
-										
-									</div><div>
-										<lablel for="" class="form-label">Location</lablel>
-										<input type="text" class="form-control form-control-user" name="location" aria-describedby="">
-										<div id="" class="form-text"></div>
-										
-									</div>
-									<div>
-										<input type="submit" class="form-control form-control-user" value="Register MeterProfile" aria-describedby="">
-										
-										<div id="" class="form-text"></div>
-										<button id="submit" class="btn btn-primary" >Register MeterProfile</button>
-									</div>
-								</form>
+							<div class="" id="content_meter">
+								
 							</div>
 						</div>
 						</div>
@@ -353,52 +298,13 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="js/sb-admin-2.min.js"></script>
-	
-	<!-- js -->
-	<script src="js/sb-admin-2.min.js"></script>
-	<script type="text/javascript">
-	console.log("in side register");
-	document.getElementById("submit").addEventListener("click", register);
-	
-	function generateID(){
-		var ownerID = document.getElementByName('id');
-	}
-	function register(){
-		console.log("in side register");
-		var id = documetn.getElementByName('id');
-		var name = documetn.getElementByName('name');
-		var connection_type = documetn.getElementByName('connection_type');
-		var estimated_power_consumption = documetn.getElementByName('estimated_power_consumption');
-		var Owner = documetn.getElementByName('Owner');
-		var initialized_date = documetn.getElementByName('initialized_date');
-		var initialized_emp = documetn.getElementByName('initialized_emp');
-		var location = documetn.getElementByName('location');
-		
-		var json = '{"id":"'+id+'","name":"'+name+'","register_date":"'+register+'","connection_type":"'
-			+connection_type+'","estimated_power_consumption":"'+estimated_power_consumption+'","Owner":"'
-			+Owner+'","initialized_date":"'+initialized_date+',"location":"'+location+'"}';			 
-	
-		console.log(json);
-		//send api request
-		postData('http://localhost:8088/Meterprofile/myService/meterprofile/insert', JSON.parse(json)) 
-		  .then(data => {
-		    console.log(data);
-		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
-		  });
-	}
-	
-	
-	</script>
+<script src="js/meter_js.js" ></script>
 </body>
+
+
 
 </html>

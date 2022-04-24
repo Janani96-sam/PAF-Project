@@ -32,7 +32,7 @@ public class MeterprofileDao {
 	
 	public int registerMeterprofile(Meterprofile meterprofile) {
 		String insert_meterprofile = "insert into electrogrid_meterprofile.meterprofile" + 
-	"(id, name, connection_type,estimated_power_consumptionl, owner, initialized_date, initialized_emp, location) values" 
+	"(id, name, connection_type,estimated_power_consumption, owner, initialized_date, initialized_emp, location) values" 
 	+ "(?, ?, ?, ?, ?, ?, ?, ?);";
 		
 		int result = 0;
@@ -62,7 +62,7 @@ public class MeterprofileDao {
 		
 	}
 	
-	public String selectAllMeterprofileByUser(String user) {
+	public List<Meterprofile> selectAllMeterprofileByUser(String user) {
 		
 		String output;
 		
@@ -89,7 +89,7 @@ public class MeterprofileDao {
 			String id = result.getString("id");
 			String name = result.getString("name");
 			String connection_type = result.getString("connection_type");
-			String estimated_power_consumption = result.getString("estimated_power_consumptionl");
+			String estimated_power_consumption = result.getString("estimated_power_consumption");
 			String owner = result.getString("owner");
 			String initialized_date = result.getString("initialized_date");
 			String initialized_emp = result.getString("initialized_emp");
@@ -122,11 +122,11 @@ public class MeterprofileDao {
 		}catch(Exception e) {
 			System.out.println(e);
 		}
-		return output;
+		return meterprofiles;
 	}
 	
 	
-public String selectAllMeterprofile() {
+public List<Meterprofile> selectAllMeterprofile() {
 		
 		String output;
 		
@@ -152,7 +152,7 @@ public String selectAllMeterprofile() {
 			String id = result.getString("id");
 			String name = result.getString("name");
 			String connection_type = result.getString("connection_type");
-			String estimated_power_consumption = result.getString("estimated_power_consumptionl");
+			String estimated_power_consumption = result.getString("estimated_power_consumption");
 			String owner = result.getString("owner");
 			String initialized_date = result.getString("initialized_date");
 			String initialized_emp = result.getString("initialized_emp");
@@ -188,11 +188,11 @@ public String selectAllMeterprofile() {
 			output = "Error!!!!!!!! while reading the items.";
 			System.out.println(e);
 		}
-		return output;
+		return meterprofiles;
 	}
 	
 	
-	public String selectMeterprofile(String id) throws SQLException{
+	public Meterprofile selectMeterprofile(String id) throws SQLException{
 		
 		String output;
 		
@@ -244,13 +244,13 @@ public String selectAllMeterprofile() {
 		}catch (Exception e) {
 			System.out.println(e);
 		}
-		return output;
+		return meter;
 		
 	}
 	
 	
 	public String updateMeterprofile(Meterprofile meter) {
-		String update_meterprofile = "update electrogrid_meterprofile.meterprofile set name=?,connection_type=?,estimated_power_consumptionl=?,owner=?,initialized_date=?,initialized_emp=?,location=? where id=?;";
+		String update_meterprofile = "update electrogrid_meterprofile.meterprofile set name=?,connection_type=?,estimated_power_consumption=?,owner=?,initialized_date=?,initialized_emp=?,location=? where id=?;";
 		
 		int result=0;
 		Connection connection = null;
@@ -293,5 +293,23 @@ public String selectAllMeterprofile() {
 		return result;
 	}
 
+	public String requestDeleteMeterprofile(String id) {
+		String update_meterprofile = "update electrogrid_meterprofile.meterprofile set delete_request=1 where id=?;";
+		
+		int result=0;
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			PreparedStatement statement = connection.prepareStatement(update_meterprofile);
+			statement.setString(2, id);
 	
+			result = statement.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("have an error in Dao update!!!!");
+			System.out.println(e);
+		}
+		
+		return Integer.toString(result);
+	}
 }

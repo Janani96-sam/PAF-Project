@@ -11,7 +11,21 @@ public class Meterprofile {
 	private String initialized_date;
 	private String initialized_emp;
 	private String location;
+	private String delete_request;
 	
+	
+	public Meterprofile() {
+		super();
+		this.id = "";
+		this.name = "";
+		this.connection_type = "";
+		this.estimated_power_consumption = "";
+		this.owner = "";
+		this.initialized_date = "";
+		this.initialized_emp = "";
+		this.location = "";
+		this.delete_request="";
+	}
 	public Meterprofile(String id, String name, String connection_type,String estimated_power_consumption, String owner, String initialized_date,
 			String initialized_emp, String location) {
 		super();
@@ -23,7 +37,10 @@ public class Meterprofile {
 		this.initialized_date = initialized_date;
 		this.initialized_emp = initialized_emp;
 		this.location = location;
+		this.delete_request = "0";
 	}
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -71,5 +88,11 @@ public class Meterprofile {
 	}
 	public void setEstimated_power_consumption(String estimated_power_consumption) {
 		this.estimated_power_consumption = estimated_power_consumption;
+	}
+	public String getDelete_request() {
+		return delete_request;
+	}
+	public void setDelete_request(String delete_request) {
+		this.delete_request = delete_request;
 	}
 }

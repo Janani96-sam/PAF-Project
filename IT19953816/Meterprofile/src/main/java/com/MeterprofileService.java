@@ -1,6 +1,9 @@
 package com;
 
 
+
+import java.util.List;
+
 //For REST Service
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -23,14 +26,31 @@ public class MeterprofileService {
 	
 	@GET
 	@Path("/read")
-	@Produces(MediaType.TEXT_HTML)
-	public String readItems()
-	 {
-	 return mDao.selectAllMeterprofile();
+	@Produces(MediaType.APPLICATION_JSON)
+	public String readIMeterprofile()
+	{
+		List<Meterprofile> list = mDao.selectAllMeterprofile();
+		Gson gson = new Gson();
+		String out = gson.toJson(list);
+		return out;
+	 } 
+	
+	@GET
+	@Path("/readByUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String readMeterprofile_user(String owner)
+	{
+		JsonObject iobj = new JsonParser().parse(owner).getAsJsonObject(); 
+		String owner = iobj.get("owner").getAsString();
+		List<Meterprofile> list = mDao.selectAllMeterprofileByUser(owner);
+		Gson gson = new Gson();
+		String out = gson.toJson(list);
+		return out;
 	 } 
 	
 	@POST
-	@Path("/insert")
+	@Path("/insert_postman")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insert(@FormParam("id") String id,
@@ -46,6 +66,28 @@ public class MeterprofileService {
 		mDao.registerMeterprofile(m);
 		return "wow nice meter you got there";
 	 }
+	
+	@POST
+	@Path("/insert")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String insert(String meterDetails)
+	 {
+		System.out.println("inside service_insert");
+		JsonObject iobj = new JsonParser().parse(meterDetails).getAsJsonObject(); 
+		String id = iobj.get("id").getAsString();
+		String name = iobj.get("name").getAsString();
+		String connection_type = iobj.get("connection_type").getAsString();
+		String estimated_power_consumption = iobj.get("estimated_power_consumption").getAsString();
+		String owner = iobj.get("owner").getAsString();
+		String initialized_date = iobj.get("initialized_date").getAsString();
+		String initialized_emp = iobj.get("initialized_emp").getAsString();
+		String location = iobj.get("location").getAsString();
+		Meterprofile m = new Meterprofile(id,name,connection_type,estimated_power_consumption,owner,initialized_date,initialized_emp,location);
+		mDao.registerMeterprofile(m);
+		return "wow nice meter you got there";
+	 }
+	
 	
 	@POST
 	@Path("/update")
