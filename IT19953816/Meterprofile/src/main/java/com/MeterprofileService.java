@@ -2,6 +2,8 @@ package com;
 
 
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 //For REST Service
@@ -25,9 +27,9 @@ public class MeterprofileService {
 	MeterprofileDao mDao = new MeterprofileDao();
 	
 	@GET
-	@Path("/read")
+	@Path("/readAll")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String readIMeterprofile()
+	public String readMeterprofile()
 	{
 		List<Meterprofile> list = mDao.selectAllMeterprofile();
 		Gson gson = new Gson();
@@ -39,18 +41,47 @@ public class MeterprofileService {
 	@Path("/readByUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String readMeterprofile_user(String owner)
+	public String readMeterprofile_user(String ownerdet)
 	{
-		JsonObject iobj = new JsonParser().parse(owner).getAsJsonObject(); 
+		JsonObject iobj = new JsonParser().parse(ownerdet).getAsJsonObject(); 
 		String owner = iobj.get("owner").getAsString();
-		List<Meterprofile> list = mDao.selectAllMeterprofileByUser(owner);
+		List<Meterprofile> list = new ArrayList<>();
+		list = mDao.selectAllMeterprofileByUser(owner);
 		Gson gson = new Gson();
 		String out = gson.toJson(list);
 		return out;
 	 } 
 	
+	@GET
+	@Path("/readById")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String readMeterprofile_id(String iddet) throws SQLException
+	{
+		System.out.println("readById");
+		JsonObject iobj = new JsonParser().parse(iddet).getAsJsonObject(); 
+		String id = iobj.get("id").getAsString();
+		Meterprofile meter = new Meterprofile();
+		meter = mDao.selectMeterprofile(id);
+		Gson gson = new Gson();
+		String out = gson.toJson(meter);
+		return out;
+	 } 
+	
+	@GET
+	@Path("/readByRequset")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String readMeterprofile_request() throws SQLException
+	{
+		System.out.println("readByRequset");
+		List<Meterprofile> meter = mDao.selectMeterprofileByRequest();
+		Gson gson = new Gson();
+		String out = gson.toJson(meter);
+		return out;
+	 } 
+	
 	@POST
-	@Path("/insert_postman")
+	@Path("/insert")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insert(@FormParam("id") String id,
@@ -62,30 +93,10 @@ public class MeterprofileService {
 			 @FormParam("initialized_emp") String initialized_emp,
 			 @FormParam("location") String location)
 	 {
+		
 		Meterprofile m = new Meterprofile(id,name,connection_type,estimated_power_consumption,owner,initialized_date,initialized_emp,location);
 		mDao.registerMeterprofile(m);
-		return "wow nice meter you got there";
-	 }
-	
-	@POST
-	@Path("/insert")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String insert(String meterDetails)
-	 {
-		System.out.println("inside service_insert");
-		JsonObject iobj = new JsonParser().parse(meterDetails).getAsJsonObject(); 
-		String id = iobj.get("id").getAsString();
-		String name = iobj.get("name").getAsString();
-		String connection_type = iobj.get("connection_type").getAsString();
-		String estimated_power_consumption = iobj.get("estimated_power_consumption").getAsString();
-		String owner = iobj.get("owner").getAsString();
-		String initialized_date = iobj.get("initialized_date").getAsString();
-		String initialized_emp = iobj.get("initialized_emp").getAsString();
-		String location = iobj.get("location").getAsString();
-		Meterprofile m = new Meterprofile(id,name,connection_type,estimated_power_consumption,owner,initialized_date,initialized_emp,location);
-		mDao.registerMeterprofile(m);
-		return "wow nice meter you got there";
+		return "inserted";
 	 }
 	
 	
@@ -94,7 +105,7 @@ public class MeterprofileService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String update(String meterDetails) {
-		
+		System.out.println("update");
 		JsonObject iobj = new JsonParser().parse(meterDetails).getAsJsonObject(); 
 		
 		String id = iobj.get("id").getAsString();
@@ -105,28 +116,32 @@ public class MeterprofileService {
 		String initialized_date = iobj.get("initialized_date").getAsString();
 		String initialized_emp = iobj.get("initialized_emp").getAsString();
 		String location = iobj.get("location").getAsString();
-		Meterprofile m = new Meterprofile(id,name,connection_type,estimated_power_consumption,owner,initialized_date,initialized_emp,location);
-		String r = mDao.updateMeterprofile(m);
 		
-		return r;
+		Meterprofile m = new Meterprofile(id,name,connection_type,estimated_power_consumption,owner,initialized_date,initialized_emp,location);
+		mDao.updateMeterprofile(m);
+		
+		return "updated";
 		
 	}
+	
+	
+	
 	@DELETE
 	@Path("/delete")
-	@Consumes(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	//@Produces(MediaType.TEXT_HTML)
 	public String delete(String meterDetails) {
 		System.out.println("Here at service");
-		Document doc = Jsoup.parse(meterDetails, "", Parser.xmlParser());
-		String id = doc.select("id").text();
-		System.out.println(id);
-		String output = Integer.toString(mDao.deleteMeterprofile(id)); 
-		return output;
+		JsonObject iobj = new JsonParser().parse(meterDetails).getAsJsonObject(); 
+		String id = iobj.get("id").getAsString();
+		//Document doc = Jsoup.parse(meterDetails, "", Parser.xmlParser());
+		//String id = doc.select("id").text();
+		//System.out.println(id);
+		mDao.deleteMeterprofile(id); 
+		return "deleted";
 	}
-	/*public Meterprofile getit() {
-		System.out.println("get it ....");
-		Meterprofile meter = new Meterprofile("01", "01", "01", "01", "01", "01", "01", "01");
-		return meter;
-	}*/
-}
+	
+	
+	
+	}

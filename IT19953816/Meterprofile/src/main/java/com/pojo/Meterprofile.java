@@ -40,6 +40,21 @@ public class Meterprofile {
 		this.delete_request = "0";
 	}
 	
+	public Meterprofile(String id, String name, String connection_type,String estimated_power_consumption, String owner, String initialized_date,
+			String initialized_emp, String location, String delete_request) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.connection_type = connection_type;
+		this.estimated_power_consumption = estimated_power_consumption;
+		this.owner = owner;
+		this.initialized_date = initialized_date;
+		this.initialized_emp = initialized_emp;
+		this.location = location;
+		this.delete_request = delete_request;
+	}
+	
+	
 	
 	public String getId() {
 		return id;
