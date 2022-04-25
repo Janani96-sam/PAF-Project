@@ -68,7 +68,7 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						
+
 						<a class="collapse-item" href="employeehome.html">Manage
 							Employees</a>
 					</div>
@@ -120,7 +120,7 @@
 					</button>
 
 
-	<ul class="navbar-nav ml-auto">
+					<ul class="navbar-nav ml-auto">
 
 						<div class="topbar-divider d-none d-sm-block"></div>
 
@@ -138,9 +138,8 @@
 								aria-labelledby="userDropdown">
 
 								<div class="dropdown-divider"></div>
-								<p class="dropdown-item" onclick="logOut();"
-									 > <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+								<p class="dropdown-item" onclick="logOut();">
+									<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
 								</p>
 							</div></li>
@@ -190,6 +189,7 @@
 											<thead>
 												<tr>
 													<th>Customer ID</th>
+													<th>Title </th>
 													<th>First Name</th>
 													<th>Last Name</th>
 													<th>NIC</th>
@@ -257,6 +257,17 @@
 					<input id="cid" hidden>
 					<div class="row">
 						<div class="col-10 m-auto">
+							<label>Title</label> <select class="form-group form-control"
+								aria-label=".form-select-sm example" id="title">
+								<option selected>Select Title</option>
+								<option value="mr">Mr.</option>
+								<option value="miss">Miss.</option>
+								<option value="mrs">Mrs.</option>
+
+							</select>
+						</div>
+
+						<div class="col-10 m-auto">
 							<div class="form-group">
 								<label>First Name</label> <input type="text"
 									class="form-control form-control-user" id="fname"
@@ -302,7 +313,7 @@
 							</div>
 						</div>
 
-					<div class="w-100"></div>
+						<div class="w-100"></div>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -324,7 +335,7 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
-		<script src="js/cookie.js"></script>
+	<script src="js/cookie.js"></script>
 	<script type="text/javascript">
 	var baseUrl = "http://localhost:8081/ElectroGrid/accounts";
     async function postData(url = '', data = {},method) {
@@ -369,6 +380,7 @@
                 
                 body+='<tr>';
                 body+='<td>'+obj.cid+'</td>';
+                body+='<td>'+obj.title+'</td>';
                 body+='<td>'+obj.fname+'</td>';
                 body+='<td>'+obj.lname+'</td>';
                 body+='<td>'+obj.cus_nic+'</td>';
@@ -376,7 +388,7 @@
                 body+='<td>'+obj.address+'</td>';
                 body+='<td>'+obj.cus_email+'</td>';  
                 body+='<td>'+obj.cus_status+'</td>'
-                body+='<td> <a class="btn btn-info" href="#" data-toggle="modal" data-target="#logoutModal" onClick="openEmployeeModel('+obj.cid+')">';
+                body+='<td> <a class="btn btn-info" href="#" data-toggle="modal" data-target="#logoutModal" onClick="openCustomerModel('+obj.cid+')">';
                 body+=' <i class="fas fa-pencil-alt fa-sm fa-fw mr-2 "></i></a></td>';
                 body+='<td><button class="btn btn-danger" onClick="deleteCustomer('+obj.cid+')"><i class="fas fa-trash"></i></button></td>';
                              
@@ -404,9 +416,10 @@
     }
     
     ///open customer edit model with values
-    function openEmployeeModel(id){
-    	
+    function openCustomerModel(id){
+    
     	 document.getElementById('cid').value = cusmap.get(id).cid;
+    	 document.getElementById('title').value = cusmap.get(id).title;
 		 document.getElementById('fname').value= cusmap.get(id).fname;
 		 document.getElementById('lname').value= cusmap.get(id).lname;
 		 document.getElementById('nic').value= cusmap.get(id).cus_nic;
@@ -420,7 +433,9 @@
     
     
     function updateCustomer(){
+    	
     	var cid = document.getElementById('cid').value;
+    	var title = document.getElementById('title').value;
 		var fname = document.getElementById('fname').value;
 		var lname = document.getElementById('lname').value;
 		var nic = document.getElementById('nic').value;
@@ -430,7 +445,7 @@
 		
  
 		
-		var json = '{"cid":"'+cid+'","fname":"'+fname+'","lname":"'+lname+'","cus_nic":"'+nic+'","mobile":"'+mobile+'","address":"'+address+'","cus_email":"'+email+'"}';			 
+		var json = '{"cid":"'+cid+'","title":"'+title+'","fname":"'+fname+'","lname":"'+lname+'","cus_nic":"'+nic+'","contact_number":"'+mobile+'","address":"'+address+'","cus_email":"'+email+'"}';			 
 		
 		 
 		

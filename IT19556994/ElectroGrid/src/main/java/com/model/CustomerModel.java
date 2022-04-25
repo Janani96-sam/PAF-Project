@@ -49,6 +49,7 @@ public class CustomerModel {
 				return "{\"status\":\"400\",\"message\":\" Incorrect Phone Number\"}";
 			}
 
+			//to check whether the Customer is existing or not
 			String validatequery = "SELECT count(cid) as customercount FROM customers WHERE cus_nic = '"
 					+ cus.getCus_nic() + "' ";
 			Statement s = con.createStatement();
@@ -57,7 +58,7 @@ public class CustomerModel {
 			while (rs.next()) {
 				x = rs.getInt("customercount");
 			}
-			System.out.print(x);
+			//System.out.print(x);
 
 			if (x != 0) {
 				return "{\"status\":\"400\",\"message\":\" User already exist \"}";
@@ -238,6 +239,7 @@ public class CustomerModel {
 			while (rs.next()) {
 				Customer cus = new Customer();
 				cus.setCid(rs.getInt("cid"));
+				cus.setTitle(rs.getString("title"));
 				cus.setFname(rs.getString("fname"));
 				cus.setLname(rs.getString("lname"));
 				cus.setCus_nic(rs.getString("cus_nic"));
@@ -324,8 +326,9 @@ public class CustomerModel {
 				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 			}
 
-			// String query = "delete from customers where cid=?";
-			String query = "UPDATE customers SET cus_status = ? where cid=?";
+			// String query = "delete from customers where cid=?"; 
+			
+			String query = "UPDATE customers SET cus_status = ? where cid=?"; //soft delete
 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 

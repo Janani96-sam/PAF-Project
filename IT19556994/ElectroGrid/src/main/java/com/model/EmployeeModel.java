@@ -53,6 +53,20 @@ public class EmployeeModel {
 				return "{\"status\":\"400\",\"message\":\" Incorrect Phone Number\"}";
 			}
 			
+			//to check whether the employee is existing
+			String validatequery = "SELECT count(eid) as employeecount FROM employees WHERE emp_nic = '"
+					+ employee.getEmp_nic() + "' ";
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(validatequery);
+			int x = 0;
+			while (rs.next()) {
+				x = rs.getInt("employeecount");
+			}
+			//System.out.print(x);
+
+			if (x != 0) {
+				return "{\"status\":\"400\",\"message\":\" User already exist \"}";
+			}
 			
 			// create a prepared statement
 			String query = "insert into employees(ename,date_of_birth,emp_nic,gender, mobile, email, status, emp_username, emp_password,type) "
