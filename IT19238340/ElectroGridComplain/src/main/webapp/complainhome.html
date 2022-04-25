@@ -176,7 +176,7 @@
 													<th>Complain</th>
 													<th>Contact No</th>
 													<th>Comment</th>
-													<th>Customer ID</th>
+													<th>Account Number</th>
 													<th>View</th>
 													<th>update</th>
 													<th>Delete</th>
@@ -335,14 +335,14 @@
 	
     function loadComplains() {
     	
-    	const searchtext =document.getElementById("searchText");
+    	const searchtext = document.getElementById("searchText");
     
-    	
+    	 
     	if(searchtext.value ===''){
     		alert('Invalid Seach Keyword !');
     	}else{
     		compmap.clear();
-    		fetch("http://localhost:8080/ElectroGridComplain/complainservice/complain/"+searchtext.value+"/searchcomplains")
+    		fetch("http://localhost:8081/ElectroGridComplain/complainservice/complain/"+searchtext.value+"/searchcomplains")
             .then((response) => {
               return response.json();
             })
@@ -381,7 +381,7 @@
     
     function deleteComplain(id){
 	var json = '{"comid":"'+id+'"}';			 
-				postData('http://localhost:8080/ElectroGridComplain/complainservice/complain/deletecomplain', JSON.parse(json),'DELETE')
+				postData('http://localhost:8081/ElectroGridComplain/complainservice/complain/deletecomplain', JSON.parse(json),'DELETE')
 		  .then(data => {
 		    console.log(data);
 		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
@@ -407,7 +407,7 @@
     function   openViewModel(id,accid){
     	
    	
-    	fetch("http://localhost:8080/ElectroGrid/accounts/customer/"+accid+"/getcustomeraccount")
+    	fetch("http://localhost:8081/ElectroGrid/accounts/customer/"+accid+"/getcustomeraccount") //call the API
         .then((response) => {
           return response.json();
         })
@@ -449,7 +449,7 @@
 		 //alert(json);
 		
 		
-		postData('http://localhost:8080/ElectroGridComplain/complainservice/complain/updatecomplain', JSON.parse(json),'PUT')
+		postData('http://localhost:8081/ElectroGridComplain/complainservice/complain/updatecomplain', JSON.parse(json),'PUT')
 		  .then(data => {
 		    console.log(data);
 		    if(JSON.parse(data).status=='200'){
