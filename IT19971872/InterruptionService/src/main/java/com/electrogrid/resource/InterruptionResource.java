@@ -20,6 +20,7 @@ import com.electrogrid.service.InterruptionService;
 @Path("myresource")
 public class InterruptionResource {
 	
+	//
 	@Path("/create")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
