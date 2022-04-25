@@ -72,6 +72,7 @@
 						<a class="collapse-item" href="addcomplain.html">Add Complain</a>
 						<a class="collapse-item" href="complainhome.html">Search
 							Complain</a>
+					   
 					</div>
 				</div></li>
 		</ul>
@@ -210,7 +211,7 @@
 
 										<div class="col-10">
 											<div class="form-group">
-												<input type="text" class="form-control form-control-user"
+												<input type="text" class="form-control form-control-user" style="display:none;"
 													id="other_complain" placeholder="Complain">
 											</div>
 										</div>
@@ -331,12 +332,22 @@
 			
 			console.log(json);
 			
-			postData('http://localhost:8080/ElectroGridComplain/complainservice/complain/insertcomplains', JSON.parse(json))
+			postData('http://localhost:8081/ElectroGridComplain/complainservice/complain/insertcomplains', JSON.parse(json))
 			  .then(data => {
 			    console.log(data);
 			    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
 			  });
 		}
+		
+		$( "#complain" ).change(function() {
+			var val = document.getElementById('complain').value;
+			if(val ==='o'){
+				document.getElementById('other_complain').style.display ="block";
+			}else{
+				document.getElementById('other_complain').style.display ="none";
+			}
+			 
+			});
   </script>
 </body>
 
