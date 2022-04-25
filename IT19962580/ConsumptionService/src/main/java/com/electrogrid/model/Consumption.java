@@ -3,24 +3,29 @@ package com.electrogrid.model;
 public class Consumption {
 	
 	private int consumptionId;
-	private int units;
+	private int currentReading;
+	private String currentReadDate;
+	private int previousReading;
+	private String previousReadDate;
+	private int consumedUnits;
 	private String month;
-	private String premisesId;
-	private String readDate;
-	private int accId;
+	private int accountId;
 	
 	public Consumption() {
 		super();
 	}
 
-	public Consumption(int consumptionId, int units, String month, String premisesId, String readDate, int accId) {
+	public Consumption(int consumptionId, int currentReading, String currentReadDate, int previousReading,
+			String previousReadDate, int consumedUnits, String month, int accountId) {
 		super();
 		this.consumptionId = consumptionId;
-		this.units = units;
+		this.currentReading = currentReading;
+		this.currentReadDate = currentReadDate;
+		this.previousReading = previousReading;
+		this.previousReadDate = previousReadDate;
+		this.consumedUnits = consumedUnits;
 		this.month = month;
-		this.premisesId = premisesId;
-		this.readDate = readDate;
-		this.accId = accId;
+		this.accountId = accountId;
 	}
 
 	public int getConsumptionId() {
@@ -31,12 +36,44 @@ public class Consumption {
 		this.consumptionId = consumptionId;
 	}
 
-	public int getUnits() {
-		return units;
+	public int getCurrentReading() {
+		return currentReading;
 	}
 
-	public void setUnits(int units) {
-		this.units = units;
+	public void setCurrentReading(int currentReading) {
+		this.currentReading = currentReading;
+	}
+
+	public String getCurrentReadDate() {
+		return currentReadDate;
+	}
+
+	public void setCurrentReadDate(String currentReadDate) {
+		this.currentReadDate = currentReadDate;
+	}
+
+	public int getPreviousReading() {
+		return previousReading;
+	}
+
+	public void setPreviousReading(int previousReading) {
+		this.previousReading = previousReading;
+	}
+
+	public String getPreviousReadDate() {
+		return previousReadDate;
+	}
+
+	public void setPreviousReadDate(String previousReadDate) {
+		this.previousReadDate = previousReadDate;
+	}
+
+	public int getConsumedUnits() {
+		return consumedUnits;
+	}
+
+	public void setConsumedUnits(int consumedUnits) {
+		this.consumedUnits = consumedUnits;
 	}
 
 	public String getMonth() {
@@ -47,28 +84,12 @@ public class Consumption {
 		this.month = month;
 	}
 
-	public String getPremisesId() {
-		return premisesId;
+	public int getAccountId() {
+		return accountId;
 	}
 
-	public void setPremisesId(String premisesId) {
-		this.premisesId = premisesId;
-	}
-
-	public String getReadDate() {
-		return readDate;
-	}
-
-	public void setReadDate(String readDate) {
-		this.readDate = readDate;
-	}
-
-	public int getAccId() {
-		return accId;
-	}
-
-	public void setAccId(int accId) {
-		this.accId = accId;
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 
 }
