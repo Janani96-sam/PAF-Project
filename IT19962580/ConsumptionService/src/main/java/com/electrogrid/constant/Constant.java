@@ -8,5 +8,7 @@ public class Constant {
 	public static int INDEX_FOUR = 4;
 	public static int INDEX_FIVE = 5;
 	public static int INDEX_SIX = 6;
+	public static int INDEX_SEVEN = 7;
+	public static int INDEX_EIGHT = 8;
 	
-}
+} 
