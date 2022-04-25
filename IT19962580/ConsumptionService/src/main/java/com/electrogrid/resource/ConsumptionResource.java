@@ -25,7 +25,7 @@ public class ConsumptionResource {
 		System.out.println(consumption);
 	    Consumption createConsumption = ConsumptionService.createConsumption(consumption);
 	    if(createConsumption != null) {
-	    	return Response.status(Status.CREATED).entity(createConsumption).build();
+	    	return Response.status(Status.CREATED).entity("Successfully Inserted!").build();
 	    }
 	    else {
 	    	return Response.status(Status.INTERNAL_SERVER_ERROR).entity(null).build();
@@ -53,7 +53,7 @@ public class ConsumptionResource {
 		
 		if(consumption != null) {
 			if(ConsumptionService.updateConsumption(consumption,conId) != null) {
-				return Response.status(Status.OK).entity(ConsumptionService.updateConsumption(consumption,conId)).build();
+				return Response.status(Status.OK).entity("Successfully Updated!").build();
 			}
 			else {
 				return Response.status(Status.NOT_FOUND).entity("No Related Consumptions Found").build();
@@ -71,7 +71,7 @@ public class ConsumptionResource {
 	public Response deleteConsumption(@PathParam("id") int conId) throws ClassNotFoundException, SQLException{
 		 
 		if(!ConsumptionService.deleteConsumption(conId)) {
-			return Response.status(Status.OK).entity(conId).build();
+			return Response.status(Status.OK).entity("Successfully Deleted!").build();
 		}
 		else {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(null).build();
