@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Add New Complain</title>
+
+<!-- Custom fonts for this template-->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template-->
+
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul
+			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+			id="accordionSidebar">
+
+			<!-- Sidebar - Brand -->
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				href="index.html">
+				<div class="sidebar-brand-icon rotate-n-15">
+					<i class="fas  fa-lightbulb-o"></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">Electro Grid System</div>
+			</a>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0">
+
+			<!-- Nav Item - Dashboard -->
+			<li class="nav-item active"><a class="nav-link"
+				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
+			</li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<!-- Heading -->
+			<div class="sidebar-heading">Management</div>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseTwo"
+				aria-expanded="true" aria-controls="collapseTwo"> <i
+					class="fas fa-fw fa-user"></i> <span>Complain</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addcomplain.html">Add Complain</a>
+						<a class="collapse-item" href="complainhome.html">Search
+							Complain</a>
+					   
+					</div>
+				</div></li>
+		</ul>
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+					<!-- Sidebar Toggle (Topbar) -->
+					<button id="sidebarToggleTop"
+						class="btn btn-link d-md-none rounded-circle mr-3">
+						<i class="fa fa-bars"></i>
+					</button>
+
+
+
+					<ul class="navbar-nav ml-auto">
+
+						<div class="topbar-divider d-none d-sm-block"></div>
+
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow"><a
+							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> <span
+								class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
+									McGee</span> <img class="img-profile rounded-circle"
+								src="img/undraw_profile.svg">
+						</a> <!-- Dropdown - User Information -->
+							<div
+								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+								aria-labelledby="userDropdown">
+								<a class="dropdown-item" href="#"> <i
+									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+								</a> <a class="dropdown-item" href="#"> <i
+									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+									Settings
+								</a> <a class="dropdown-item" href="#"> <i
+									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+									Activity Log
+								</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#" data-toggle="modal"
+									data-target="#logoutModal"> <i
+									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+									Logout
+								</a>
+							</div></li>
+
+					</ul>
+
+				</nav>
+				<!-- End of Topbar -->
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+
+					<div class="row">
+
+						<!-- Area Chart -->
+						<div class="col-xl-12 col-lg-12">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Add New
+										Complain</h6>
+									<div class="m-auto"></div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="row">
+										<div class="col-10">
+											<div class="form-group">
+												<input type="text" class="form-control form-control-user"
+													id="accno" placeholder="account Number">
+											</div>
+										</div>
+
+										<div class="col-10">
+
+											<select class="form-group form-control"
+												aria-label=".form-select-sm example" id="category">
+												<option selected value="0">Category</option>
+												<option value="Breakdown">Breakdown</option>
+												<option value="Service Request">Service Request</option>
+
+											</select>
+										</div>
+
+
+										<div class="col-10">
+
+											<select class="form-group form-control"
+												aria-label=".form-select-sm example" id="complain">
+												<option selected>Complain</option>
+												<option value="Supply failed at premises">Supply
+													failed at premises</option>
+												<option value="Supply failed at area">Supply failed
+													at area</option>
+												<option value="One phase out">One phase out</option>
+												<option value="Broken service wire">Broken service
+													wire</option>
+												<option value="Broken conductor">Broken conductor</option>
+												<option value="Abnormal/ Low Voltage">Abnormal/ Low
+													Voltage</option>
+												<option value="Conductor / Piller burning">Conductor
+													/ Piller burning</option>
+												<option value="Voltage flickering">Voltage
+													flickering</option>
+												<option value="High voltage">High voltage</option>
+												<option value="Meter burning">Meter burning</option>
+												<option value="Flashing Insulators">Flashing
+													Insulators</option>
+												<option value="Neural Leak">Neural Leak</option>
+												<option value="Piller door opened">Piller door
+													opened</option>
+												<option value="Breaker tripped">Breaker tripped</option>
+												<option value="Road accident cause pole damage">Road
+													accident cause pole damage</option>
+												<option value="Road accident cause cable / Conductor damage">Road
+													accident cause cable / Conductor damage</option>
+												<option value="Tree fallen on to the line">Tree
+													fallen on to the line</option>
+												<option value="Flood">Flood</option>
+												<option value="o">Other</option>
+
+											</select>
+										</div>
+
+										<div class="col-10">
+											<div class="form-group">
+												<input type="text" class="form-control form-control-user" style="display:none;"
+													id="other_complain" placeholder="Complain">
+											</div>
+										</div>
+
+
+										<div class="col-10">
+											<div class="form-group">
+												<input type="tel" class="form-control form-control-user"
+													id="mobile" placeholder="Mobile">
+											</div>
+										</div>
+										<div class="col-10">
+											<button class="btn btn-primary" onclick="addComplain();">Add
+												Complain</button>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<!-- /.container-fluid -->
+
+				</div>
+				<!-- End of Main Content -->
+
+				<!-- Footer -->
+				<footer class="sticky-footer bg-white">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span> &copy; Electro Grid</span>
+						</div>
+					</div>
+				</footer>
+				<!-- End of Footer -->
+
+			</div>
+			<!-- End of Content Wrapper -->
+
+		</div>
+		<!-- End of Page Wrapper -->
+
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
+
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ready to
+							Leave?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">Select "Logout" below if you are
+						ready to end your current session.</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">Cancel</button>
+						<a class="btn btn-primary" href="login.html">Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript-->
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Core plugin JavaScript-->
+		<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+		<!-- Custom scripts for all pages-->
+		<script src="js/sb-admin-2.min.js"></script>
+		<script type="text/javascript">
+	async function postData(url = '', data = {}) {
+		  // Default options are marked with *
+		  const response = await fetch(url, {
+		    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+		    mode: 'cors', // no-cors, *cors, same-origin
+		    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+		    credentials: 'same-origin', // include, *same-origin, omit
+		    headers: {
+		      'Content-Type': 'application/json'
+		      // 'Content-Type': 'application/x-www-form-urlencoded',
+		    },
+		    redirect: 'follow', // manual, *follow, error
+		    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+		    body: JSON.stringify(data) // body data type must match "Content-Type" header
+		  });
+		  return response.json(); // parses JSON response into native JavaScript objects
+		}
+
+		
+		
+		function addComplain(){
+			var accno = document.getElementById('accno').value;
+			var category = document.getElementById('category').value;
+			var complain = document.getElementById('complain').value;
+			var other_complain = document.getElementById('other_complain').value;
+			var mobile = document.getElementById('mobile').value;
+
+			
+			
+			var json = '{"account_profiles_accid":"'+accno+'","category":"'+category+'","complain":"'+complain+'" ,"contact_no":"'+mobile+'","status":"0","comment":""}';	
+			if(complain=="o"){
+				var json = '{"account_profiles_accid":"'+accno+'","category":"'+category+'","complain":"'+other_complain+'" ,"contact_no":"'+mobile+'","status":"0","comment":""}';
+			}
+			
+			console.log(json);
+			
+			postData('http://localhost:8081/ElectroGridComplain/complainservice/complain/insertcomplains', JSON.parse(json))
+			  .then(data => {
+			    console.log(data);
+			    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
+			  });
+		}
+		
+		$( "#complain" ).change(function() {
+			var val = document.getElementById('complain').value;
+			if(val ==='o'){
+				document.getElementById('other_complain').style.display ="block";
+			}else{
+				document.getElementById('other_complain').style.display ="none";
+			}
+			 
+			});
+  </script>
+</body>
+
+</html>
+
+
+
