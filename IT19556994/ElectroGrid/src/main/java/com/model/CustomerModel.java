@@ -38,12 +38,12 @@ public class CustomerModel {
 
 			}
 
-			if (cus.getCus_nic().length() < 10 && cus.getCus_nic().length() > 12) {
+			if (cus.getCus_nic().length() < 10 || cus.getCus_nic().length() > 12) {
 				return "{\"status\":\"400\",\"message\":\" Incorrect NIC NO !\"}";
 			}
 
 			if (!Validation.isEmail(cus.getCus_email())) {
-				return "{\"status\":\"400\",\"message\":\" Email Address \"}";
+				return "{\"status\":\"400\",\"message\":\" Incorrect Email Address \"}";
 			}
 			if (!Validation.isPhoneNo(cus.getContact_number())) {
 				return "{\"status\":\"400\",\"message\":\" Incorrect Phone Number\"}";
