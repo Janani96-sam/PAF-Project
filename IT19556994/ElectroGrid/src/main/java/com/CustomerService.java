@@ -28,7 +28,7 @@ public class CustomerService {
 	}
 
 	@GET
-	@Path("/viewcustomers") // Customer end point
+	@Path("/viewcustomers") // customer end point
 	@Produces(MediaType.TEXT_HTML)
 	public String viewCustomers() {
 		CustomerModel cus = new CustomerModel();
@@ -38,7 +38,7 @@ public class CustomerService {
 	}
 
 	@GET
-	@Path("/{name}/searchCustomers") // employee end point
+	@Path("/{name}/searchCustomers")  
 	@Produces(MediaType.APPLICATION_JSON)
 	public String searchCustomers(@PathParam("name") String name) {
 		CustomerModel cus = new CustomerModel();
