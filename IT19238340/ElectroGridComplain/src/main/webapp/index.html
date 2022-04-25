@@ -24,7 +24,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="onLoad();">
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -60,19 +60,100 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-user"></i> <span>Complains</span>
+				data-toggle="collapse" data-target="#collapse2" aria-expanded="true"
+				aria-controls="collapse2"> <i class="fas fa-fw fa-user"></i> <span>User
+						Management</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<div id="collapse2" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="addcomplain.html">Add Complains</a>
-						<a class="collapse-item" href="complainhome.html">Search
-							Complains</a>
+						<a class="collapse-item" href="addemployee.html">Employee
+							Management</a> <a class="collapse-item" href="addcustomer.html">Customer
+							Management</a> <a class="collapse-item" href="addaccount.html">Account
+							Management</a>
 					</div>
 				</div></li>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapse3" aria-expanded="true"
+				aria-controls="collapse3"> <i class="fas fa-fw fa-user"></i> <span>Meter
+						Profile Management</span>
+			</a>
+				<div id="collapse3" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addcustomer.html">Add Meter
+							Profile</a> <a class="collapse-item" href="customerhome.html">Manage
+							Meter Profile</a>
+					</div>
+				</div></li>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapse4" aria-expanded="true"
+				aria-controls="collapse4"> <i class="fas fa-fw fa-user"></i> <span>Consumer
+						Management</span>
+			</a>
+				<div id="collapse4" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addcustomer.html">Add Meter
+							Profile</a> <a class="collapse-item" href="customerhome.html">Manage
+							Meter Profile</a>
+					</div>
+				</div></li>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapse5" aria-expanded="true"
+				aria-controls="collapse5"> <i class="fas fa-fw fa-user"></i> <span>Payment
+						Management</span>
+			</a>
+				<div id="collapse5" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addcustomer.html">Add Payment
+							Details</a> <a class="collapse-item" href="customerhome.html">Manage
+							Payment Details</a>
+					</div>
+				</div></li>
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapse6" aria-expanded="true"
+				aria-controls="collapse6"> <i class="fas fa-fw fa-user"></i> <span>Interruption
+						Management</span>
+			</a>
+				<div id="collapse6" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addcustomer.html">Add
+							Interruption</a> <a class="collapse-item" href="customerhome.html">Manage
+							Interruptions</a>
+					</div>
+				</div></li>
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapse7" aria-expanded="true"
+				aria-controls="collapse7"> <i class="fas fa-fw fa-user"></i> <span>Complaint
+						Management</span>
+			</a>
+				<div id="collapse7" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addcomplain.html">Add Complaint</a>
+						<a class="collapse-item" href="complainhome.html">Manage
+							Complaints</a>
+					</div>
+				</div></li>
+
+
 		</ul>
 		<!-- End of Sidebar -->
 
@@ -103,28 +184,20 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
-									McGee</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small" id="uname">User</span>
+								<img class="img-profile rounded-circle"
 								src="img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									Activity Log
-								</a>
+
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
+								<p class="dropdown-item" onclick="logOut();"
+									 > <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
-								</a>
+								</p>
 							</div></li>
 
 					</ul>
@@ -134,7 +207,7 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
- 
+
 					<div class="row">
 
 						<!-- Area Chart -->
@@ -213,6 +286,22 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
+	<script src="js/cookie.js"></script>
+	<script type="text/javascript">
+		function onLoad() {
+			// setCookie('username','Janani',1);
+
+			if (getCookie('eid') === "") {
+				window.location
+						.replace("http://localhost:8080/Janani/login.html");
+
+			} else {
+				document.getElementById("uname").innerHTML = getCookie('name');
+
+			}
+		}
+		
+	</script>
 </body>
 
 </html>
