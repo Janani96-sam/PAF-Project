@@ -10,7 +10,6 @@ import com.electrogrid.model.Consumption;
 
 public class ConsumptionInterService {
 	
-	
 	public List<Consumption> retrieveAllAccounts() {
 		
 		Client client = ClientBuilder.newClient();
