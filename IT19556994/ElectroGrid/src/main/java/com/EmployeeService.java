@@ -29,7 +29,7 @@ public class EmployeeService {
 	}
 
 	@GET
-	@Path("/{name}/searchemployees") // employee end point
+	@Path("/{name}/searchemployees") 
 	@Produces(MediaType.APPLICATION_JSON)
 	public String searchEmployees(@PathParam("name") String name) {
 		EmployeeModel em = new EmployeeModel();
