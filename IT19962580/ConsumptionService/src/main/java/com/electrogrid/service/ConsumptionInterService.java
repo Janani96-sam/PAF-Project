@@ -1,5 +1,4 @@
 package com.electrogrid.service;
-
 import java.util.List;
 
 import javax.ws.rs.client.Client;
