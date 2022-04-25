@@ -96,8 +96,16 @@ public class MeterprofileService {
 	 {//use post method 
 		
 		Meterprofile m = new Meterprofile(id,name,connection_type,estimated_power_consumption,owner,initialized_date,initialized_emp,location);
-		mDao.registerMeterprofile(m);
-		return "inserted";
+		String re = mDao.checkID(m.getOwner());
+		if(re=="success") {
+			mDao.registerMeterprofile(m);
+			return "inserted";
+		}
+		else {
+			return "";
+		}
+		
+		
 	 }
 	
 	//admin and user can update

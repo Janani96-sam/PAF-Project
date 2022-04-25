@@ -32,6 +32,7 @@ public class MeterprofileDao {
 
 		return connection;
 	}
+	
 
 	// insert data into meterprofile database
 	public int registerMeterprofile(Meterprofile meterprofile) {
@@ -257,4 +258,9 @@ public class MeterprofileDao {
 		return result;
 	}
 
+	public String getCostomers() {
+		String apr = "Customer/getCustomer";
+		
+		return null;
+	}
 }
