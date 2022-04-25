@@ -1,8 +1,6 @@
 package com.electrogrid.resource;
 
 import java.sql.SQLException;
-
-
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -34,6 +32,7 @@ public class ConsumptionResource {
 	    }	 
 	}
 	
+	@Path("/get")
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
 	public Response getConsumptions() throws ClassNotFoundException, SQLException{
