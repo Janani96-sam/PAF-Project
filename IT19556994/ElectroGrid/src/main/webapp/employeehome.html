@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Dashboard</title>
+
+<!-- Custom fonts for this template-->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top" onload="onLoad();">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul
+			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+			id="accordionSidebar">
+
+			<!-- Sidebar - Brand -->
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				href="index.html">
+				<div class="sidebar-brand-icon rotate-n-15">
+					<i class="fas  fa-lightbulb-o"></i>
+				</div>
+				<div class="sidebar-brand-text mx-3">Electro Grid System</div>
+			</a>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0">
+
+			<!-- Nav Item - Dashboard -->
+			<li class="nav-item active"><a class="nav-link"
+				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
+			</li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<!-- Heading -->
+			<div class="sidebar-heading">Management</div>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseTwo"
+				aria-expanded="true" aria-controls="collapseTwo"> <i
+					class="fas fa-fw fa-user"></i> <span>Employee</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addemployee.html">Add Employee</a>
+						<a class="collapse-item" href="employeehome.html">Manage
+							Employees</a>
+					</div>
+				</div></li>
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapse3"
+				aria-expanded="true" aria-controls="collapse3"> <i
+					class="fas fa-fw fa-user"></i> <span>Customer</span>
+			</a>
+				<div id="collapse3" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addcustomer.html">Add Customer</a>
+						<a class="collapse-item" href="customerhome.html">Manage
+							Customers</a>
+					</div>
+				</div></li>
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapse4"
+				aria-expanded="true" aria-controls="collapse4"> <i
+					class="fas fa-fw fa-user"></i> <span>Account</span>
+			</a>
+				<div id="collapse4" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+
+						<a class="collapse-item" href="addaccount.html">Add Account</a>
+						<a class="collapse-item" href="accounthome.html">Manage
+							Accounts</a>
+					</div>
+				</div></li>
+		</ul>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+					<!-- Sidebar Toggle (Topbar) -->
+					<button id="sidebarToggleTop"
+						class="btn btn-link d-md-none rounded-circle mr-3">
+						<i class="fa fa-bars"></i>
+					</button>
+
+
+
+						<ul class="navbar-nav ml-auto">
+
+						<div class="topbar-divider d-none d-sm-block"></div>
+
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow"><a
+							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> <span
+								class="mr-2 d-none d-lg-inline text-gray-600 small" id="uname">User</span>
+								<img class="img-profile rounded-circle"
+								src="img/undraw_profile.svg">
+						</a> <!-- Dropdown - User Information -->
+							<div
+								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+								aria-labelledby="userDropdown">
+
+								<div class="dropdown-divider"></div>
+								<p class="dropdown-item" onclick="logOut();"
+									 > <i
+									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+									Logout
+								</p>
+							</div></li>
+
+					</ul>
+
+				</nav>
+				<!-- End of Topbar -->
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+
+					<div class="row">
+
+						<!-- Area Chart -->
+						<div class="col-xl-12 col-lg-12">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Search
+										Employee</h6>
+									<div class="m-auto"></div>
+									<form
+										class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+										style="margin: 0px !important;">
+										<div class="input-group">
+											<input type="text"
+												class="form-control bg-secondary border-0 small"
+												placeholder="Search for..." aria-label="Search"
+												aria-describedby="basic-addon2" style="color: white;"
+												id="searchText">
+											<div class="input-group-append">
+												<button class="btn btn-primary" type="button"
+													onclick="loadEmployees();">
+													<i class="fas fa-search fa-sm"></i>
+												</button>
+											</div>
+										</div>
+									</form>
+
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="row" style="overflow: hidden;">
+										<table class="table table-striped  table-bordered">
+											<thead>
+												<tr>
+													<th>Employee ID</th>
+													<th>Name</th>
+													<th>Date Of Birth</th>
+													<th>NIC</th>
+													<th>Gender</th>
+													<th>Mobile</th>
+													<th>Email</th>
+
+													<th>Edit</th>
+													<th>Delete</th>
+												</tr>
+											</thead>
+											<tbody id="tbody_emp">
+
+											</tbody>
+
+										</table>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+			<!-- Footer -->
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span> &copy; Electro Grid</span>
+					</div>
+				</div>
+			</footer>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Update User</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<input id="eid" hidden>
+					<div class="row">
+						<div class="col-10 m-auto">
+							<div class="form-group">
+							<label>Employee Name</label>
+								<input type="text" class="form-control form-control-user"
+									id="ename" placeholder="Employee Name">
+							</div>
+						</div>
+						<div class="col-10 m-auto">
+							<div class="form-group">
+							<label>Date Of Birth</label>
+								<input type="date" class="form-control form-control-user"
+									id="date_of_birth" placeholder="Date Of Birth">
+							</div>
+						</div>
+						<div class="col-10 m-auto">
+							<div class="form-group">
+							<label>NIC</label>
+								<input type="text" class="form-control form-control-user"
+									id="nic" placeholder="NIC">
+							</div>
+						</div>
+						<div class="col-10 m-auto">
+<label>Gender</label>
+							<select class="form-group form-control"
+								aria-label=".form-select-sm example" id="gender">
+								<option selected>Select Gender</option>
+								<option value="m">Male</option>
+								<option value="f">Female</option>
+
+							</select>
+						</div>
+						<div class="col-10 m-auto">
+							<div class="form-group">
+							<label>Mobile</label>
+								<input type="tel" class="form-control form-control-user"
+									id="mobile" placeholder="Mobile">
+							</div>
+						</div>
+						<div class="col-10 m-auto">
+							<div class="form-group">
+							<label>E-mail</label>
+								<input type="email" class="form-control form-control-user"
+									id="email" placeholder="E-Mail">
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<button class="btn btn-primary" onclick="updateEmployee();">Update</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.min.js"></script>
+		<script src="js/cookie.js"></script>
+	<script type="text/javascript">
+	var baseUrl = "http://localhost:8081/ElectroGrid/accounts";
+	
+    async function postData(url = '', data = {},method) {
+		  // Default options are marked with *
+		  const response = await fetch(url, {
+		    method: method, // *GET, POST, PUT, DELETE, etc.
+		    mode: 'cors', // no-cors, *cors, same-origin
+		    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+		    credentials: 'same-origin', // include, *same-origin, omit
+		    headers: {
+		      'Content-Type': 'application/json'
+		      // 'Content-Type': 'application/x-www-form-urlencoded',
+		    },
+		    redirect: 'follow', // manual, *follow, error
+		    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+		    body: JSON.stringify(data) // body data type must match "Content-Type" header
+		  });
+		  return response.json(); // parses JSON response into native JavaScript objects
+		}
+	
+	const empmap = new Map();
+	
+    function loadEmployees() { //read employee data(search)
+    	
+    	const searchtext =document.getElementById("searchText");
+    
+    	
+    	if(searchtext.value ===''){
+    		alert('Invalid Seach Keyword !');
+    	}else{
+    		empmap.clear();
+    		fetch(baseUrl+"/employee/"+searchtext.value+"/searchemployees")
+            .then((response) => {
+              return response.json();
+            })
+            .then((employee) => {
+            	var body = '';
+            	
+              for (var i = 0; i < employee.length; i++) {
+                var obj = employee[i];
+                empmap.set(obj.eid,obj);
+                
+                body+='<tr>';
+                body+='<td>'+obj.eid+'</td>';
+                body+='<td>'+obj.ename+'</td>';
+                body+='<td>'+obj.date_of_birth+'</td>';
+                body+='<td>'+obj.emp_nic+'</td>';
+                if(obj.gender==='f'){
+                	  body+='<td>Female</td>';
+                }else{
+                	  body+='<td>Male</td>';
+                }
+              
+                body+='<td>'+obj.mobile+'</td>';
+                body+='<td>'+obj.email+'</td>';           
+                body+='<td> <a class="btn btn-info" href="#" data-toggle="modal" data-target="#logoutModal" onClick="openEmployeeModel('+obj.eid+')">';
+                body+=' <i class="fas fa-pencil-alt fa-sm fa-fw mr-2 "></i></a></td>';
+                body+='<td><button class="btn btn-danger" onClick="deleteEmployee('+obj.eid+')"><i class="fas fa-trash"></i></button></td>';
+                             
+                body+='</tr>';
+             
+              }
+             
+              
+             const tbody =  document.getElementById('tbody_emp');
+    		 tbody.innerHTML = body;
+    		 
+            });
+    	}
+      
+    }
+    
+    function deleteEmployee(id){
+	var json = '{"eid":"'+id+'"}';			 
+				postData(baseUrl+'/employee/deleteemployee', JSON.parse(json),'DELETE')
+		  .then(data => {
+		    console.log(data);
+		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
+		  });
+    	
+    }
+    
+    ///open employee edit model with values
+    function openEmployeeModel(id){
+    	
+    	 document.getElementById('eid').value = empmap.get(id).eid;
+		 document.getElementById('ename').value= empmap.get(id).ename;
+		 document.getElementById('date_of_birth').valueAsDate=new Date( empmap.get(id).date_of_birth);
+		 document.getElementById('nic').value= empmap.get(id).emp_nic;
+		 document.getElementById('gender').value= empmap.get(id).gender;
+		 document.getElementById('mobile').value= empmap.get(id).mobile;
+		 document.getElementById('email').value= empmap.get(id).email;
+ 
+    	
+    }
+    
+    
+    function updateEmployee(){
+    	var eid = document.getElementById('eid').value;
+		var ename = document.getElementById('ename').value;
+		var dob = document.getElementById('date_of_birth').value;
+		var nic = document.getElementById('nic').value;
+		var gender = document.getElementById('gender').value;
+		var mobile = document.getElementById('mobile').value;
+		var email = document.getElementById('email').value;
+ 
+		
+		var json = '{"eid":"'+eid+'","ename":"'+ename+'","date_of_birth":"'+dob+'","emp_nic":"'+nic+'","gender":"'+gender+'","mobile":"'+mobile+'","email":"'+email+'"}';			 
+		
+		 
+		
+		
+		postData(baseUrl+'/employee/updateemployee', JSON.parse(json),'PUT')
+		  .then(data => {
+		    console.log(data);
+		    if(JSON.parse(data).status=='200'){
+		    	$('#logoutModal').modal('hide');
+		    }
+		    alert(JSON.parse(data).message);// JSON data parsed by `data.json()` call
+		  });
+	}
+    function onLoad() {
+		// setCookie('username','Janani',1);
+
+		if (getCookie('eid') === "") {
+			window.location
+					.replace("http://localhost:8081/ElectroGrid/login.html");
+
+		} else {
+			document.getElementById("uname").innerHTML = getCookie('name');
+
+		}
+	}
+
+  </script>
+</body>
+
+</html>
+
+
+
