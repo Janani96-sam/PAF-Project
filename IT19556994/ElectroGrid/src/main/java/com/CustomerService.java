@@ -28,7 +28,7 @@ public class CustomerService {
 	}
 
 	@GET
-	@Path("/viewcustomers") // account end point
+	@Path("/viewcustomers") // customer end point
 	@Produces(MediaType.TEXT_HTML)
 	public String viewCustomers() {
 		CustomerModel cus = new CustomerModel();
