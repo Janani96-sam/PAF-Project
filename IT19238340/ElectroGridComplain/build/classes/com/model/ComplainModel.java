@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.pojo.Complain;
+import com.validation.Validation;
 
 public class ComplainModel {
 	private Connection connect() {
@@ -34,6 +35,9 @@ public class ComplainModel {
 			if (con == null) {
 				return "{\"status\":\"400\",\"message\":\"Error Connecting to Database !\"}";
 
+			}
+			if (!Validation.isPhoneNo(complain.getContact_no())) {
+				return "{\"status\":\"400\",\"message\":\" Incorrect Phone Number\"}";
 			}
 
 			// create a prepared statement
@@ -200,8 +204,8 @@ public class ComplainModel {
 			if (con == null) {
 				return output;
 			}
-
-			String query = "select * from complain WHERE category LIKE '%" + name + "%'";
+		
+			String query = "select * from complain WHERE account_profiles_accid = '" + name + "'";
 			Statement stat = con.createStatement();
 			ResultSet rs = stat.executeQuery(query);
 
@@ -224,6 +228,7 @@ public class ComplainModel {
 		} catch (Exception e) {
 
 			System.err.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return output;
 
