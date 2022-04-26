@@ -13,11 +13,13 @@ public class InterCommunicate {
 
 	
 	
-	public String checkID(String id) {
-		String result = "Error";	
+	public String[] checkID(String id) {
+		
+		String[] account = {"",""};
+		
 		HttpURLConnection connection;
 		try {
-			URL url = new URL("http://localhost:8081/ElectroGrid/accounts/customer/966122779V/searchCustomers");
+			URL url = new URL("http://localhost:8081/ElectroGrid/accounts/customer/?/searchCustomers");
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET"); 
 			connection.connect();
@@ -27,7 +29,7 @@ public class InterCommunicate {
 			if(responseCode != 200) {
 				throw new RuntimeException("HttpResponseCode:" + responseCode);
 			}
-			else {
+		else {
 				StringBuilder inforString = new StringBuilder();
 				Scanner scanner = new Scanner(url.openStream());
 				
@@ -46,13 +48,14 @@ public class InterCommunicate {
 					jobj = new JsonParser().parse(s).getAsJsonObject(); //creating json object
 					
 					if(id==jobj.get("id").getAsString()) {//checking the input id with json object id 
-						result = jobj.get("name").getAsString();//if ids are matched breack the loop and return message
+						account[0] = jobj.get("name").getAsString();//if ids are matched breack the loop and return message
+						account[1] = jobj.get("location").getAsString();
 						break;
 					}
 					i++;
 				}
 				if(++i==array.length()) {
-					return "no such a customer";
+					return null;
 				}
 				//JSONParser parse = new JSONParser();
 	            //JSONArray dataObject = (JSONArray) parse.parse(String.valueOf(inforString));
@@ -64,7 +67,7 @@ public class InterCommunicate {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		return account;
 		
 	}
 	
