@@ -75,9 +75,8 @@
 				</div></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapse3"
-				aria-expanded="true" aria-controls="collapse3"> <i
-					class="fas fa-fw fa-user"></i> <span>Customer</span>
+				data-toggle="collapse" data-target="#collapse3" aria-expanded="true"
+				aria-controls="collapse3"> <i class="fas fa-fw fa-user"></i> <span>Customer</span>
 			</a>
 				<div id="collapse3" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
@@ -90,17 +89,15 @@
 				</div></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapse4"
-				aria-expanded="true" aria-controls="collapse4"> <i
-					class="fas fa-fw fa-user"></i> <span>Account</span>
+				data-toggle="collapse" data-target="#collapse4" aria-expanded="true"
+				aria-controls="collapse4"> <i class="fas fa-fw fa-user"></i> <span>Account</span>
 			</a>
 				<div id="collapse4" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 
-						<a class="collapse-item" href="addaccount.html">Add Account</a>
-						<a class="collapse-item" href="accounthome.html">Manage
-							Accounts</a>
+						<a class="collapse-item" href="addaccount.html">Add Account</a> <a
+							class="collapse-item" href="accounthome.html">Manage Accounts</a>
 					</div>
 				</div></li>
 		</ul>
@@ -124,7 +121,7 @@
 
 
 
-						<ul class="navbar-nav ml-auto">
+					<ul class="navbar-nav ml-auto">
 
 						<div class="topbar-divider d-none d-sm-block"></div>
 
@@ -142,9 +139,8 @@
 								aria-labelledby="userDropdown">
 
 								<div class="dropdown-divider"></div>
-								<p class="dropdown-item" onclick="logOut();"
-									 > <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+								<p class="dropdown-item" onclick="logOut();">
+									<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
 								</p>
 							</div></li>
@@ -168,17 +164,17 @@
 									<h6 class="m-0 font-weight-bold text-primary">Manage
 										Accounts</h6>
 									<div class="m-auto"></div>
-									
+
 									<form
 										class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
 										style="margin: 0px !important;">
-									
+
 										<div class="input-group">
 											<input type="text"
 												class="form-control bg-secondary border-0 small"
 												placeholder="Search for..." aria-label="Search"
-												aria-describedby="basic-addon2" style="color: white !important;"
-												id="searchText">
+												aria-describedby="basic-addon2"
+												style="color: white !important;" id="searchText">
 											<div class="input-group-append">
 												<button class="btn btn-primary" type="button"
 													onclick="loadAccounts();">
@@ -196,9 +192,9 @@
 											<thead>
 												<tr>
 													<th>Account ID</th>
-													<th>Serial NUmber</th>
-													<th>Install Date</th>
+													<th>Serial Number</th>
 													<th>Register Date</th>
+													<th>Install Date</th>
 													<th>Connection Type</th>
 													<th>Address</th>
 													<th>Status</th>
@@ -264,40 +260,40 @@
 					<div class="row">
 						<div class="col-10 m-auto">
 							<div class="form-group">
-							<label>Serial Number</label>
-								<input type="text" class="form-control form-control-user"
-									id="serial" placeholder="Serial Number">
+								<label>Serial Number</label> <input type="text"
+									class="form-control form-control-user" id="serial"
+									placeholder="Serial Number">
 							</div>
 						</div>
 						<div class="col-10 m-auto">
 							<div class="form-group">
-							<label>Install Date</label>
-								<input type="date" class="form-control form-control-user"
-									id="install_date" placeholder="Install Date">
+								<label>Register Date</label> <input type="date"
+									class="form-control form-control-user" id="register_date"
+									placeholder="Register Date">
 							</div>
 						</div>
 						<div class="col-10 m-auto">
-						<label>Connection Type</label>
-							<select class="form-group form-control"
+							<label>Connection Type</label> <select
+								class="form-group form-control"
 								aria-label=".form-select-sm example" id="connection_type">
 								<option selected>Select Connection Type</option>
 								<option value="sp">Single Phase 30A</option>
 								<option value="tp">Three Phase 30A</option>
 								<option value="tp_1">Three Phase 60A</option>
 							</select>
-							</div>
+						</div>
 						<div class="col-10 m-auto">
 							<div class="form-group">
-							<label>Address</label>
-								<input type="text" class="form-control form-control-user"
-									id="address" placeholder="Address">
+								<label>Address</label> <input type="text"
+									class="form-control form-control-user" id="address"
+									placeholder="Address">
 							</div>
 						</div>
 						<div class="col-10 m-auto">
 							<div class="form-group">
-							<label>Status</label>
-								<input type="text" class="form-control form-control-user"
-									id="status" placeholder="Status">
+								<label>Status</label> <input type="text"
+									class="form-control form-control-user" id="status"
+									placeholder="Status">
 							</div>
 						</div>
 
@@ -322,7 +318,7 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
-		<script src="js/cookie.js"></script>
+	<script src="js/cookie.js"></script>
 	<script type="text/javascript">
 	var baseUrl = "http://localhost:8081/ElectroGrid/accounts";
 	
@@ -369,8 +365,8 @@
                 body+='<tr>';
                 body+='<td>'+obj.accid+'</td>';
                 body+='<td>'+obj.serial+'</td>';
-                body+='<td>'+obj.install_date+'</td>';
                 body+='<td>'+obj.register_date+'</td>';
+                body+='<td>'+obj.install_date+'</td>';
                 if(obj.connecion_type==='sp'){
                 	  body+='<td>Single Phase 30A</td>';
                 }else if(obj.connection_type==='tp'){
@@ -417,7 +413,7 @@
     	
     	 document.getElementById('accid').value = accmap.get(id).accid;
 		 document.getElementById('serial').value= accmap.get(id).serial;
-		 document.getElementById('install_date').valueAsDate=new Date( accmap.get(id).install_date);
+		 document.getElementById('register_date').valueAsDate=new Date( accmap.get(id).register_date);
 		 document.getElementById('connection_type').value= accmap.get(id).connection_type;
 		 document.getElementById('address').value= accmap.get(id).address;
 		 document.getElementById('status').value= accmap.get(id).status;
@@ -430,13 +426,13 @@
     function updateAccount(){
     	var accid = document.getElementById('accid').value;
 		var serial = document.getElementById('serial').value;
-		var install = document.getElementById('install_date').value;	
+		var register = document.getElementById('register_date').value;	
 		var connection = document.getElementById('connection_type').value;
 		var address = document.getElementById('address').value;
 		var status = document.getElementById('status').value;
  
 		
-		var json = '{"accid":"'+accid+'","serial":"'+serial+'","install_date":"'+install+'","connection_type":"'+connection+'","address":"'+address+'","status":"'+status+'"}';				 
+		var json = '{"accid":"'+accid+'","serial":"'+serial+'","register_date":"'+register+'","connection_type":"'+connection+'","address":"'+address+'","status":"'+status+'"}';				 
 		
 		 
 		
