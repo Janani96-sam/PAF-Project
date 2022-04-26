@@ -48,7 +48,7 @@ public class AccountModel {
 			preparedStmt.setString(3, acc.getRegister_date());
 			preparedStmt.setString(4, acc.getConnection_type());
 			preparedStmt.setString(5, acc.getAddress());
-			preparedStmt.setInt(6, 1);
+			preparedStmt.setInt(6, 0);
 			preparedStmt.setInt(7, acc.getCustomer_cid());
 			preparedStmt.setInt(8, acc.getEmployee_eid());
 
@@ -243,7 +243,7 @@ public class AccountModel {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
-System.out.println(acc.getAccid());
+//System.out.println(acc.getAccid());
 			preparedStmt.setString(1, acc.getAddress());
 			preparedStmt.setInt(2, acc.getStatus());
 			preparedStmt.setInt(3, acc.getAccid());

@@ -173,21 +173,7 @@
 								<!-- Card Body -->
 								<div class="card-body">
 									<div class="row">
-										<div class="col-md-6 col-sm-12">
-											<div class="form-group">
-												<label for="serial" class="form-label">Serial Number</label>
-												<input type="text" class="form-control form-control-user"
-													id="serial" placeholder="Serial Number">
-											</div>
-										</div>
-										<div class="col-md-6 col-sm-12">
-											<div class="form-group">
-												<label for="serial" class="form-label">Install Date</label>
-												<input type="date" class="form-control form-control-user"
-													id="install_date" placeholder="Install Date">
-											</div>
-										</div>
-
+										
 										<div class="col-md-6 col-sm-12">
 											<div class="form-group">
 												<label for="serial" class="form-label">Register Date</label>
@@ -195,6 +181,8 @@
 													id="register_date" placeholder="Register Date">
 											</div>
 										</div>
+
+									
 										<div class="col-md-6 col-sm-12">
 											<label for="serial" class="form-label">Connection
 												Type</label> <select class="form-group form-control"
@@ -330,8 +318,8 @@
 		
 		
 		function addAccount(){
-			var serial = document.getElementById('serial').value;
-			var install = document.getElementById('install_date').value;
+			// var serial = document.getElementById('serial').value;
+			//var install = document.getElementById('install_date').value;
 			var register = document.getElementById('register_date').value;
 			var connection = document.getElementById('connection_type').value;
 			var address = document.getElementById('address').value;
@@ -341,7 +329,7 @@
 			var eid = getCookie('eid');
 	
 			
-			var json = '{"serial":"'+serial+'","install_date":"'+install+'","register_date":"'+register+'","connection_type":"'+connection+'","address":"'+address+'","status":"'+status+'","customer_cid":'+cus_id+',"employee_eid":'+eid+'}';			 
+			var json = '{"serial":"","install_date":"","register_date":"'+register+'","connection_type":"'+connection+'","address":"'+address+'","status":"'+status+'","customer_cid":'+cus_id+',"employee_eid":'+eid+'}';			 
 			
 			console.log(json);
 			
