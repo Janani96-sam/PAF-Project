@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.*;
 
 import com.pojo.Meterprofile;
+import com.dao.InterCommunicate;
 import com.dao.MeterprofileDao;
 
 //meter profile service
@@ -94,15 +95,18 @@ public class MeterprofileService {
 			 @FormParam("initialized_emp") String initialized_emp,
 			 @FormParam("location") String location)
 	 {//use post method 
-		
+		InterCommunicate inter = new InterCommunicate();
 		Meterprofile m = new Meterprofile(id,name,connection_type,estimated_power_consumption,owner,initialized_date,initialized_emp,location);
-		String re = mDao.checkID(m.getOwner());
-		if(re=="success") {
+		String[] re = inter.checkID(m.getOwner());
+		if(m.getLocation().isEmpty()) {
+			m.setLocation(re[1]);
+		}
+		if(re[0]==m.getOwner()) {
 			mDao.registerMeterprofile(m);
 			return "inserted";
 		}
 		else {
-			return "";
+			return "no account with such id";
 		}
 		
 		
