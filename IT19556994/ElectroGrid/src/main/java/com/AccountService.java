@@ -81,5 +81,19 @@ public class AccountService {
 		
 	}
 	
+	//other API
+	@PUT
+	@Path("/updateaccountapi")
+	@Produces(MediaType.APPLICATION_JSON) //type that we send (response type)
+	@Consumes(MediaType.APPLICATION_JSON) // type that we receive (request type)
+	public String updateAccountApi(String json) {
+		AccountModel acc = new AccountModel();
+		Gson gson = new Gson();
+		Account acct = gson.fromJson(json, Account.class);
+		String output = acc.updateAccountbyAPI(acct);
+		
+		return output;
+	}
+	
 }
 	
